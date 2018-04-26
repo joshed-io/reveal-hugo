@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{{ .Site.Title }}</title>
+    <meta name="description" content="{{ .Site.Params.Description }}">
+    <meta name="author" content="{{ .Site.Author.name }}">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="{{ "css/reveal.css" | relURL }}">
+    {{ $theme := or .Site.Params.reveal_theme "black" }}
+    <link rel="stylesheet" href="{{ printf "/css/theme/%s.css" $theme | relURL }}" id="theme">
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="{{ "/lib/css/zenburn.css" | relURL }}">
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '{{ "css/print/pdf.css" | relURL }}' : '{{ "css/print/paper.css" | relURL }}';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    <!--[if lt IE 9]>
+    <script src="{{ "lib/js/html5shiv.js" | relURL }}"></script>
+    <![endif]-->
+  </head>
+  <body>
+    {{ block "main" . }}
+    {{ end }}
+    <script src="{{ "/lib/js/head.min.js" | relURL }}"></script>
+    <script src="{{ "/js/reveal.js" | relURL }}"></script>
+    <script>
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+          { src: '{{ "lib/js/classList.js" | relURL }}', condition: function() { return !document.body.classList; } },
+          { src: '{{ "plugin/markdown/marked.js" | relURL }}', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '{{ "plugin/markdown/markdown.js" | relURL }}', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '{{ "plugin/highlight/highlight.js" | relURL }}', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '{{ "plugin/search/search.js" | relURL }}', async: true },
+          { src: '{{ "plugin/zoom-js/zoom.js" | relURL }}', async: true },
+          { src: '{{ "plugin/notes/notes.js" | relURL }}', async: true }
+        ]
+      });
+    </script>
+  </body>
+</html>
