@@ -1,8 +1,8 @@
 baseURL = "https://reveal-hugo.netlify.com/"
 languageCode = "en-us"
 title = "A Hugo theme for creating Reveal.js presentations"
-theme = "reveal-hugo"
-themesDir = "../../"
+theme = "."
+themesDir = "../"
 
 [author]
 name = "Josh Dzielak"

@@ -1,5 +1,5 @@
 [build]
-command = "hugo -s exampleSite -d ../public"
+command = "hugo -s exampleSite -d ../public --themesDir ../../"
 publish = "public"
 
 [context.production.environment]
