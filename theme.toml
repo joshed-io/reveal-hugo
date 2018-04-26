@@ -1,0 +1,15 @@
+name = "reveal-hugo"
+license = "MIT"
+licenselink = "https://github.com/dzello/reveal-hugo/blob/master/LICENSE"
+homepage = "https://github.com/dzello/reveal-hugo"
+tags = ["presentation", "revealjs"]
+features = ["presentation"]
+
+[author]
+name = "Josh Dzielak"
+homepage = "https://dzello.com/"
+
+[original]
+name = "reveal.js"
+homepage = "https://revealjs.com"
+repo = "https://github.com/hakimel/reveal.js/"

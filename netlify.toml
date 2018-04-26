@@ -1,0 +1,9 @@
+[build]
+command = "hugo -s exampleSite -d ../public"
+publish = "public"
+
+[context.production.environment]
+HUGO_VERSION = "0.37.1"
+
+[context.deploy-preview.environment]
+HUGO_VERSION = "0.37.1"
