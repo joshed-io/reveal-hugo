@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>{{ .Site.Title }}</title>
+    <title>{{ or .Page.Title .Site.Title }}</title>
     <meta name="description" content="{{ .Site.Params.Description }}">
     <meta name="author" content="{{ .Site.Author.name }}">
     <meta name="apple-mobile-web-app-capable" content="yes">
