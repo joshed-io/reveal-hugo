@@ -33,7 +33,7 @@ Visit [https://reveal-hugo.netlify.com/](https://reveal-hugo.netlify.com/) to se
 
 # Usage
 
-To create the presentation, the theme will look for all Hugo pages that have a type of `reveal`. That means they're in a `reveal` directory in the `content` folder OR the type is manually set to `reveal` in the front matter.
+To create the default presentation (the one that will live at the site root), the theme will look for all Hugo pages that have a type of `reveal`. That means they're in a `reveal` directory in the `content` folder OR the type is manually set to `reveal` in the front matter.
 
 ```toml
 type = 'reveal'
@@ -44,6 +44,10 @@ Use the `weight` param in the front matter to specify the order that the pages s
 ```toml
 weight = 20
 ```
+
+### Section presentations
+
+To create more than one presentation per repository, organize the content into sections. Section presentations will include content from each file in that section. Again, use the `weight` param to order the sections.
 
 ### Fragments
 
