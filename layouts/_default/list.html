@@ -1,0 +1,15 @@
+{{ define "main" }}
+  <div class="reveal">
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+      <!-- Find all pages inside of this section -->
+      {{ range .Pages }}
+        <!-- Split the processed content by <hr /> tag -->
+        {{ range (split .Content "<hr />") }}
+          <!-- Output the content as safe  -->
+          <section>{{ . | safeHTML }}</section>
+        {{ end }}
+      {{ end }}
+    </div>
+  </div>
+{{ end }}
