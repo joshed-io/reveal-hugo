@@ -34,6 +34,8 @@ Protip: use `fragment` shortcode to make content appear in sequence.
 
 ```
 {{%/* fragment */%}} One {{%/* /fragment */%}}
+{{%/* fragment */%}} Two {{%/* /fragment */%}}
+{{%/* fragment */%}} Three {{%/* /fragment */%}}
 ```
 
 {{% fragment %}} One {{% /fragment %}}
