@@ -10,9 +10,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="{{ "css/reveal.css" | relURL }}">
     {{ $theme := or .Site.Params.reveal_theme "black" }}
-    <link rel="stylesheet" href="{{ printf "/css/theme/%s.css" $theme | relURL }}" id="theme">
+    <link rel="stylesheet" href="{{ printf "css/theme/%s.css" $theme | relURL }}" id="theme">
     <!-- Theme used for syntax highlighting of code -->
-    <link rel="stylesheet" href="{{ "/lib/css/zenburn.css" | relURL }}">
+    <link rel="stylesheet" href="{{ "lib/css/zenburn.css" | relURL }}">
     <!-- Printing and PDF exports -->
     <script>
       var link = document.createElement( 'link' );
@@ -28,8 +28,8 @@
   <body>
     {{ block "main" . }}
     {{ end }}
-    <script src="{{ "/lib/js/head.min.js" | relURL }}"></script>
-    <script src="{{ "/js/reveal.js" | relURL }}"></script>
+    <script src="{{ "lib/js/head.min.js" | relURL }}"></script>
+    <script src="{{ "js/reveal.js" | relURL }}"></script>
     <script>
       // More info https://github.com/hakimel/reveal.js#configuration
       Reveal.initialize({
