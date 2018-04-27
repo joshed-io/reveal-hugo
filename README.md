@@ -1,6 +1,6 @@
 # reveal-hugo
 
-A Hugo theme for creating [Reveal.js](https://revealjs.com/) presentations that allows you to put multiple slides in the same markdown file.
+A Hugo theme for creating [Reveal.js](https://revealjs.com/) presentations that allows you to put multiple slides in the same markdown file. It also allows you to create multiple presentations in the same project.
 
 ![screenshot of reveal-hugo](/images/reveal-hugo.png)
 
@@ -8,7 +8,7 @@ The motivation behind creating this theme is pretty simple - I didn't want to ha
 
 ### Example
 
-Using reveal-hugo, a three-slide presentation can be created with just one markdown file, like so:
+Using reveal-hugo, a three-slide (or n-slide) presentation can be created with just one markdown file, like so:
 
 ```markdown
 # English
@@ -33,10 +33,10 @@ Visit [https://reveal-hugo.netlify.com/](https://reveal-hugo.netlify.com/) to se
 
 # Usage
 
-To create the default presentation (the one that will live at the site root), the theme will look for all Hugo pages that have a type of `reveal`. That means they're in a `reveal` directory in the `content` folder OR the type is manually set to `reveal` in the front matter.
+To create the default presentation (the one that will live at the site root), the theme will look for a `content/_index.md` file and any pages that have a type of `home`. That means they're in a `home` directory in the `content` folder OR the type is manually set to `home` in the front matter.
 
 ```toml
-type = 'reveal'
+type = 'home'
 ```
 
 Use the `weight` param in the front matter to specify the order that the pages should appear in the presentation.
@@ -47,7 +47,7 @@ weight = 20
 
 ### Section presentations
 
-To create more than one presentation per repository, organize the content into sections. Section presentations will include content from each file in that section. Again, use the `weight` param to order the sections.
+To create more presentations in the same repository, place the content into sections. Section presentations will include content from each file in that section including an `_index.md` file if it exists. Again, use the `weight` param to order the sections (`_index.md` will always be first).
 
 ### Fragments
 
