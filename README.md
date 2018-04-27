@@ -94,7 +94,7 @@ To create more presentations in the same repository, place the content into sect
 Section presentations can use a different Reveal.js theme by specifying the `reveal_theme` parameter in the front matter of the section's `_index.md` file.
 
 ```toml
-reveal_theme = "noir"
+reveal_theme = "moon"
 ```
 
 ### Fragments
