@@ -4,7 +4,7 @@ weight = 10
 
 # reveal-hugo
 
-One markdown file, multiple slides.
+Multiple slides per markdown file.
 
 Separate slides with `---`
 
