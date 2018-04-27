@@ -68,10 +68,10 @@ This is my first slide.
 Back on the command line, run:
 
 ```shell
-$ hugo server
+$ hugo server -t reveal-hugo
 ```
 
-Navigate to [http://localhost:3000/](http://localhost:3000/) and you should see your Reveal.js presentation.
+Navigate to [http://localhost:1313/](http://localhost:1313/) and you should see your Reveal.js presentation.
 
 ### Presentation structure
 
