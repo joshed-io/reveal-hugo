@@ -29,7 +29,7 @@ The only requirement is to demarcate slides with `---` surrounded by newlines.
 
 # Demo
 
-Visit [https://reveal-hugo.netlify.com/](https://reveal-hugo.netlify.com/) to see an presentation created with this theme that shows more ways to use it.
+Visit [https://dzello.com/reveal-hugo/](https://dzello.com/reveal-hugo/) to see an presentation created with this theme that shows more ways to use it. You can also check out this repository [running on Netlify](https://reveal-hugo.netlify.com/).
 
 # Usage
 

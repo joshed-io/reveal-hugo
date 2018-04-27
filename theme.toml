@@ -1,7 +1,7 @@
 name = "reveal-hugo"
 license = "MIT"
 licenselink = "https://github.com/dzello/reveal-hugo/blob/master/LICENSE"
-homepage = "https://github.com/dzello/reveal-hugo"
+homepage = "https://dzello.com/reveal-hugo/"
 tags = ["presentation", "revealjs"]
 features = ["presentation"]
 
