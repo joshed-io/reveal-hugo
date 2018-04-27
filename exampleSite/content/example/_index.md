@@ -1,5 +1,6 @@
 +++
 title = "Example of a section presentation"
+reveal_theme = "moon"
 +++
 
 # Section Presentation
