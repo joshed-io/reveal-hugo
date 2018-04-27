@@ -39,7 +39,7 @@ Visit [https://dzello.com/reveal-hugo/](https://dzello.com/reveal-hugo/) to see 
 $ hugo new site my-presentation
 ```
 
-**If you wish to add a Reveal.js presentation to an existing Hugo site without changing the theme, you can see how I did that for [dzello/dzello-dot-com](https://github.com/dzello/dzello-dot-com).**
+*Note: if you wish to add a Reveal.js presentation to an existing Hugo site without changing its theme, you can see [an example here](https://github.com/dzello/dzello-dot-com).*
 
 Change into the themes directory of the new site:
 
