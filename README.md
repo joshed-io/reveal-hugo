@@ -41,16 +41,16 @@ $ hugo new site my-presentation
 
 *Note: if you wish to add a Reveal.js presentation to an existing Hugo site without changing its theme, you can see [an example here](https://github.com/dzello/dzello-dot-com).*
 
-Change into the themes directory of the new site:
+Change into the directory of the new site:
 
 ```shell
-$ cd my-presentation/themes
+$ cd my-presentation
 ```
 
-Clone this theme:
+Clone this repository into the themes directory:
 
 ```shell
-$ git clone git@github.com:dzello/reveal-hugo.git
+$ git clone git@github.com:dzello/reveal-hugo.git themes/reveal-hugo
 ```
 
 Create a file in `content/_index.md` with this contents:
@@ -74,6 +74,17 @@ $ hugo server -t reveal-hugo
 Navigate to [http://localhost:1313/](http://localhost:1313/) and you should see your Reveal.js presentation.
 
 ![New site with reveal-hugo](/images/reveal-hugo-hello-world.png)
+
+To add more slides, just add content to `_index.md`. Remember to separate each slide separated by `---` surrounded by newlines.
+
+```markdown
+
+---
+
+# Hello Mars!
+
+This is the second slide.
+```
 
 ### Presentation structure
 
