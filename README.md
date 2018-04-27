@@ -73,6 +73,8 @@ $ hugo server -t reveal-hugo
 
 Navigate to [http://localhost:1313/](http://localhost:1313/) and you should see your Reveal.js presentation.
 
+![New site with reveal-hugo](/images/reveal-hugo-hello-world.png)
+
 ### Presentation structure
 
 To create the default presentation (the one that will live at the site root), the theme will look for a `content/_index.md` file and any pages that have a type of `home`. That means they're in a `home` directory in the `content` folder OR the type is manually set to `home` in the front matter.
