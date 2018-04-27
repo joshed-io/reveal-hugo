@@ -33,6 +33,48 @@ Visit [https://dzello.com/reveal-hugo/](https://dzello.com/reveal-hugo/) to see 
 
 # Usage
 
+[Install Hugo](https://gohugo.io/) and create a new Hugo site.
+
+```shell
+$ hugo new site my-presentation
+```
+
+**If you wish to add a Reveal.js presentation to an existing Hugo site without changing the theme, you can see how I did that for [dzello/dzello-dot-com](https://github.com/dzello/dzello-dot-com).**
+
+Change into the themes directory of the new site:
+
+```shell
+$ cd my-presentation/themes
+```
+
+Clone this theme:
+
+```shell
+$ git clone git@github.com:dzello/reveal-hugo.git
+```
+
+Create a file in `content/_index.md` with this contents:
+
+```
++++
+title = "My presentation"
++++
+
+# Hello world!
+
+This is my first slide.
+```
+
+Back on the command line, run:
+
+```shell
+$ hugo server
+```
+
+Navigate to [http://localhost:3000/] and you should see your Reveal.js presentation.
+
+### Presentation structure
+
 To create the default presentation (the one that will live at the site root), the theme will look for a `content/_index.md` file and any pages that have a type of `home`. That means they're in a `home` directory in the `content` folder OR the type is manually set to `home` in the front matter.
 
 ```toml
