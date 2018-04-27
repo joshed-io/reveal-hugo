@@ -49,6 +49,12 @@ weight = 20
 
 To create more presentations in the same repository, place the content into sections. Section presentations will include content from each file in that section including an `_index.md` file if it exists. Again, use the `weight` param to order the sections (`_index.md` will always be first).
 
+Section presentations can use a different Reveal.js theme by specifying the `reveal_theme` parameter in the front matter of the section's `_index.md` file.
+
+```toml
+reveal_theme = "noir"
+```
+
 ### Fragments
 
 Fragments are a Reveal.js concept that lets you introduce content into each slide incrementally. Borrowing the concept from [hugo-theme-revealjs](https://github.com/RealOrangeOne/hugo-theme-revealjs), you can use a `fragment` shortcode to accomplish this in reveal-hugo in the same way.
