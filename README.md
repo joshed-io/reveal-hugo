@@ -71,7 +71,7 @@ Back on the command line, run:
 $ hugo server
 ```
 
-Navigate to [http://localhost:3000/] and you should see your Reveal.js presentation.
+Navigate to [http://localhost:3000/](http://localhost:3000/) and you should see your Reveal.js presentation.
 
 ### Presentation structure
 
