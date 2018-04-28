@@ -1,6 +1,6 @@
 # reveal-hugo
 
-A Hugo theme for creating [Reveal.js](https://revealjs.com/) presentations that allows you to put multiple slides in the same markdown file. It also allows you to create multiple presentations in the same project.
+A Hugo theme for [Reveal.js](https://revealjs.com/) that allows you to have multiple slides per markdown file. With it, you can turn any of your Hugo content into a presentation by adding `Reveal` to its output formats.
 
 ![screenshot of reveal-hugo](/images/reveal-hugo.png)
 
@@ -27,13 +27,15 @@ Hola.
 
 The only requirement is to demarcate slides with `---` surrounded by newlines.
 
-# Demo
+## Demo
 
-Visit [https://dzello.com/reveal-hugo/](https://dzello.com/reveal-hugo/) to see an presentation created with this theme that shows more ways to use it. You can also check out this repository [running on Netlify](https://reveal-hugo.netlify.com/).
+Visit [https://dzello.com/reveal-hugo/](https://dzello.com/reveal-hugo/) to see a presentation created with this theme. You can also check out this exact repository [deployed to Netlify](https://reveal-hugo.netlify.com/).
 
-# Step-by-step guide to create a presentation
+## Usage
 
-[Install Hugo](https://gohugo.io/) and create a new Hugo site:
+### Create your first presentation
+
+To start, [install Hugo](https://gohugo.io/) and create a new Hugo site:
 
 ```shell
 $ hugo new site my-presentation
@@ -45,22 +47,25 @@ Change into the directory of the new site:
 $ cd my-presentation
 ```
 
-Clone this repository into the themes directory:
+Clone the reveal-hugo theme into the themes directory:
 
 ```shell
 $ git clone git@github.com:dzello/reveal-hugo.git themes/reveal-hugo
 ```
 
-Open `config.toml` and add a new output format called `Reveal`:
+Open `config.toml` and add the following contents:
 
 ```toml
+theme = "reveal-hugo"
+
 [outputFormats.Reveal]
 baseName = "index"
 mediaType = "text/html"
 isHTML = true
 ```
+This tells Hugo to use the reveal-hugo theme and it registers a new output format called "Reveal".
 
-Create a file in `content/_index.md` with this contents:
+Next, create a file in `content/_index.md` and add the following:
 
 ```markdown
 +++
@@ -76,39 +81,44 @@ This is my first slide.
 Back on the command line, run:
 
 ```shell
-$ hugo server -t reveal-hugo
+$ hugo server
 ```
 
-Navigate to [http://localhost:1313/](http://localhost:1313/) and you should see your Reveal.js presentation.
+Navigate to [http://localhost:1313/](http://localhost:1313/) and you should see your presentation.
 
 ![New site with reveal-hugo](/images/reveal-hugo-hello-world.png)
 
-To add more slides, you can add content to `_index.md` or create new markdown files in `content/home`. Remember to separate each slide separated by `---` surrounded by newlines.
+To add more slides, just add content to `_index.md` or create new markdown files in `content/home`. Remember that each slide must be separated by `---` with blank lines above and below.
 
 ```markdown
+# Hello world!
+
+This is my first slide.
 
 ---
 
 # Hello Mars!
 
-This is the second slide.
+This is my second slide.
 ```
 
-### Presentation structure
+### Create a root presentation
 
-To create the default presentation (the one that will live at the site root), the theme will look for a `content/_index.md` file and any pages that have a type of `home`. That means they're in a `home` directory in the `content` folder OR the type is manually set to `home` in the front matter.
+To create a presentation that lives at the site root, create a `content/_index.md` file and specify that the `Reveal` output format should be used in the front matter:
 
 ```toml
-type = 'home'
+outputs = ["Reveal"]
 ```
 
-Use the `weight` param in the front matter to specify the order that the pages should appear in the presentation.
+Content for this presentation can come from `_index.md`, files in the `home` directory, or any content file whose type is set to `home` in the front matter.
+
+Use the `weight` param in the front matter to specify the order that content from these files should appear in the presentation, knowing that content from `_index.md` will always come first.
 
 ```toml
 weight = 20
 ```
 
-### Section presentations
+### Create a section presentation
 
 To create a presentation for the content of any section of your Hugo site, just add `Reveal` to its list of `outputFormats` in the front matter of `section/_index.md`:
 
@@ -124,7 +134,7 @@ Presentations can use a different Reveal.js theme by specifying the `reveal_them
 reveal_theme = "moon"
 ```
 
-### Add a Reveal.js presentation to an existing Hugo site
+## Add a Reveal.js presentation to an existing Hugo site
 
 If your Hugo site already has a theme but you'd like to create a presentation from some of its content, that's very easy. First, manually copy a few files out of this theme into a few of your site's directories:
 
@@ -150,7 +160,7 @@ Now you can add `outputs = ["Reveal"]` to the front matter of any section's `_in
 
 Note: If you specify `outputs = ["Reveal"]` for a single content file, you can make sure nothing is generated for that file. This is handy if you other default layouts that would have created a regular HTML file from it. Only the list file is required for the presentation.
 
-### Fragments
+## Fragments
 
 Fragments are a Reveal.js concept that lets you introduce content into each slide incrementally. Borrowing the idea from [hugo-theme-revealjs](https://github.com/RealOrangeOne/hugo-theme-revealjs) (thanks!), you can use a `fragment` shortcode to accomplish this in reveal-hugo in the same way.
 
