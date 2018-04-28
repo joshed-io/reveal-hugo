@@ -134,7 +134,7 @@ Presentations can use a different Reveal.js theme by specifying the `reveal_them
 reveal_theme = "moon"
 ```
 
-## Add a Reveal.js presentation to an existing Hugo site
+### Add a Reveal.js presentation to an existing Hugo site
 
 If your Hugo site already has a theme but you'd like to create a presentation from some of its content, that's very easy. First, manually copy a few files out of this theme into a few of your site's directories:
 
@@ -156,11 +156,13 @@ mediaType = "text/html"
 isHTML = true
 ```
 
-Now you can add `outputs = ["Reveal"]` to the front matter of any section's `_index.md` file and that sections content will be combined into a presentation and saved to `index.html`. If you already have a normal `index.html` page for that section, just change the `baseName` above to `reveal` and the presentation will be placed in a `reveal.html` file instead.
+Now you can add `outputs = ["Reveal"]` to the front matter of any section's `_index.md` file and that section's content will be combined into a presentation and written to `index.html`. If you already have a `index.html` page for that section, just change the `baseName` above to `reveal` and the presentation will be placed in a `reveal.html` file instead.
 
-Note: If you specify `outputs = ["Reveal"]` for a single content file, you can make sure nothing is generated for that file. This is handy if you other default layouts that would have created a regular HTML file from it. Only the list file is required for the presentation.
+Note: If you specify `outputs = ["Reveal"]` for a single content file, you can prevent anything being generated for that file. This is handy if you other default layouts that would have created a regular HTML file from it. Only the list file is required for the presentation.
 
-## Fragments
+## Features
+
+### Fragments
 
 Fragments are a Reveal.js concept that lets you introduce content into each slide incrementally. Borrowing the idea from [hugo-theme-revealjs](https://github.com/RealOrangeOne/hugo-theme-revealjs) (thanks!), you can use a `fragment` shortcode to accomplish this in reveal-hugo in the same way.
 
@@ -171,7 +173,7 @@ Fragments are a Reveal.js concept that lets you introduce content into each slid
 {{% fragment %}} Three {{% /fragment %}}
 ```
 
-# Configuration
+### Configuration params
 
 These settings go in `config.toml`:
 
