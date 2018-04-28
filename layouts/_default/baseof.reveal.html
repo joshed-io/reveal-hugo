@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{{ or .Page.Title .Site.Title }}</title>
+    <meta name="description" content="{{ .Site.Params.Description }}">
+    <meta name="author" content="{{ .Site.Author.name }}">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="{{ "reveal/css/reveal.css" | relURL }}">
+    {{ $theme := or .Page.Params.reveal_theme .Site.Params.reveal_theme "black" }}
+    <link rel="stylesheet" href="{{ printf "reveal/css/theme/%s.css" $theme | relURL }}" id="theme">
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="{{ "reveal/lib/css/zenburn.css" | relURL }}">
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '{{ "reveal/css/print/pdf.css" | relURL }}' : '{{ "reveal/css/print/paper.css" | relURL }}';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    <!--[if lt IE 9]>
+    <script src="{{ "reveal/lib/js/html5shiv.js" | relURL }}"></script>
+    <![endif]-->
+  </head>
+  <body>
+    {{ block "main" . }}{{ end }}
+    <script src="{{ "reveal/lib/js/head.min.js" | relURL }}"></script>
+    <script src="{{ "reveal/js/reveal.js" | relURL }}"></script>
+    <script>
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+          { src: '{{ "reveal/lib/js/classList.js" | relURL }}', condition: function() { return !document.body.classList; } },
+          { src: '{{ "reveal/plugin/markdown/marked.js" | relURL }}', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '{{ "reveal/plugin/markdown/markdown.js" | relURL }}', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '{{ "reveal/plugin/highlight/highlight.js" | relURL }}', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '{{ "reveal/plugin/search/search.js" | relURL }}', async: true },
+          { src: '{{ "reveal/plugin/zoom-js/zoom.js" | relURL }}', async: true },
+          { src: '{{ "reveal/plugin/notes/notes.js" | relURL }}', async: true }
+        ]
+      });
+    </script>
+  </body>
+</html>

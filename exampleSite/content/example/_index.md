@@ -1,5 +1,6 @@
 +++
 title = "Example of a section presentation"
+outputs = ["Reveal"]
 reveal_theme = "moon"
 +++
 

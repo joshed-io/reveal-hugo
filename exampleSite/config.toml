@@ -1,6 +1,7 @@
 baseURL = "https://reveal-hugo.netlify.com/"
 languageCode = "en-us"
 title = "A Hugo theme for creating Reveal.js presentations"
+disableKinds = ["sitemap", "RSS"]
 
 [author]
 name = "Josh Dzielak"
@@ -8,3 +9,8 @@ name = "Josh Dzielak"
 [params]
 description = "A description of this presentation"
 reveal_theme = "solarized"
+
+[outputFormats.Reveal]
+baseName = "index"
+mediaType = "text/html"
+isHTML = true

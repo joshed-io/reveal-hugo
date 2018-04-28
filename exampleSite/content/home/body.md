@@ -22,7 +22,11 @@ weight = 20
 
 # reveal-hugo
 
-Create multiple presentations, one for each section in `content`.
+Create a presentation for any section by adding this to its `_index.md`:
+
+```toml
+outputs = ["Reveal"]
+```
 
 ---
 
