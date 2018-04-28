@@ -27,6 +27,7 @@
   </head>
   <body>
     {{ block "main" . }}{{ end }}
+    {{ partial "reveal-hugo/body" . }}
     <script src="{{ "reveal/lib/js/head.min.js" | relURL }}"></script>
     <script src="{{ "reveal/js/reveal.js" | relURL }}"></script>
     <script>

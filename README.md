@@ -134,6 +134,7 @@ $ git clone git@github.com:dzello/reveal-hugo.git themes/reveal-hugo
 $ cp -r themes/reveal-hugo/static/reveal static/reveal
 $ cp themes/reveal-hugo/layouts/_default/*.reveal.html layouts/_default
 $ cp themes/reveal-hugo/layouts/shortcodes/* layouts/shortcodes
+$ cp themes/reveal-hugo/layouts/partials/* layouts/partials
 ```
 
 Next, add the Reveal output format to your site's `config.toml` file
