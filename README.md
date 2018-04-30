@@ -172,3 +172,9 @@ Contributions are very welcome. To run the example site in this repository local
 hugo server -s exampleSite -d ../public --themesDir '../' --theme '.'
 ```
 
+or simply...
+
+```shell
+npm start
+```
+

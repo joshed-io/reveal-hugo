@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "start": "hugo server -s exampleSite -d ../public --themesDir '../' --theme '.'"
+  },
+  "dependencies": {
+    "npm": "^6.0.0"
+  }
+}
