@@ -9,7 +9,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="{{ "reveal/css/reveal.css" | relURL }}">
-    {{ $theme := or .Page.Params.reveal_theme .Site.Params.reveal_theme "black" }}
+    {{ $theme := or .Page.Params.reveal_hugo.theme .Site.Params.reveal_hugo.theme "black" }}
     <link rel="stylesheet" href="{{ printf "reveal/css/theme/%s.css" $theme | relURL }}" id="theme">
     <!-- Theme used for syntax highlighting of code -->
     <link rel="stylesheet" href="{{ "reveal/lib/css/zenburn.css" | relURL }}">
@@ -27,18 +27,10 @@
   </head>
   <body>
     {{ block "main" . }}{{ end }}
-    {{ partial "reveal-hugo/body" . }}
-    <script src="{{ "reveal/lib/js/head.min.js" | relURL }}"></script>
-    <script src="{{ "reveal/js/reveal.js" | relURL }}"></script>
-    <script>
-      // More info https://github.com/hakimel/reveal.js#configuration
-      Reveal.initialize({
-        controls: true,
-        progress: true,
-        history: true,
-        center: true,
-        transition: 'slide', // none/fade/slide/convex/concave/zoom
-        // More info https://github.com/hakimel/reveal.js#dependencies
+    <script type="application/json" id="reveal-hugo-params">{{ jsonify .Site.Params.reveal_hugo | safeJS }}</script>
+    <script type="application/json" id="reveal-hugo-defaults">{{ jsonify .Site.Data.reveal_hugo.defaults | safeJS }}</script>
+    <script type="text/javascript">
+      window.revealDependencies = {
         dependencies: [
           { src: '{{ "reveal/lib/js/classList.js" | relURL }}', condition: function() { return !document.body.classList; } },
           { src: '{{ "reveal/plugin/markdown/marked.js" | relURL }}', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
@@ -47,8 +39,11 @@
           { src: '{{ "reveal/plugin/search/search.js" | relURL }}', async: true },
           { src: '{{ "reveal/plugin/zoom-js/zoom.js" | relURL }}', async: true },
           { src: '{{ "reveal/plugin/notes/notes.js" | relURL }}', async: true }
-        ]
-      });
+      ]};
     </script>
+    <script src="{{ "reveal/lib/js/head.min.js" | relURL }}"></script>
+    <script src="{{ "reveal/js/reveal.js" | relURL }}"></script>
+    <script src="{{ "reveal-hugo/index.js" | relURL }}"></script>
+    {{ partial "reveal-hugo/body" . }}
   </body>
 </html>

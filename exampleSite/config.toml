@@ -8,7 +8,9 @@ name = "Josh Dzielak"
 
 [params]
 description = "A description of this presentation"
-reveal_theme = "solarized"
+
+[params.reveal_hugo]
+theme = "solarized"
 
 [outputFormats.Reveal]
 baseName = "index"
