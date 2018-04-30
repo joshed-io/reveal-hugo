@@ -7,10 +7,7 @@ disableKinds = ["sitemap", "RSS"]
 name = "Josh Dzielak"
 
 [params]
-description = "A description of this presentation"
-
-[params.reveal_hugo]
-theme = "solarized"
+description = "Includes a handy markdown-based syntax and shortcodes to help you get presentations done fast"
 
 [outputFormats.Reveal]
 baseName = "index"

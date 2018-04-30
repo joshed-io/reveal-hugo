@@ -115,6 +115,7 @@ The Usage guide is contained in the example presentation that lives in this repo
 Customize the Reveal.js presentation by setting these values in `config.toml` or the front matter of any presentation's `index.md` file.
 
 - `params.reveal_hugo.theme`: The Reveal.js theme used, defaults to "black"
+- `params.reveal_hugo.highlight_theme`: The [highlight.js](https://highlightjs.org/) theme used, defaults to "default"
 
 Include any other attributes in `params.reveal_hugo` that you'd like to be fed as arguments to `Reveal.initialize`. See the [extensive list of Reveal.js configuration options](https://github.com/hakimel/reveal.js/#configuration) here. The defaults used by this theme are located in `data/reveal_hugo.toml`.
 
@@ -143,10 +144,10 @@ If your Hugo site already has a theme but you'd like to create a presentation fr
 ```shell
 $ cd my-hugo-site
 $ git clone git@github.com:dzello/reveal-hugo.git themes/reveal-hugo
-$ cp -r themes/reveal-hugo/static/reveal static/reveal
 $ cp -r themes/reveal-hugo/static/reveal_hugo static/reveal_hugo
 $ cp themes/reveal-hugo/layouts/* layouts
 $ cp themes/reveal-hugo/data/* data
+$ cp themes/reveal-hugo/static/* static
 ```
 
 Files and directories are named such that they shouldn't conflict with your existing content. Of course, you should double check before copying, especially the shortcodes which can't be put under a directory.

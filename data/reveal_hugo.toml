@@ -1,5 +1,6 @@
 [defaults]
 theme = 'black'
+highlight_theme = 'default'
 controls = true
 progress = true
 history = true
