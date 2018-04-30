@@ -2,7 +2,7 @@
 
 A Hugo theme for [Reveal.js](https://revealjs.com/) that allows you to have multiple slides per markdown file. With it, you can turn any of your Hugo content into a presentation by adding `Reveal` to its output formats.
 
-![screenshot of reveal-hugo](/images/reveal-hugo.png)
+![screenshot of reveal-hugo](/images/screenshot.png)
 
 The motivation behind creating this theme is pretty simple - I didn't want to have to manage one markdown file for every slide, which would add the overhead of coming up with a file name, setting a `weight` param in the front matter to keep it in order, etc, all for just a few lines of text. Instead, I like to organize groups of slides into a smaller number of markdown files, each representing a section of the presentation.
 
