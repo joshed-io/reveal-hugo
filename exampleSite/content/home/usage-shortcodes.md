@@ -22,6 +22,29 @@ The `fragment` shortcode makes content appear incrementally.
 
 ---
 
+### Frag shortcode
+
+The `frag` shortcode is like `fragment` but more terse. It accepts the content as the `c` attribute.
+
+```
+{{</* frag c="One" */>}}
+{{</* frag c="Two" */>}}
+{{</* frag c="Three" */>}}
+```
+
+{{< frag c="One" >}}
+{{< frag c="Two" >}}
+{{< frag c="Three" >}}
+
+---
+
+Both `fragment` and `frag` accept two additional parameters:
+
+- `class`: sets the class of the wrapping `span` element
+- `index`: controls the order in which sections will appear
+
+---
+
 {{% section %}}
 
 ### Section shortcode
