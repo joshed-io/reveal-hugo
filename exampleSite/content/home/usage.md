@@ -6,26 +6,16 @@ weight = 20
 
 ---
 
-## Multiple slides per markdown file
+## Prerequisite
 
-Separate slides with `---`
+Add this to your `config.toml`:
 
-```markdown
-# Slide 1
-
-Body 1.
-
----
-
-# Slide 2
-
-Body 2.
-
+```toml
+[outputFormats.Reveal]
+baseName = "index"
+mediaType = "text/html"
+isHTML = true
 ```
-
----
-
-I'm a **new** slide from the **same** markdown file.
 
 ---
 
@@ -51,10 +41,14 @@ Put more slides in `content/home/*.md`
 
 ```markdown
 +++
-weight = 20
+weight = 10
 +++
 
 # Slide 3
+
+---
+
+# Slide 4
 ```
 
 Use `weight` to specify the order
@@ -62,7 +56,7 @@ Use `weight` to specify the order
 
 ---
 
-## Make a presentation for a Hugo section
+## Make a presentation for any Hugo section
 
 In `content/{section}/_index.md`:
 
@@ -85,10 +79,14 @@ Put more slides in `content/{section}/*.md`
 
 ```markdown
 +++
-weight = 20
+weight = 10
 +++
 
 # Slide 3
+
+---
+
+# Slide 4
 ```
 
 Use `weight` to specify the order

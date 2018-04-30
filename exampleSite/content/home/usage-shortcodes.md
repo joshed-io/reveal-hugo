@@ -52,6 +52,6 @@ Keep scrolling down.
 
 ## That's it!
 
-Use the right arrow or swipe right.
+Use the right arrow or swipe right to continue.
 
 {{% /section %}}

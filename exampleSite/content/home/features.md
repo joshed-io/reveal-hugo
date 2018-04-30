@@ -15,3 +15,26 @@ weight = 10
 - Markdown files are parsed into multiple slides
 - Built-in shortcodes expose Reveal.js functionality
 - Customize Reveal.js parameters including the theme
+
+---
+
+## Multiple slides per markdown file
+
+Separate slides with `---`
+
+```markdown
+# Slide 1
+
+Body 1.
+
+---
+
+# Slide 2
+
+Body 2.
+
+```
+
+---
+
+I'm a **new** slide from the **same** markdown file.

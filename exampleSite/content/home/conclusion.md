@@ -11,8 +11,9 @@ weight = 40
 
 ### Resources
 
-- [Reveal.js](https://revealjs.org)
-- [Hugo output formats](https://gohugo.io/templates/output-formats/)
+- [Reveal.js](https://revealjs.com/)
+- [Hugo docs](https://gohugo.io/)
+- [Hugo output format docs](https://gohugo.io/templates/output-formats/)
 
 ---
 
