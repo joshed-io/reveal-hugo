@@ -1,4 +1,5 @@
 [defaults]
+theme = 'black'
 controls = true
 progress = true
 history = true

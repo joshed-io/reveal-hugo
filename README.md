@@ -108,15 +108,15 @@ This is my second slide.
 
 ## Usage
 
-The Usage guide is contained in the example presentation that lives in this repository at `exampleSite`. You can access a live version at [https://dzello.com/reveal-hugo/](https://dzello.com/reveal-hugo/).
+The Usage guide is contained in the example presentation that lives in this repository in the [exampleSite](./exampleSite) directory. You can access a live version at [https://dzello.com/reveal-hugo/](https://dzello.com/reveal-hugo/).
 
 ## Configuration
 
-Customize the Reveal.js presentation by setting these values in `config.toml` or the front matter of any presentation's `index.md`.
+Customize the Reveal.js presentation by setting these values in `config.toml` or the front matter of any presentation's `index.md` file.
 
 - `params.reveal_hugo.theme`: The Reveal.js theme used, defaults to "black"
 
-Include any other attributes in `params.reveal_hugo` that you'd like to be fed as arguments to `Reveal.initialize`. See the [extensive list of options](https://github.com/hakimel/reveal.js/#configuration) here. Defaults used by this theme are located in `data/reveal_hugo.toml`.
+Include any other attributes in `params.reveal_hugo` that you'd like to be fed as arguments to `Reveal.initialize`. See the [extensive list of Reveal.js configuration options](https://github.com/hakimel/reveal.js/#configuration) here. The defaults used by this theme are located in `data/reveal_hugo.toml`.
 
 If you're new to TOML, this is how it should look in your `config.toml`:
 
@@ -132,9 +132,9 @@ Or in the front matter of an `_index.md` file:
 theme = "moon"
 ```
 
-## Injecting HTML
+## Adding HTML to the page
 
-If you need to add something to the HTML page, just override the empty partial that lives at `layouts/partials/reveal-hugo/body.html`. This partial is injected into the page just before the closing of the body tag. Common uses would be to add custom CSS or JS to the page.
+If you need to add something to the HTML page, just override one or both of the empty partials that live at `layouts/partials/reveal-hugo/body.html` and `layouts/partials/reveal-hugo/head.html`. These partial are injected into the page just before the closing of the body and head tags respectively. Common uses would be to add custom CSS or JavaScript to your presentation.
 
 ### Add a Reveal.js presentation to an existing Hugo site
 
