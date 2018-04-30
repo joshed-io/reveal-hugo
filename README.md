@@ -173,6 +173,22 @@ Fragments are a Reveal.js concept that lets you introduce content into each slid
 {{% fragment %}} Three {{% /fragment %}}
 ```
 
+### Sections
+
+Add sections of vertical slides to your presentation by surrounding the relevant slides with the `section` shortcode.
+
+```markdown
+{{% section %}}
+
+# Section slide 1
+
+---
+
+# Section slide 2
+
+{{% /section %}}
+```
+
 ### Configuration params
 
 These settings go in `config.toml`:
