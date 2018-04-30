@@ -2,13 +2,9 @@
 weight = 20
 +++
 
-# reveal-hugo
-
 Content for the root presentation lives in `content/_index.md` and `content/home`.
 
 ---
-
-# reveal-hugo
 
 Content files are ordered by `weight` when added to the presentation.
 
@@ -20,9 +16,7 @@ weight = 20
 
 ---
 
-# reveal-hugo
-
-Create a presentation for any section by adding this to its `_index.md`:
+Create a presentation for any section of your site by adding this to its `_index.md`:
 
 ```toml
 outputs = ["Reveal"]
@@ -30,9 +24,7 @@ outputs = ["Reveal"]
 
 ---
 
-# reveal-hugo
-
-Use the `fragment` shortcode to make content appear incrementally.
+**The `fragment` shortcode** makes content appear incrementally.
 
 
 ```

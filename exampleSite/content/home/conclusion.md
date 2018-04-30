@@ -12,4 +12,6 @@ If you want your markdown files to contain more than one slide each...
 
 ---
 
+### Learn more
+
 [https://github.com/dzello/reveal-hugo](https://github.com/dzello/reveal-hugo)
