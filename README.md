@@ -178,3 +178,12 @@ Fragments are a Reveal.js concept that lets you introduce content into each slid
 These settings go in `config.toml`:
 
 - `params.reveal_theme`: The Reveal.js theme used, defaults to "black"
+
+# Contributing
+
+Contributions are very welcome. To run the example site in this respository locally, clone this repository and run:
+
+```shell
+hugo server -s exampleSite -d ../public --themesDir '../' --theme '.'
+```
+
