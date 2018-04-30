@@ -78,3 +78,20 @@ Keep scrolling down.
 Use the right arrow or swipe right to continue.
 
 {{% /section %}}
+
+---
+
+### Note shortcode
+
+Add speaker notes to your presentation.
+
+```markdown
+{{%/* note */%}}
+Type 's' to see this slide's speaker notes.
+{{%/* /note */%}}
+```
+
+{{% note %}}
+You found the speaker notes!
+{{% /note %}}
+
