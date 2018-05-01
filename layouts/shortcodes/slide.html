@@ -1,8 +1,8 @@
-{{ $attributes := slice "background-color" "background-image" "background-size" "background-position" "background-repeat" "transition" "background-iframe" "background-interactive" "background-video" "background-video-loop" "background-video-muted" "background-size" }}
+{{ $attributes := slice "background-color" "background-image" "background-size" "background-position" "background-repeat" "transition" "transition-speed" "background-iframe" "background-interactive" "background-video" "background-video-loop" "background-video-muted" }}
 {{ $params := . }}
 <section data-noprocess
-  {{ range $attribute := $attributes -}}
-    {{- with $params.Get $attribute }}data-{{ $attribute | safeHTMLAttr }}="{{ . }}"{{ end -}}
+  {{- range $attribute := $attributes -}}
+    {{- with $params.Get $attribute }} data-{{ $attribute | safeHTMLAttr }}="{{ . }}"{{ end -}}
   {{- end -}}
   >
 {{ .Inner }}

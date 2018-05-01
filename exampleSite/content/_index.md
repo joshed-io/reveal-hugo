@@ -1,5 +1,5 @@
 +++
-title = "Welcome to reveal-hugo!"
+title = "reveal-hugo features and usage"
 outputs = ["Reveal"]
 +++
 

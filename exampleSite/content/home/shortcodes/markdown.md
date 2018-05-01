@@ -14,7 +14,7 @@ This markdown is not processed by Hugo, but by Reveal.js itself.
 
 Many handy slide shortcuts and customizations are possible.
 
-[See them all](https://github.com/hakimel/reveal.js#markdown)
+[See the Reveal.js markdown docs](https://github.com/hakimel/reveal.js#markdown)
 
 ---
 
@@ -23,8 +23,12 @@ Many handy slide shortcuts and customizations are possible.
 For example, an HTML comment can change the background color of a slide.
 
 ```
+{{</* markdown */>}}
 <!-- .slide: data-background="blue" -->
+# I'm a blue slide
+{{</* /markdown */>}}
 ```
 
 {{< /markdown >}}
 
+---

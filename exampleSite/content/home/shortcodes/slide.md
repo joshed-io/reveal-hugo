@@ -4,18 +4,18 @@ weight = 34
 
 ## Slide shortcode
 
-Used to customize the parameters of individual slides like background color and transition.
+Customize individual slide parameters like background color and transition.
 
 [See all parameters](https://github.com/hakimel/reveal.js#slide-backgrounds)
 
 ---
 
-{{% slide transition="zoom" %}}
+{{% slide transition="zoom" transition-speed="fast" %}}
 
-## Custom slide 2
+## Custom slide 1
 
 ```
-{{%/* slide transition="zoom" */%}}
+{{%/* slide transition="zoom" transition-speed="fast" */%}}
 ## Custom slide 1
 {{%/* /slide */%}}
 ```

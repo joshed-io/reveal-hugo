@@ -20,7 +20,7 @@ The `fragment` shortcode makes content appear incrementally.
 
 ## Frag shortcode
 
-The `frag` shortcode more terse than `fragment`. It accepts a `c` attribute.
+The `frag` shortcode is more terse than `fragment`. It accepts a `c` attribute.
 
 ```
 {{</* frag c="One" */>}}
