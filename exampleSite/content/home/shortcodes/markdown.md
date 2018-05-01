@@ -6,7 +6,7 @@ weight = 36
 
 ## Markdown Shortcode
 
-This markdown is not processed by Hugo, but by Reveal.js itself.
+This markdown is not processed by Hugo, but passed directly through to Reveal.js.
 
 ---
 
