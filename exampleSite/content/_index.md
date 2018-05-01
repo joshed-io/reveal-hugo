@@ -1,6 +1,8 @@
 +++
 title = "reveal-hugo features and usage"
 outputs = ["Reveal"]
+[reveal_hugo]
+slide_number = true
 +++
 
 # reveal-hugo

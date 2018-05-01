@@ -117,7 +117,9 @@ Customize the Reveal.js presentation by setting these values in `config.toml` or
 - `params.reveal_hugo.theme`: The Reveal.js theme used, defaults to "black"
 - `params.reveal_hugo.highlight_theme`: The [highlight.js](https://highlightjs.org/) theme used, defaults to "default"
 
-Include any other attributes in `params.reveal_hugo` that you'd like to be fed as arguments to `Reveal.initialize`. See the [extensive list of Reveal.js configuration options](https://github.com/hakimel/reveal.js/#configuration) here. The defaults used by this theme are located in `data/reveal_hugo.toml`.
+Include any other attributes in `params.reveal_hugo` that you'd like to be fed as arguments to `Reveal.initialize` in **snakecase**. So `slideNumber` becomes `slide_number`. The reason is that Hugo lowercases all params and Reveal.js is case-sensitive. Params are converted from snakecase to camelcase before passing to Reveal.js.
+
+See the [extensive list of Reveal.js configuration options](https://github.com/hakimel/reveal.js/#configuration) here. The defaults used by this theme are located in `data/reveal_hugo.toml`.
 
 If you're new to TOML, this is how it should look in your `config.toml`:
 

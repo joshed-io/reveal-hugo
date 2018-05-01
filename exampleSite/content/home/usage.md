@@ -19,6 +19,35 @@ isHTML = true
 
 ---
 
+## Configure themes
+
+Optional. In `config.toml` or front matter.
+
+```toml
+[params.reveal_hugo]
+theme = "moon"
+highlight_theme = "zenburn"
+```
+
+[Reveal themes](https://github.com/hakimel/reveal.js/#theming) &middot;
+[highlight.js themes](https://highlightjs.org/static/demo/)
+
+---
+
+## Configure Reveal.js
+
+Set **snakecase** versions of Reveal.js params, which will be passed to `Reveal.initialize`.
+
+```toml
+[params.reveal_hugo]
+slide_number = true
+transition_speed = 'fast'
+```
+
+[Reveal config params](https://github.com/hakimel/reveal.js/#configuration)
+
+---
+
 ## Presentation for `/`
 
 In `content/_index.md`:
