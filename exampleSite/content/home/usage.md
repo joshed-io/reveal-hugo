@@ -19,7 +19,7 @@ isHTML = true
 
 ---
 
-## Make a presentation for `/`
+## Presentation for `/`
 
 In `content/_index.md`:
 
@@ -51,12 +51,12 @@ weight = 10
 # Slide 4
 ```
 
-Use `weight` to specify the order
+Use `weight` to specify the order relative to other files.
 
 
 ---
 
-## Make a presentation for any Hugo section
+## For any Hugo section
 
 In `content/{section}/_index.md`:
 
@@ -89,4 +89,4 @@ weight = 10
 # Slide 4
 ```
 
-Use `weight` to specify the order
+Use `weight` to specify the order relative to other files.

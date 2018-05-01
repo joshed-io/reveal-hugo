@@ -1,18 +1,3 @@
 {{ define "main" }}
-  <div class="reveal">
-    <!-- Any section element inside of this container is displayed as a slide -->
-    <div class="slides">
-      <!-- Find all pages inside of this section -->
-      {{ range union (slice .Page) .Pages }}
-      <!-- Don't process empty content files -->
-        {{ if ne (len .Content) 0 }}
-          <!-- Split the processed content by <hr /> tag -->
-          {{ range (split .Content "<hr />") }}
-            <!-- Output the content as safe  -->
-            <section>{{ . | safeHTML }}</section>
-          {{ end }}
-        {{ end }}
-      {{ end }}
-    </div>
-  </div>
+  {{ partial "slides" (union (slice .Page) .Pages) }}
 {{ end }}

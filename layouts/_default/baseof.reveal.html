@@ -38,6 +38,9 @@
     <script type="text/javascript">
       window.revealHugoDependencies = {
         dependencies: [
+          { src: '{{ $reveal_cdn }}/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: '{{ $reveal_cdn }}/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '{{ $reveal_cdn }}/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
           { src: '{{ $reveal_cdn }}/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
           { src: '{{ $reveal_cdn }}/plugin/zoom-js/zoom.js', async: true },
           // the notes plugin can't run off the CDN b/c the HTML file isn't there
