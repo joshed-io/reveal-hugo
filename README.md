@@ -142,12 +142,10 @@ If you need to add something to the HTML page, just override one or both of the 
 If your Hugo site already has a theme but you'd like to create a presentation from some of its content, that's very easy. First, manually copy a few files out of this theme into a few of your site's directories:
 
 ```shell
-$ cd my-hugo-site
-$ git clone git@github.com:dzello/reveal-hugo.git themes/reveal-hugo
-$ cp -r themes/reveal-hugo/static/reveal_hugo static/reveal_hugo
-$ cp themes/reveal-hugo/layouts/* layouts
-$ cp themes/reveal-hugo/data/* data
-$ cp themes/reveal-hugo/static/* static
+cd my-hugo-site
+git clone git@github.com:dzello/reveal-hugo.git themes/reveal-hugo
+cd themes/reveal-hugo
+cp -r data layouts static ../../
 ```
 
 Files and directories are named such that they shouldn't conflict with your existing content. Of course, you should double check before copying, especially the shortcodes which can't be put under a directory.
