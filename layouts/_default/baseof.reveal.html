@@ -13,7 +13,12 @@
     <link rel="stylesheet" href="{{ $reveal_cdn }}/css/reveal.min.css">
     <!-- Theme used for presentation -->
     {{ $theme := or .Page.Params.reveal_hugo.theme .Site.Params.reveal_hugo.theme .Site.Data.reveal_hugo.defaults.theme "black" }}
+    {{ $custom_theme := or .Page.Params.reveal_hugo.custom_theme .Site.Params.reveal_hugo.custom_theme }}
+    {{ if $custom_theme }}
+    <link rel="stylesheet" href="{{ $custom_theme | relURL }}" id="theme">
+    {{ else }}
     <link rel="stylesheet" href="{{ $reveal_cdn }}/css/theme/{{ $theme }}.css" id="theme">
+    {{ end }}
     <!-- Theme used for syntax highlighting of code -->
     {{ $highlight_theme := or .Page.Params.reveal_hugo.highlight_theme .Site.Params.reveal_hugo.highlight_theme .Site.Data.reveal_hugo.defaults.highlight_theme "default" }}
     <link rel="stylesheet" href="{{ $highlight_cdn }}/styles/{{ $highlight_theme }}.min.css">
@@ -75,9 +80,8 @@
         camelize(revealHugoSiteParams),
         camelize(revealHugoPageParams),
         revealHugoDependencies);
-
-      console.log(options);
       Reveal.initialize(options);
+      
     </script>
     {{ partial "reveal-hugo/body" . }}
   </body>

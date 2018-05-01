@@ -29,8 +29,19 @@ theme = "moon"
 highlight_theme = "zenburn"
 ```
 
-[Reveal themes](https://github.com/hakimel/reveal.js/#theming) &middot;
+[Reveal.js themes](https://github.com/hakimel/reveal.js/#theming) &middot;
 [highlight.js themes](https://highlightjs.org/static/demo/)
+
+---
+
+## Custom Reveal.js theme
+
+Point to a file in the `static` directory.
+
+```toml
+[params.reveal_hugo]
+custom_theme = "themes/dzello.css"
+```
 
 ---
 

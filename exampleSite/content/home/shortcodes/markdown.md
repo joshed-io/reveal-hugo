@@ -18,14 +18,14 @@ Many handy slide shortcuts and customizations are possible.
 
 ---
 
-<!-- .slide: data-background="blue" -->
+<!-- .slide: data-background="#FF4081" -->
 
 For example, an HTML comment can change the background color of a slide.
 
 ```
 {{</* markdown */>}}
-<!-- .slide: data-background="blue" -->
-# I'm a blue slide
+<!-- .slide: data-background="#FF4081" -->
+# I'm a colorful slide
 {{</* /markdown */>}}
 ```
 

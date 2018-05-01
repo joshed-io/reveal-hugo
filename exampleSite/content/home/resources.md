@@ -17,7 +17,7 @@ weight = 40
 
 ---
 
-### Ready to use
+### Service-ready
 
 - Deploy to [Netlify](https://netlify.com/)
 - Edit with [Forestry](https://forestry.io/)
