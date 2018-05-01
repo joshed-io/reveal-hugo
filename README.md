@@ -115,6 +115,7 @@ The Usage guide is contained in the example presentation that lives in this repo
 Customize the Reveal.js presentation by setting these values in `config.toml` or the front matter of any presentation's `index.md` file.
 
 - `params.reveal_hugo.theme`: The Reveal.js theme used, defaults to "black"
+- `params.reveal_hugo.custom_theme`: The path to a locally hosted Reveal.js theme
 - `params.reveal_hugo.highlight_theme`: The [highlight.js](https://highlightjs.org/) theme used, defaults to "default"
 
 Include any other attributes in `params.reveal_hugo` that you'd like to be fed as arguments to `Reveal.initialize` in **snakecase**. So `slideNumber` becomes `slide_number`. The reason is that Hugo lowercases all params and Reveal.js is case-sensitive. Params are converted from snakecase to camelcase before passing to Reveal.js.
