@@ -30,5 +30,3 @@ For example, an HTML comment can change the background color of a slide.
 ```
 
 {{< /markdown >}}
-
----
