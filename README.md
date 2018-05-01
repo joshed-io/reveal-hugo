@@ -170,7 +170,7 @@ Note: If you specify `outputs = ["Reveal"]` for a single content file, you can p
 Not directly related to reveal-hugo, but these are some of my favorite Reveal.js features and shortcuts.
 
 - 's' - type 's' to enter speaker mode, which opens a separate window with a time and speaker notes
-- 'o' - type 'o' to enter navigation mode and see slide thumbnails
+- 'o' - type 'o' to enter overview mode and scroll through slide thumbnails
 - 'f' - type 'f' to go into full-screen mode
 
 # Contributing
