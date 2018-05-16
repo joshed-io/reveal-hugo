@@ -2,7 +2,7 @@
 
 A Hugo theme for [Reveal.js](https://revealjs.com/) that makes authoring and customization a breeze. With it, you can turn any properly-formatted Hugo content into a HTML presentation.
 
-![screenshot of reveal-hugo](/images/screenshot.png)
+![screenshot of reveal-hugo](https://github.com/dzello/reveal-hugo/blob/master/images/screenshot.png?raw=true)
 
 ### Example
 
@@ -90,7 +90,7 @@ $ hugo server
 
 Navigate to [http://localhost:1313/](http://localhost:1313/) and you should see your presentation.
 
-![New site with reveal-hugo](/images/reveal-hugo-hello-world.png)
+![New site with reveal-hugo](https://github.com/dzello/reveal-hugo/blob/master/images/reveal-hugo-hello-world.png?raw=true)
 
 To add more slides, just add content to `_index.md` or create new markdown files in `content/home`. Remember that each slide must be separated by `---` with blank lines above and below.
 
