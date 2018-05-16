@@ -24,12 +24,12 @@ Customize individual slide parameters like background color and transition.
 
 ---
 
-{{% slide background-color="white" %}}
+{{% slide background-color="#FF4081" %}}
 
 ## Custom slide 2
 
 ```
-{{%/* slide background-color="white" */%}}
+{{%/* slide background-color="#FF4081" */%}}
 ## Custom slide 2
 {{%/* /slide */%}}
 ```
