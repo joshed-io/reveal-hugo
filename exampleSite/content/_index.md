@@ -1,5 +1,6 @@
 +++
-title = "reveal-hugo features and usage"
+title = "reveal-hugo"
+description = "A Hugo theme for creating Reveal.js presentations"
 outputs = ["Reveal"]
 [reveal_hugo]
 custom_theme = "themes/dzello.css"

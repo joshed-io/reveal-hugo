@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8">
     <title>{{ or .Page.Title .Site.Title }}</title>
-    <meta name="description" content="{{ .Site.Params.Description }}">
+    <meta name="description" content="{{ or .Page.Params.Description .Site.Params.Description }}">
     <meta name="author" content="{{ .Site.Author.name }}">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -81,7 +81,7 @@
         camelize(revealHugoPageParams),
         revealHugoDependencies);
       Reveal.initialize(options);
-      
+
     </script>
     {{ partial "reveal-hugo/body" . }}
   </body>
