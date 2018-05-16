@@ -31,7 +31,7 @@ Just use `---` to split content into different slides.
 
 ## Demo
 
-Visit [https://dzello.com/reveal-hugo/](https://dzello.com/reveal-hugo/) to see a presentation created with this theme and learn more about what you can do.
+Visit [https://dzello.com/reveal-hugo/](https://dzello.com/reveal-hugo/) to see a presentation created with this theme and learn more about what you can do. Jump to the [exampleSite/](exampleSite/) folder in this repository to see the source code for that presentation.
 
 ## Tutorial
 
@@ -138,7 +138,7 @@ theme = "moon"
 
 ## Adding HTML to the page
 
-If you need to add something to the HTML page, just override one or both of the empty partials that live at `layouts/partials/reveal-hugo/body.html` and `layouts/partials/reveal-hugo/head.html`. These partial are injected into the page just before the closing of the body and head tags respectively. Common uses would be to add custom CSS or JavaScript to your presentation.
+If you need to add something to the HTML page, just override one or both of the empty partials that live at `layouts/partials/reveal-hugo/body.html` and `layouts/partials/reveal-hugo/head.html`. These partials are injected into the page just before the closing of the body and head tags respectively. Common uses would be to add custom CSS or JavaScript to your presentation.
 
 ### Add a Reveal.js presentation to an existing Hugo site
 
