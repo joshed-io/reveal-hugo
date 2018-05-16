@@ -31,7 +31,7 @@ Just use `---` to split content into different slides.
 
 ## Demo
 
-Visit [https://dzello.com/reveal-hugo/](https://dzello.com/reveal-hugo/) to see a presentation created with this theme and learn more about what you can do. Jump to the [exampleSite/](exampleSite/) folder in this repository to see the source code for that presentation.
+Visit [https://dzello.com/reveal-hugo/](https://dzello.com/reveal-hugo/) to see a presentation created with this theme and learn more about what you can do. Jump to the [exampleSite](exampleSite) folder in this repository to see the source code for that presentation.
 
 ## Tutorial
 
