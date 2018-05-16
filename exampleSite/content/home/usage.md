@@ -21,7 +21,7 @@ isHTML = true
 
 ## Configure themes
 
-Optional. In `config.toml` or front matter.
+Optional. In `config.toml` or front matter of individual presentations.
 
 ```toml
 [params.reveal_hugo]
@@ -47,7 +47,7 @@ custom_theme = "themes/dzello.css"
 
 ## Configure Reveal.js
 
-Set **snakecase** versions of Reveal.js params, which will be passed to `Reveal.initialize`.
+Set **snakecase** versions of Reveal.js params, which will be camelized and passed to `Reveal.initialize`.
 
 ```toml
 [params.reveal_hugo]
@@ -59,7 +59,11 @@ transition_speed = 'fast'
 
 ---
 
-## Presentation for `/`
+# Creating presentations
+
+---
+
+## Presentation at `/`
 
 In `content/_index.md`:
 
