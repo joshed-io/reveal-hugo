@@ -19,12 +19,12 @@ Hello.
 ---
 
 # Français
-Salu.
+Salut.
 
 ---
 
-# Espagñol
-Hola.
+# Español
+Holá.
 ```
 
 Just use `---` to split content into different slides.
