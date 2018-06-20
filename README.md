@@ -51,10 +51,10 @@ Change into the directory of the new site:
 $ cd my-presentation
 ```
 
-Clone the reveal-hugo theme into the themes directory:
+Add the reveal-hugo theme as a submodule in the themes directory:
 
 ```shell
-$ git clone git@github.com:dzello/reveal-hugo.git themes/reveal-hugo
+$ git submodule add git@github.com:dzello/reveal-hugo.git themes/reveal-hugo
 ```
 
 Open `config.toml` and add the following contents:
