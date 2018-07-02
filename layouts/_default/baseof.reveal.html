@@ -75,7 +75,7 @@
       var revealHugoDefaults = JSON.parse(document.getElementById('reveal-hugo-defaults').innerHTML);
 
       // See all options - https://github.com/hakimel/reveal.js#configuration
-      var options = Object.assign(
+      var options = Object.assign({},
         camelize(revealHugoDefaults),
         camelize(revealHugoSiteParams),
         camelize(revealHugoPageParams),
