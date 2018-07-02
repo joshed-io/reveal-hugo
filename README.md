@@ -179,7 +179,7 @@ Not directly related to reveal-hugo, but these are some of my favorite Reveal.js
 Contributions are very welcome. To run the example site in this repository locally, clone this repository and run:
 
 ```shell
-hugo server -s exampleSite -d ../public --themesDir '../' --theme '.'
+hugo server -s exampleSite
 ```
 
 or simply...
