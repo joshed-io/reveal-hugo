@@ -110,6 +110,24 @@ This is my second slide.
 
 The Usage guide is contained in the example presentation that lives in this repository in the [exampleSite](./exampleSite) directory. You can access a live version at [https://dzello.com/reveal-hugo/](https://dzello.com/reveal-hugo/).
 
+### Root vs. section presentations
+
+Here's what the folder structure would look like with one root presentation and one section presentation. I use "chunk" in the following example to avoid a collision with Hugo's "section".
+
+```
+- content
+  - home # special hugo section for adding to the root presentation
+    - body.md # a chunk of the root presentation
+    - conclusion.md # another chunk of the root presentation
+  - _index.md   # beginning of the root presentation
+  - ted-talk
+    - _index.md # beginning of the ted talk presentation
+    - body.md # a chunk of the ted talk presentation
+    - conclusion.md # another chunk of the ted talk presentation
+```
+
+This will create two presentations, one at `/` and one at `/ted-talk/`. The order of the chunks can be controlled by the `weight` parameter specified in the front matter. The `_index.md` chunk will always come first, though you don't have to put any slides in it if you want to. The Reveal outputFormat need only be added to the `_index.md` file.
+
 ## Configuration
 
 Customize the Reveal.js presentation by setting these values in `config.toml` or the front matter of any presentation's `index.md` file.
