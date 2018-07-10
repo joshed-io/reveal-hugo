@@ -184,13 +184,19 @@ Now you can add `outputs = ["Reveal"]` to the front matter of any section's `_in
 
 Note: If you specify `outputs = ["Reveal"]` for a single content file, you can prevent anything being generated for that file. This is handy if you other default layouts that would have created a regular HTML file from it. Only the list file is required for the presentation.
 
-# Miscellaneous
+# Reveal.js favorites
 
 Not directly related to reveal-hugo, but these are some of my favorite Reveal.js features and shortcuts.
 
 - 's' - type 's' to enter speaker mode, which opens a separate window with a time and speaker notes
 - 'o' - type 'o' to enter overview mode and scroll through slide thumbnails
 - 'f' - type 'f' to go into full-screen mode
+
+Here are a few of my favorite Reveal.js-related tools:
+
+- [decktape](https://github.com/astefanutti/decktape) for exporting a presentation as a PDF
+
+Find many more on the Reveal.js wiki: [Plugins, tools and hardware](https://github.com/hakimel/reveal.js/wiki/Plugins,-Tools-and-Hardware).
 
 # Contributing
 
