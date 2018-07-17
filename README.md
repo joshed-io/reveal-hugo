@@ -31,7 +31,7 @@ Just use `---` to split content into different slides.
 
 ## Demo
 
-Visit [https://dzello.com/reveal-hugo/](https://dzello.com/reveal-hugo/) to see a presentation created with this theme and learn more about what you can do. Jump to the [exampleSite](exampleSite) folder in this repository to see the source code for that presentation.
+Visit [reveal-hugo.dzello.com](https://reveal-hugo.dzello.com/) to see a presentation created with this theme and learn more about what you can do. Jump to the [exampleSite](exampleSite) folder in this repository to see the source code for that presentation.
 
 If you're looking for a very simple reveal-hugo app you can use as a boilerplate, see the [programming-quotes](https://github.com/dzello/programming-quotes) repository.
 
@@ -112,7 +112,7 @@ This is my second slide.
 
 ## Usage
 
-The Usage guide is contained in the example presentation that lives in this repository in the [exampleSite](./exampleSite) directory. You can access a live version at [https://dzello.com/reveal-hugo/](https://dzello.com/reveal-hugo/).
+The Usage guide is contained in the example presentation that lives in this repository in the [exampleSite](./exampleSite) directory. You can access a live version at [reveal-hugo.dzello.com](https://reveal-hugo.dzello.com/).
 
 ### Root vs. section presentations
 
