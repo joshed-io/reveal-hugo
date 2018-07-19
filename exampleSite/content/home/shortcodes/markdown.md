@@ -4,15 +4,15 @@ weight = 36
 
 {{< markdown >}}
 
-## Markdown Shortcode
+## Markdown
 
-This markdown is not processed by Hugo, but passed directly through to Reveal.js.
+Markdown is not processed by Hugo but passed directly through to Reveal.js.
 
----
-
-## Markdown Shortcode
-
-Many handy slide shortcuts and customizations are possible.
+```
+{{</* markdown */>}}
+# Hello world!
+{{</* /markdown */>}}
+```
 
 [See the Reveal.js markdown docs](https://github.com/hakimel/reveal.js#markdown)
 
@@ -20,7 +20,7 @@ Many handy slide shortcuts and customizations are possible.
 
 <!-- .slide: data-background="#FF4081" -->
 
-For example, an HTML comment can change the background color of a slide.
+Reveaj.js Markdown uses HTML comments to change slide properties, like background color.
 
 ```
 {{</* markdown */>}}
@@ -30,3 +30,4 @@ For example, an HTML comment can change the background color of a slide.
 ```
 
 {{< /markdown >}}
+

@@ -2,7 +2,7 @@
 weight = 30
 +++
 
-## Fragment shortcode
+## Fragment
 
 The `fragment` shortcode makes content appear incrementally.
 
@@ -18,7 +18,7 @@ The `fragment` shortcode makes content appear incrementally.
 
 ---
 
-## Frag shortcode
+## Frag
 
 The `frag` shortcode is more terse than `fragment`. It accepts a `c` attribute.
 

@@ -1,10 +1,10 @@
 +++
-weight = 32
+weight = 36
 +++
 
 {{% section %}}
 
-## Section shortcode
+## Section
 
 The `section` shortcode groups slides into a vertical display.
 

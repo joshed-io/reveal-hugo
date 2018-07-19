@@ -3,6 +3,7 @@ title = "Example of a section presentation"
 outputs = ["Reveal"]
 [reveal_hugo]
 theme = "moon"
+history = true
 +++
 
 # Section Presentation

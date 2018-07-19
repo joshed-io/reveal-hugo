@@ -6,35 +6,14 @@ weight = 10
 
 - All Reveal.js HTML, CSS and JS (v3.6.0)
 - All out-of-the-box Reveal.js themes
-- A "Reveal" `outputFormat` that outputs a presentation for any Hugo section
+- Two custom Reveal.js themes (including this one)
 
 ---
 
 ## Features
 
-- Markdown files are parsed into multiple slides
-- Built-in shortcodes expose Reveal.js functionality
-- Customize Reveal.js parameters including the theme
+- Write slides in Markdown in one or more files
+- Shorcodes for fragments, sections, slides & more
+- All Reveal.js parameters can be customized
+- Any Hugo section can be output as a presentation
 
----
-
-## Multiple slides per markdown file
-
-Separate slides with `---`
-
-```markdown
-# Slide 1
-
-Body 1.
-
----
-
-# Slide 2
-
-Body 2.
-
-```
-
----
-
-I'm a **new** slide from the **same** markdown file.

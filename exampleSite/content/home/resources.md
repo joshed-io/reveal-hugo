@@ -1,15 +1,19 @@
 +++
-weight = 40
+weight = 42
 +++
 
-### Learn more
-
-- [reveal-hugo Github README](https://github.com/dzello/reveal-hugo)
-- [Code for this presentation](https://github.com/dzello/reveal-hugo/tree/master/exampleSite)
+# Resources
 
 ---
 
-### Resources
+## Get the code
+
+- [reveal-hugo Github README](https://github.com/dzello/reveal-hugo)
+- [Content for this presentation](https://github.com/dzello/reveal-hugo/tree/master/exampleSite)
+
+---
+
+## External resources
 
 - [Reveal.js](https://revealjs.com/)
 - [Hugo docs](https://gohugo.io/)
@@ -17,11 +21,21 @@ weight = 40
 
 ---
 
-### Service-ready
+## Designed to...
 
 - Deploy to [Netlify](https://netlify.com/)
 - Edit with [Forestry](https://forestry.io/)
 
 ---
 
-## Thanks!
+# 🙏
+
+Contribute by opening issues and pull requests.
+
+---
+
+# Thanks!
+
+---
+
+# 👍
