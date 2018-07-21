@@ -1,0 +1,37 @@
+example = '''
+
+# Reusable slides
+
+Store markdown in a [data template](https://gohugo.io/templates/data-templates/) and reuse it in multiple sections or presentations.
+
+<br>
+<small>
+scroll down to learn more
+</small>
+<br>
+🔽
+
+---
+
+Add an `example` key to data/home.toml:
+
+```
+example = "I'm a slide"
+```
+<br>
+
+Set the `content` attribute to "home.example":
+
+```
+{{< slide content="home.example" >}}
+```
+
+---
+
+💡 Each data template entry can contain one or more slides, separated by `---` with newlines.
+
+---
+
+💡 All other slide shortcode attributes (background, transition, etc.) can be used and will be applied to each slide in the data template entry.
+
+'''

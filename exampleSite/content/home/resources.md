@@ -6,7 +6,7 @@ weight = 42
 
 ---
 
-## Get the code
+## Code and docs
 
 - [reveal-hugo Github README](https://github.com/dzello/reveal-hugo)
 - [Content for this presentation](https://github.com/dzello/reveal-hugo/tree/master/exampleSite)

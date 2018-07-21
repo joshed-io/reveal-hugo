@@ -1,14 +1,19 @@
 +++
-weight = 36
+weight = 33
 +++
 
 {{% section %}}
 
 ## Section
 
-The `section` shortcode groups slides into a vertical display.
+The `section` shortcode groups slides into a **vertical display**.
 
-**To continue, use the down arrow or swipe down.**
+<br>
+<small>
+use the down arrow or swipe down to continue
+</small>
+<br>
+🔽
 
 ---
 

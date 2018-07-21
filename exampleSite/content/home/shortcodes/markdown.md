@@ -6,21 +6,21 @@ weight = 36
 
 ## Markdown
 
-Markdown is not processed by Hugo but passed directly through to Reveal.js.
+Reveal.js has its own [markdown processor](https://github.com/hakimel/reveal.js#markdown). To use that instead of Hugo, surround a slide with the markdown shortcode.
 
 ```
 {{</* markdown */>}}
+
 # Hello world!
+
 {{</* /markdown */>}}
 ```
-
-[See the Reveal.js markdown docs](https://github.com/hakimel/reveal.js#markdown)
 
 ---
 
 <!-- .slide: data-background="#FF4081" -->
 
-Reveaj.js Markdown uses HTML comments to change slide properties, like background color.
+Reveal.js markdown uses HTML comments to change slide properties, like background color.
 
 ```
 {{</* markdown */>}}
