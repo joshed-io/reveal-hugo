@@ -81,6 +81,52 @@ Slide attribute possibilities from the [Reveal.js docs](https://github.com/hakim
 
 {{% section %}}
 
+## Slide templates
+
+Store sets of common slide attributes in front matter variables and apply them to slides with the template attribute.
+
+<br>
+<small>
+navigate down to learn more
+</small>
+<br>
+<a href="#" class="navigate-down">🔽</a>
+
+---
+
+Create templates in config.toml, _index.md or the current page's front matter. Put them under the **templates** key with a meaningful name:
+
+```toml
+[reveal_hugo.templates.hotpink]
+background = "#FF4081"
+```
+
+---
+
+{{% slide template="hotpink" %}}
+
+Apply the template using the **template** attribute of the slide shortcode:
+
+```markdown
+{{%/* slide template="hotpink" */%}}
+
+# I'm a hot pink slide!
+
+{{%/* /slide */%}}
+```
+
+{{% /slide %}}
+
+---
+
+If a template exists in multiple configurations, it's properties will be merged. If a property is declared multiple times, the order of precedence is page, section (_index.md), site (config.toml).
+
+{{% /section %}}
+
+---
+
+{{% section %}}
+
 {{% slide content="home.example" /%}}
 
 {{% /section %}}
