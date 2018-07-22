@@ -12,12 +12,16 @@
     {{- $scratch.Add "slides" . -}}
   {{- end -}}
 {{- end -}}
-{{- $attributes := slice "background-color" "background-image" "background-size" "background-position" "background-repeat" "transition" "transition-speed" "background-iframe" "background-interactive" "background-video" "background-video-loop" "background-video-muted" -}}
 {{- $params := . -}}
+{{- $noPrefix := slice "id" -}}
+{{- $noOutput := slice "content" -}}
 {{- range .Scratch.Get "slides" }}
 <section data-noprocess data-shortcode-slide
-  {{- range $attribute := $attributes -}}
-    {{- with $params.Get $attribute }} data-{{ $attribute | safeHTMLAttr }}="{{ . }}"{{ end -}}
+  {{- range $key, $value := $.Params -}}
+    {{- if not (in $noOutput $key) -}}
+      {{- $attrName := cond (in $noPrefix $key) $key (delimit (slice "data" $key) "-") }}
+      {{ $attrName | safeHTMLAttr }}="{{ $value }}"
+    {{- end -}}
   {{- end -}}>
   {{ . | safeHTML }}
 </section>

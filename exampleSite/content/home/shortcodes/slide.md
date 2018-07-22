@@ -4,18 +4,18 @@ weight = 34
 
 ## Slide
 
-Customize individual slide parameters like background color and transition.
+Customize individual slide attributes like id, background color and transition. Use the same keys as Reveal.js but omit the 'data-' prefix.
 
-[See all slide params](https://github.com/hakimel/reveal.js#slide-backgrounds)
+[See more attributes](https://github.com/hakimel/reveal.js#slide-attributes)
 
 ---
 
-{{% slide transition="zoom" transition-speed="fast" %}}
+{{% slide id="custom-1" transition="zoom" transition-speed="fast" %}}
 
 ## Custom slide 1
 
 ```
-{{%/* slide transition="zoom" transition-speed="fast" */%}}
+{{%/* slide id="custom-1" transition="zoom" transition-speed="fast" */%}}
 
 ## Custom slide 1
 
@@ -26,12 +26,12 @@ Customize individual slide parameters like background color and transition.
 
 ---
 
-{{% slide background-color="#FF4081" %}}
+{{% slide id="custom-2" background="#FF4081" %}}
 
 ## Custom slide 2
 
 ```
-{{%/* slide background-color="#FF4081" */%}}
+{{%/* slide id="custom-2" background="#FF4081" */%}}
 
 ## Custom slide 2
 
@@ -39,6 +39,19 @@ Customize individual slide parameters like background color and transition.
 ```
 
 {{% /slide %}}
+
+---
+
+💡 Tip: Setting a slide's `id` attribute makes it easy to link to from other parts of the presentation.
+
+<br>
+```markdown
+Go to [custom slide 1](#custom-1)
+```
+
+<small>
+Go to [custom slide 1](#custom-1)
+</small>
 
 ---
 

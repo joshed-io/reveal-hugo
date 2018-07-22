@@ -158,10 +158,10 @@ Like fragment but more terse - content is placed inline in a self-closing shortc
 
 #### slide shortcode
 
-The slide shortcode lets you set custom Reveal.js attributes for each slide - things like transition, background color and [much more](https://github.com/hakimel/reveal.js/#slide-attributes).
+The slide shortcode lets you set custom Reveal.js attributes for each slide - things like id, transition, background and [much more](https://github.com/hakimel/reveal.js/#slide-attributes).
 
 ```markdown
-{{% slide background="#FFF" transition="zoom" transition-speed="fast" %}}
+{{% slide id="hello" background="#FFF" transition="zoom" transition-speed="fast" %}}
 
 # Hello, world!
 
