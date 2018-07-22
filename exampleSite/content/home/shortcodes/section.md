@@ -31,7 +31,7 @@ Put the shortcode around the slides you want to group together.
 {{%/* /section */%}}
 ```
 
-Keep scrolling down.
+Keep going down.
 
 ---
 
