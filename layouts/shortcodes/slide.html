@@ -1,26 +1,23 @@
-{{ .Scratch.Set "slides" slice }}
-
-{{ if trim .Inner "\n" }}
-{{ .Scratch.Add "slides" .Inner }}
-{{ end }}
-
-{{ if .Get "content" }}
-  {{ $lookup := split (.Get "content") "." }}
-  {{ $html := index .Page.Site.Data (index $lookup 0) (index $lookup 1) | markdownify }}
-  {{ $slides := split $html "<hr />" }}
-  {{ $scratch := .Scratch }}
-  {{ range $slides }}
-    {{ $scratch.Add "slides" . }}
-  {{ end }}
-{{ end }}
-
-{{ $attributes := slice "background-color" "background-image" "background-size" "background-position" "background-repeat" "transition" "transition-speed" "background-iframe" "background-interactive" "background-video" "background-video-loop" "background-video-muted" }}
-{{ $params := . }}
-{{ range .Scratch.Get "slides" }}
+{{- .Scratch.Set "slides" slice -}}
+{{- if trim .Inner "\n" -}}
+{{- .Scratch.Add "slides" .Inner -}}
+{{- end -}}
+{{- if .Get "content" -}}
+  {{- $lookup := split (.Get "content") "." -}}
+  {{- $html := index .Page.Site.Data (index $lookup 0) (index $lookup 1) | markdownify -}}
+  {{- $slides := split $html "<hr />" -}}
+  {{- $scratch := .Scratch -}}
+  {{- range $slides -}}
+    {{- $scratch.Add "slides" . -}}
+  {{- end -}}
+{{- end -}}
+{{- $attributes := slice "background-color" "background-image" "background-size" "background-position" "background-repeat" "transition" "transition-speed" "background-iframe" "background-interactive" "background-video" "background-video-loop" "background-video-muted" -}}
+{{- $params := . -}}
+{{- range .Scratch.Get "slides" -}}
 <section data-noprocess
   {{- range $attribute := $attributes -}}
     {{- with $params.Get $attribute }} data-{{ $attribute | safeHTMLAttr }}="{{ . }}"{{ end -}}
   {{- end -}}>
   {{ . | safeHTML }}
 </section>
-{{ end }}
+{{- end -}}

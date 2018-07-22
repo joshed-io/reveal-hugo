@@ -12,15 +12,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="{{ $reveal_cdn }}/css/reveal.min.css">
     <!-- Theme used for presentation -->
-    {{ $theme := or .Page.Params.reveal_hugo.theme .Site.Params.reveal_hugo.theme .Site.Data.reveal_hugo.defaults.theme "black" }}
-    {{ $custom_theme := or .Page.Params.reveal_hugo.custom_theme .Site.Params.reveal_hugo.custom_theme }}
-    {{ if $custom_theme }}
+    {{- $theme := or .Page.Params.reveal_hugo.theme .Site.Params.reveal_hugo.theme .Site.Data.reveal_hugo.defaults.theme "black" -}}
+    {{- $custom_theme := or .Page.Params.reveal_hugo.custom_theme .Site.Params.reveal_hugo.custom_theme -}}
+    {{- if $custom_theme -}}
     <link rel="stylesheet" href="{{ $custom_theme | relURL }}" id="theme">
-    {{ else }}
+    {{ else -}}
     <link rel="stylesheet" href="{{ $reveal_cdn }}/css/theme/{{ $theme }}.css" id="theme">
-    {{ end }}
+    {{- end -}}
     <!-- Theme used for syntax highlighting of code -->
-    {{ $highlight_theme := or .Page.Params.reveal_hugo.highlight_theme .Site.Params.reveal_hugo.highlight_theme .Site.Data.reveal_hugo.defaults.highlight_theme "default" }}
+    {{- $highlight_theme := or .Page.Params.reveal_hugo.highlight_theme .Site.Params.reveal_hugo.highlight_theme .Site.Data.reveal_hugo.defaults.highlight_theme "default" -}}
     <link rel="stylesheet" href="{{ $highlight_cdn }}/styles/{{ $highlight_theme }}.min.css">
     <!-- Printing and PDF exports -->
     <script>
@@ -33,10 +33,10 @@
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
     <![endif]-->
-    {{ partial "reveal-hugo/head" . }}
+    {{- partial "reveal-hugo/head" . -}}
   </head>
   <body>
-    {{ block "main" . }}{{ end }}
+    {{- block "main" . -}}{{- end -}}
     <script type="application/json" id="reveal-hugo-page-params">{{ jsonify .Page.Params.reveal_hugo | safeJS }}</script>
     <script type="application/json" id="reveal-hugo-site-params">{{ jsonify .Site.Params.reveal_hugo | safeJS }}</script>
     <script type="application/json" id="reveal-hugo-defaults">{{ jsonify .Site.Data.reveal_hugo.defaults | safeJS }}</script>
@@ -73,7 +73,6 @@
       var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
       var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
       var revealHugoDefaults = JSON.parse(document.getElementById('reveal-hugo-defaults').innerHTML);
-
       // See all options - https://github.com/hakimel/reveal.js#configuration
       var options = Object.assign({},
         camelize(revealHugoDefaults),
@@ -81,8 +80,8 @@
         camelize(revealHugoPageParams),
         revealHugoDependencies);
       Reveal.initialize(options);
-
     </script>
+
     {{ partial "reveal-hugo/body" . }}
   </body>
 </html>
