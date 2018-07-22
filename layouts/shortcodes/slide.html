@@ -1,9 +1,10 @@
 {{- .Scratch.Set "slides" slice -}}
-{{- if trim .Inner "\n" -}}
-{{- .Scratch.Add "slides" .Inner -}}
+{{- if len .Inner -}}
+  {{- .Scratch.Add "slides" .Inner -}}
 {{- end -}}
-{{- if .Get "content" -}}
-  {{- $lookup := split (.Get "content") "." -}}
+{{- $content := .Get "content" -}}
+{{- if $content -}}
+  {{- $lookup := split $content "." }}
   {{- $html := index .Page.Site.Data (index $lookup 0) (index $lookup 1) | markdownify -}}
   {{- $slides := split $html "<hr />" -}}
   {{- $scratch := .Scratch -}}
@@ -13,8 +14,8 @@
 {{- end -}}
 {{- $attributes := slice "background-color" "background-image" "background-size" "background-position" "background-repeat" "transition" "transition-speed" "background-iframe" "background-interactive" "background-video" "background-video-loop" "background-video-muted" -}}
 {{- $params := . -}}
-{{- range .Scratch.Get "slides" -}}
-<section data-noprocess
+{{- range .Scratch.Get "slides" }}
+<section data-noprocess data-shortcode-slide
   {{- range $attribute := $attributes -}}
     {{- with $params.Get $attribute }} data-{{ $attribute | safeHTMLAttr }}="{{ . }}"{{ end -}}
   {{- end -}}>
