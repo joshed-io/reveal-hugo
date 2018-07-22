@@ -4,7 +4,7 @@ weight = 34
 
 ## Slide
 
-Customize individual slide attributes like id, background color and transition. Use the same keys as Reveal.js but omit the 'data-' prefix.
+Customize individual slide attributes like id, class, background color and transition. Use the same keys as Reveal.js but omit the 'data-' prefix.
 
 ---
 
@@ -98,6 +98,7 @@ Create templates in config.toml, _index.md or the current page's front matter. P
 
 ```toml
 [reveal_hugo.templates.hotpink]
+class = "hotpink"
 background = "#FF4081"
 ```
 

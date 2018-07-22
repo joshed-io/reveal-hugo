@@ -13,7 +13,7 @@
   {{- end -}}
 {{- end -}}
 {{- $params := . -}}
-{{- $noPrefix := slice "id" -}}
+{{- $noPrefix := slice "id" "class" -}}
 {{- $noOutput := slice "content" "template" -}}
 {{- range $scratch.Get "slides" }}
 <section data-noprocess data-shortcode-slide
@@ -28,7 +28,8 @@
       {{- end -}}
     {{- end -}}
     {{- range $key, $value := ($scratch.Get "template") }}
-      data-{{ $key | safeHTMLAttr }}="{{ $value }}"
+      {{- $attrName := cond (in $noPrefix $key) $key (delimit (slice "data" $key) "-") }}
+      {{ $attrName | safeHTMLAttr }}="{{ $value }}"
     {{- end }}
     data-template="{{ $template }}"
   {{- end -}}

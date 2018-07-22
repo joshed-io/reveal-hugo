@@ -158,7 +158,7 @@ Like fragment but more terse - content is placed inline in a self-closing shortc
 
 #### slide shortcode
 
-The slide shortcode lets you set custom Reveal.js attributes for each slide - things like id, transition, background and [much more](https://github.com/hakimel/reveal.js/#slide-attributes). The names are the same as Reveal.js but without the 'data-' prefix.
+The slide shortcode lets you set custom HTML and Reveal.js attributes for each slide - things like id, class, transition, background and [much more](https://github.com/hakimel/reveal.js/#slide-attributes). The names are the same as Reveal.js but without the 'data-' prefix.
 
 ```markdown
 {{% slide id="hello" background="#FFF" transition="zoom" transition-speed="fast" %}}
@@ -189,7 +189,7 @@ Here's a list of documented slide attributes from the Reveal.js docs:
 - `notes` (can also use the note shortcode)
 - `timing`
 
-You can also pass through your own, a `data-` prefix will be added automatically to each one.
+You can also pass through your own, a `data-` prefix will be added automatically to each one (except for `id` and `class`).
 
 #### section shortcode
 
