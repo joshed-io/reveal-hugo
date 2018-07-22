@@ -38,4 +38,6 @@ Contribute by opening issues and pull requests.
 
 ---
 
-# 👍
+# ↩️
+
+#### [Start over](#)
