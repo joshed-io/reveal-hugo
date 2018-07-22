@@ -13,7 +13,7 @@ The `section` shortcode groups slides into a **vertical display**.
 use the down arrow or swipe down to continue
 </small>
 <br>
-🔽
+<a href="#" class="navigate-down">🔽</a>
 
 ---
 

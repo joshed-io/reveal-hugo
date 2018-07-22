@@ -9,7 +9,7 @@ Store markdown in a [data template](https://gohugo.io/templates/data-templates/)
 navigate down to learn more
 </small>
 <br>
-🔽
+<a href="#" class="navigate-down">🔽</a>
 
 ---
 
