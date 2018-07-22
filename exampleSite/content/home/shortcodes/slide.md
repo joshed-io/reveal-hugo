@@ -44,6 +44,6 @@ Customize individual slide parameters like background color and transition.
 
 {{% section %}}
 
-{{< slide content="home.example" >}}
+{{% slide content="home.example" /%}}
 
 {{% /section %}}

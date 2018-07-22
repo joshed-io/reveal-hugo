@@ -16,6 +16,11 @@ Reveal.js has its own [markdown processor](https://github.com/hakimel/reveal.js#
 {{</* /markdown */>}}
 ```
 
+<br>
+<small>
+💡 Make sure to use the `{{</* */>}}` shortcode syntax to avoid rendering by Hugo.
+</small>
+
 ---
 
 <!-- .slide: data-background="#FF4081" -->
