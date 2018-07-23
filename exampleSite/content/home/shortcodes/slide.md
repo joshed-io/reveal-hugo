@@ -120,7 +120,11 @@ Apply the template using the **template** attribute of the slide shortcode:
 
 ---
 
-If a template exists in multiple configurations, it's properties will be merged. If a property is declared multiple times, the order of precedence is page, section (_index.md), site (config.toml).
+If a template exists in multiple configurations, it's properties will be merged. If a property is declared multiple times, the order of precedence is:
+
+- page
+- section (_index.md)
+- site (config.toml)
 
 {{% /section %}}
 
