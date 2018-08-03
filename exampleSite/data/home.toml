@@ -1,4 +1,4 @@
-example = '''
+reusable = '''
 
 # Reusable slides
 
@@ -13,17 +13,17 @@ navigate down to learn more
 
 ---
 
-Add an `example` key to data/home.toml:
+Add a `example` key to data/home.toml:
 
-```
+```toml
 example = "I'm a slide"
 ```
 <br>
 
 Set the `content` attribute to "home.example":
 
-```
-{{% slide content="home.example" /%}}
+```markdown
+{{< slide content="home.example" >}}
 ```
 
 <br>

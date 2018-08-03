@@ -11,7 +11,8 @@
         {{- range (split $content "<hr />") -}}
           <!-- Only wrap in <section> tag if not already wrapped by shortcode -->
           {{- if in . "data-noprocess" -}}
-{{- . | safeHTML -}}
+  {{- . | safeHTML -}}
+</section>
           {{- else }}
 <section>
   {{- . | safeHTML }}

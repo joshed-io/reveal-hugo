@@ -151,21 +151,25 @@ Wrap any content in the fragment shortcode and it will appear incrementally. Gre
 Like fragment but more terse - content is placed inline in a self-closing shortcode.
 
 ```markdown
-- {{< frag c="One" />}}
-- {{< frag c="Two" />}}
-- {{< frag c="Three" />}}
+- {{< frag c="One" >}}
+- {{< frag c="Two" >}}
+- {{< frag c="Three" >}}
 ```
 
 #### slide shortcode
 
 The slide shortcode lets you set custom HTML and Reveal.js attributes for each slide - things like id, class, transition, background and [much more](https://github.com/hakimel/reveal.js/#slide-attributes). The names are the same as Reveal.js but without the 'data-' prefix.
 
+Add the shortcode above the slide content, below the `---` separator. Do not place content inside of the shortcode.
+
 ```markdown
-{{% slide id="hello" background="#FFF" transition="zoom" transition-speed="fast" %}}
+---
+
+{{< slide id="hello" background="#FFF" transition="zoom" transition-speed="fast" >}}
 
 # Hello, world!
 
-{{% /slide %}}
+---
 ```
 
 Here's a list of documented slide attributes from the Reveal.js docs:
@@ -354,6 +358,10 @@ Here are a few useful Reveal.js-related tools:
 - More [revealjs themes](https://github.com/dzello/revealjs-themes) including robot-lung and sunblind
 
 Find many more on the Reveal.js wiki: [Plugins, tools and hardware](https://github.com/hakimel/reveal.js/wiki/Plugins,-Tools-and-Hardware).
+
+## Changelog
+
+- 2018-08-03: The slide shortcode is now easier to use. An auto-closing version sits inside the slide instead of needing to surround its content and add a closing tag.
 
 ## Contributing
 

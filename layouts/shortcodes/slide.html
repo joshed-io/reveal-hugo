@@ -1,8 +1,5 @@
 {{- $scratch := .Scratch -}}
 {{- $scratch.Set "slides" slice -}}
-{{- if len .Inner -}}
-  {{- $scratch.Add "slides" .Inner -}}
-{{- end -}}
 {{- $content := .Get "content" -}}
 {{- if $content -}}
   {{- $lookup := split $content "." }}
@@ -11,11 +8,13 @@
   {{- range $slides -}}
     {{- $scratch.Add "slides" . -}}
   {{- end -}}
+{{- else -}}
+  {{- $scratch.Add "slides" "" -}}
 {{- end -}}
 {{- $params := . -}}
 {{- $noPrefix := slice "id" "class" -}}
 {{- $noOutput := slice "content" "template" -}}
-{{- range $scratch.Get "slides" }}
+{{- range $sindex, $svalue := $scratch.Get "slides" }}
 <section data-noprocess data-shortcode-slide
   {{- $template := $params.Get "template" -}}
   {{- if $template -}}
@@ -43,6 +42,8 @@
       {{ $attrName | safeHTMLAttr }}="{{ $value }}"
     {{- end -}}
   {{- end -}}>
-  {{ . | safeHTML }}
+  {{ $svalue | safeHTML }}
+{{- if ne $sindex (sub (len ($scratch.Get "slides")) 1) -}}
 </section>
+{{- end -}}
 {{- end -}}
