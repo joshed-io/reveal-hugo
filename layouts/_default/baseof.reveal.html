@@ -33,6 +33,7 @@
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
     <![endif]-->
+    <!-- To insert markup before the closing head tag, create layouts/partials/reveal-hugo/head.html -->
     {{- partial "reveal-hugo/head" . -}}
   </head>
   <body>
@@ -81,7 +82,7 @@
         revealHugoDependencies);
       Reveal.initialize(options);
     </script>
-
+    <!-- To insert markup before the closing body tag, create layouts/partials/reveal-hugo/body.html -->
     {{ partial "reveal-hugo/body" . }}
   </body>
 </html>
