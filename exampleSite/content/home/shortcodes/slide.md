@@ -24,53 +24,65 @@ Add the shortcode above the slide's content, below the `---`.
 
 ---
 
-{{< slide id="custom-1" transition="zoom" transition-speed="fast" >}}
+{{< slide transition="zoom" transition-speed="fast" >}}
 
 ## Custom slide 1
 
-<small>This slide has a fast zoom transition.</small>
+<small>Did you notice? This slide has a fast zoom transition.</small>
 
 ```markdown
-{{</* slide id="custom-1" transition="zoom" transition-speed="fast" */>}}
+---
+
+{{</* slide transition="zoom" transition-speed="fast" */>}}
 
 ## Custom slide 1
+
+---
 ```
 
 ---
 
-{{< slide id="custom-2" background="#FF4081" >}}
+{{< slide background="#FF4081" >}}
 
 ## Custom slide 2
 
 <small>This slide has a different background color.</small>
 
 ```markdown
-{{</* slide id="custom-2" background="#FF4081" */>}}
+---
+
+{{</* slide background="#FF4081" */>}}
 
 ## Custom slide 2
+
+---
 ```
 
 ---
+
+{{< slide id="custom-slide" >}}
 
 💡 Tip: Setting a slide's `id` attribute makes it easy to link to from other parts of the presentation.
 <br><br>
 
 ```markdown
 ---
-{{</* slide id="custom-1" */>}}
 
-## Custom slide 1
+{{</* slide id="custom-slide" */>}}
+
+## Custom slide
 
 ---
 ```
 
+---
+
 ```markdown
-Go to [custom slide 1](#custom-1)
+[Try the link](#custom-slide)
 ```
 
-<small>
-Go to [custom slide 1](#custom-1)
-</small>
+<br>
+[Try the link](#custom-slide)
 
 ---
 
