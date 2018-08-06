@@ -10,14 +10,11 @@
         <!-- Split the processed content by <hr /> tag -->
         {{- range (split $content "<hr />") -}}
           <!-- Only wrap in <section> tag if not already wrapped by shortcode -->
-          {{- if in . "data-noprocess" -}}
+          {{- if not (in . "data-noprocess") -}}
+<section>
+          {{- end -}}
   {{- . | safeHTML -}}
 </section>
-          {{- else }}
-<section>
-  {{- . | safeHTML }}
-</section>
-          {{- end -}}
         {{- end -}}
       {{- end -}}
     {{- end }}
