@@ -288,17 +288,15 @@ You can use all the additional slide shortcode attributes. They will be applied 
 
 ## Configuration
 
-Customize the Reveal.js presentation by setting these values in `config.toml` or the front matter of any presentation's `index.md` file.
+Customize the Reveal.js presentation by setting these values in `config.toml` or the front matter of any presentation's `_index.md` file.
 
 - `params.reveal_hugo.theme`: The Reveal.js theme used, defaults to "black"
 - `params.reveal_hugo.custom_theme`: The path to a locally hosted Reveal.js theme
 - `params.reveal_hugo.highlight_theme`: The [highlight.js](https://highlightjs.org/) theme used, defaults to "default"
+- `params.reveal_hugo.reveal_cdn`: The location to load Reveal.js files from, defaults to `https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0`
+- `params.reveal_hugo.highlight_cdn`: The location to load highlight.js files from, defaults to `https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0`
 
-Include any other attributes in `params.reveal_hugo` that you'd like to be fed as arguments to `Reveal.initialize` in **snakecase**. So `slideNumber` becomes `slide_number`. The reason is that Hugo lowercases all params and Reveal.js is case-sensitive. Params are converted from snakecase to camelcase before passing to Reveal.js.
-
-See the [extensive list of Reveal.js configuration options](https://github.com/hakimel/reveal.js/#configuration) here. The defaults used by this theme are located in `data/reveal_hugo.toml`.
-
-If you're new to TOML, this is how it should look in your `config.toml`:
+This is how parameters will look in your `config.toml`:
 
 ```TOML
 [params.reveal_hugo]
@@ -311,6 +309,10 @@ Or in the front matter of an `_index.md` file:
 [reveal_hugo]
 theme = "moon"
 ```
+
+Include any other attributes in those sections that you'd like to be fed as arguments to `Reveal.initialize` in **snakecase**, so `slide_number` instead of `slideNumber`. Params are converted from snakecase to camelcase before passing to Reveal.js. This is necessary to maintain the proper case of the parameters.
+
+See the [extensive list of Reveal.js configuration options](https://github.com/hakimel/reveal.js/#configuration) here. Several defaults used by this theme are located in `data/reveal_hugo.toml`.
 
 ## Adding HTML to the layout
 
@@ -343,6 +345,8 @@ isHTML = true
 Now you can add `outputs = ["Reveal"]` to the front matter of any section's `_index.md` file and that section's content will be combined into a presentation and written to `index.html`. If you already have a `index.html` page for that section, just change the `baseName` above to `reveal` and the presentation will be placed in a `reveal.html` file instead.
 
 Note: If you specify `outputs = ["Reveal"]` for a single content file, you can prevent anything being generated for that file. This is handy if you other default layouts that would have created a regular HTML file from it. Only the list file is required for the presentation.
+
+**Tip**: As of Hugo 0.42, Hugo [has theme inheritence](https://gohugo.io/news/0.42-relnotes/). You can avoid the file copying step above by adding `"reveal-hugo"` to your site's array of themes.
 
 ## Reveal.js tips
 
