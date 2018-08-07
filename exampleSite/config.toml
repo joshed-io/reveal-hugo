@@ -8,9 +8,6 @@ themesDir = "../"
 [author]
 name = "Josh Dzielak"
 
-[params]
-description = "Includes a handy markdown-based syntax and shortcodes to help you get presentations done fast"
-
 [params.reveal_hugo]
 history = true
 

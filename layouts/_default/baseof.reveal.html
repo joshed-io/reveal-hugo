@@ -1,26 +1,26 @@
 <!doctype html>
-{{- $reveal_cdn := or .Page.Params.reveal_hugo.reveal_cdn .Site.Params.reveal_hugo.reveal_cdn "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0" -}}
-{{- $highlight_cdn := or .Page.Params.reveal_hugo.highlight_cdn .Site.Params.reveal_hugo.highlight_cdn "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0" -}}
+{{- $reveal_cdn := $.Param "reveal_hugo.reveal_cdn" | default "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0" -}}
+{{- $highlight_cdn := $.Param "reveal_hugo.highlight_cdn" | default "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0" -}}
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <title>{{ or .Page.Title .Site.Title }}</title>
-    <meta name="description" content="{{ or .Page.Params.Description .Site.Params.Description }}">
-    <meta name="author" content="{{ .Site.Author.name }}">
+    {{ with $.Param "description" }}<meta name="description" content="{{ . }}">{{ end }}
+    {{ with .Site.Author.name }}<meta name="author" content="{{ . }}">{{ end }}
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="{{ $reveal_cdn }}/css/reveal.min.css">
     <!-- Theme used for presentation -->
-    {{- $theme := or .Page.Params.reveal_hugo.theme .Site.Params.reveal_hugo.theme .Site.Data.reveal_hugo.defaults.theme "black" -}}
-    {{- $custom_theme := or .Page.Params.reveal_hugo.custom_theme .Site.Params.reveal_hugo.custom_theme -}}
+    {{- $theme := $.Param "reveal_hugo.theme" | default "black" -}}
+    {{- $custom_theme := $.Param "reveal_hugo.custom_theme" -}}
     {{- if $custom_theme -}}
     <link rel="stylesheet" href="{{ $custom_theme | relURL }}" id="theme">
     {{ else -}}
     <link rel="stylesheet" href="{{ $reveal_cdn }}/css/theme/{{ $theme }}.css" id="theme">
     {{- end -}}
     <!-- Theme used for syntax highlighting of code -->
-    {{- $highlight_theme := or .Page.Params.reveal_hugo.highlight_theme .Site.Params.reveal_hugo.highlight_theme .Site.Data.reveal_hugo.defaults.highlight_theme "default" -}}
+    {{- $highlight_theme := $.Param "reveal_hugo.highlight_theme" | default "default" -}}
     <link rel="stylesheet" href="{{ $highlight_cdn }}/styles/{{ $highlight_theme }}.min.css">
     <!-- Printing and PDF exports -->
     <script>
@@ -30,9 +30,6 @@
       link.href = window.location.search.match( /print-pdf/gi ) ? '{{ $reveal_cdn}}/css/print/pdf.css' : '{{ $reveal_cdn }}/css/print/paper.css';
       document.getElementsByTagName( 'head' )[0].appendChild( link );
     </script>
-    <!--[if lt IE 9]>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
-    <![endif]-->
     <!-- To insert markup before the closing head tag, create layouts/partials/reveal-hugo/head.html -->
     {{- partial "reveal-hugo/head" . -}}
   </head>
