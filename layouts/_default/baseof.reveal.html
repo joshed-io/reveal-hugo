@@ -1,6 +1,6 @@
 <!doctype html>
-{{- $reveal_cdn := "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0" -}}
-{{- $highlight_cdn := "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0" -}}
+{{- $reveal_cdn := or .Page.Params.reveal_hugo.reveal_cdn .Site.Params.reveal_hugo.reveal_cdn .Site.Data.reveal_hugo.defaults.reveal_cdn "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0" -}}
+{{- $highlight_cdn := or .Page.Params.reveal_hugo.highlight_cdn .Site.Params.reveal_hugo.highlight_cdn .Site.Data.reveal_hugo.defaults.highlight_cdn "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0" -}}
 <html lang="en">
   <head>
     <meta charset="utf-8">
