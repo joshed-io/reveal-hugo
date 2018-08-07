@@ -290,11 +290,11 @@ You can use all the additional slide shortcode attributes. They will be applied 
 
 Customize the Reveal.js presentation by setting these values in `config.toml` or the front matter of any presentation's `_index.md` file.
 
-- `params.reveal_hugo.theme`: The Reveal.js theme used, defaults to "black"
-- `params.reveal_hugo.custom_theme`: The path to a locally hosted Reveal.js theme
-- `params.reveal_hugo.highlight_theme`: The [highlight.js](https://highlightjs.org/) theme used, defaults to "default"
-- `params.reveal_hugo.reveal_cdn`: The location to load Reveal.js files from, defaults to `https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0`
-- `params.reveal_hugo.highlight_cdn`: The location to load highlight.js files from, defaults to `https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0`
+- `reveal_hugo.theme`: The Reveal.js theme used, defaults to "black"
+- `reveal_hugo.custom_theme`: The path to a locally hosted Reveal.js theme
+- `reveal_hugo.highlight_theme`: The [highlight.js](https://highlightjs.org/) theme used, defaults to "default"
+- `reveal_hugo.reveal_cdn`: The location to load Reveal.js files from, defaults to `https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0`
+- `reveal_hugo.highlight_cdn`: The location to load highlight.js files from, defaults to `https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0`
 
 This is how parameters will look in your `config.toml`:
 
@@ -312,7 +312,17 @@ theme = "moon"
 
 Include any other attributes in those sections that you'd like to be fed as arguments to `Reveal.initialize` in **snakecase**, so `slide_number` instead of `slideNumber`. Params are converted from snakecase to camelcase before passing to Reveal.js. This is necessary to maintain the proper case of the parameters.
 
-See the [extensive list of Reveal.js configuration options](https://github.com/hakimel/reveal.js/#configuration) here. Several defaults used by this theme are located in `data/reveal_hugo.toml`.
+Here's an example of configuring Reveal.js parameters alongside a theme and highlight.js theme:
+
+```TOML
+[reveal_hugo]
+theme = "moon"
+highlight_theme = "solarized-dark"
+slide_number = true
+transition = "zoom"
+```
+
+See the [extensive list of Reveal.js configuration options](https://github.com/hakimel/reveal.js/#configuration) here.
 
 ## Adding HTML to the layout
 
@@ -328,7 +338,7 @@ If your Hugo site already has a theme but you'd like to create a presentation fr
 cd my-hugo-site
 git clone git@github.com:dzello/reveal-hugo.git themes/reveal-hugo
 cd themes/reveal-hugo
-cp -r data layouts static ../../
+cp -r layouts static ../../
 ```
 
 Files and directories are named such that they shouldn't conflict with your existing content. Of course, you should double check before copying, especially the shortcodes which can't be put under a directory.

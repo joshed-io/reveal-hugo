@@ -1,6 +1,6 @@
 <!doctype html>
-{{- $reveal_cdn := or .Page.Params.reveal_hugo.reveal_cdn .Site.Params.reveal_hugo.reveal_cdn .Site.Data.reveal_hugo.defaults.reveal_cdn "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0" -}}
-{{- $highlight_cdn := or .Page.Params.reveal_hugo.highlight_cdn .Site.Params.reveal_hugo.highlight_cdn .Site.Data.reveal_hugo.defaults.highlight_cdn "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0" -}}
+{{- $reveal_cdn := or .Page.Params.reveal_hugo.reveal_cdn .Site.Params.reveal_hugo.reveal_cdn "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0" -}}
+{{- $highlight_cdn := or .Page.Params.reveal_hugo.highlight_cdn .Site.Params.reveal_hugo.highlight_cdn "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0" -}}
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -38,9 +38,8 @@
   </head>
   <body>
     {{- block "main" . -}}{{- end -}}
-    <script type="application/json" id="reveal-hugo-page-params">{{ jsonify .Page.Params.reveal_hugo | safeJS }}</script>
     <script type="application/json" id="reveal-hugo-site-params">{{ jsonify .Site.Params.reveal_hugo | safeJS }}</script>
-    <script type="application/json" id="reveal-hugo-defaults">{{ jsonify .Site.Data.reveal_hugo.defaults | safeJS }}</script>
+    <script type="application/json" id="reveal-hugo-page-params">{{ jsonify .Page.Params.reveal_hugo | safeJS }}</script>
     <script type="text/javascript">
       window.revealHugoDependencies = {
         dependencies: [
@@ -71,9 +70,9 @@
         return map;
       }
       // pattern inspired by https://github.com/RealOrangeOne/hugo-theme-revealjs
-      var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+      var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
       var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
-      var revealHugoDefaults = JSON.parse(document.getElementById('reveal-hugo-defaults').innerHTML);
+      var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
       // See all options - https://github.com/hakimel/reveal.js#configuration
       var options = Object.assign({},
         camelize(revealHugoDefaults),
