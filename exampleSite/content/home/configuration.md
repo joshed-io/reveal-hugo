@@ -4,28 +4,24 @@ weight = 21
 
 # Configuration
 
+Place configuration values in `config.toml` or a presentation's front matter (`_index.md`).
+
 ---
 
 ## Reveal.js themes
 
-Put in `config.toml` or a presentation's front matter.
-
-Use the `theme` key for themes that come with Reveal.js.
+Themes control the look and feel of your presentation. Set the `theme` param to any [valid Reveal.js theme](https://github.com/hakimel/reveal.js/#theming).
 
 ```toml
 [params.reveal_hugo]
 theme = "moon"
-highlight_theme = "zenburn"
 ```
-
-[Reveal.js themes](https://github.com/hakimel/reveal.js/#theming) &middot;
-[highlight.js themes](https://highlightjs.org/static/demo/)
 
 ---
 
 ## Use a custom theme
 
-Use the `custom_theme` key to point to a CSS file in the `static` directory.
+To use a custom Reveal.js theme, place the CSS file in the `static` directory and set the `custom_theme` param.
 
 ```toml
 [params.reveal_hugo]
@@ -34,7 +30,7 @@ custom_theme = "reveal-hugo/themes/robot-lung.css"
 
 ---
 
-## Like this theme?
+## Bundled themes
 
 reveal-hugo comes with 2 extra Reveal.js themes:
 
@@ -64,11 +60,25 @@ transition_speed = 'fast'
 
 ---
 
+## highlight.js themes
+
+To change the syntax highlighting theme, set the `highlight_theme`
+to a valid [highlight.js theme name](https://highlightjs.org/static/demo/).
+
+```toml
+[params.reveal_hugo]
+highlight_theme = "zenburn"
+```
+
+---
+
 ## Extending the layout
 
-Use partials to add HTML to the page at the closing of the head and the body tags, either for all presentations or just a specific one.
+Use partials to add HTML to the page for one or all presentations at a time.
 
-This is the recommended way to add script and style tags to customize your presentations.
+<small>
+💡 This is the recommended way to add script and style tags to customize your presentations.
+</small>
 
 ---
 
