@@ -40,7 +40,6 @@ Hello world!
 Separate them by `---`:
 
 ```
-
 # Slide 1
 
 Hello world!
@@ -50,7 +49,6 @@ Hello world!
 # Slide 2
 
 Hello program!
-
 ```
 
 ---
@@ -89,7 +87,6 @@ outputs = ["Reveal"]
 ---
 
 # Slide 2
-
 ```
 
 ---
