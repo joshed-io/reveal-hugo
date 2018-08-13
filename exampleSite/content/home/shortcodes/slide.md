@@ -8,6 +8,8 @@ Use this shortcode when you need to customize slide attributes like id, class, b
 
 ---
 
+{{< slide class="hello" >}}
+
 ## Slide
 
 Add the shortcode above the slide's content, below the `---`.

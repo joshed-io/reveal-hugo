@@ -23,13 +23,12 @@ example = "I'm a slide"
 Set the `content` attribute to "home.example":
 
 ```markdown
-{{< slide content="home.example" >}}
-```
+---
 
-<br>
-<small>
-💡 Make sure to use a closing or self-closing shortcode.
-</small>
+{{< slide content="home.example" >}}
+
+---
+```
 
 ---
 
