@@ -166,3 +166,62 @@ If a template exists in multiple configurations, it's properties will be merged.
 {{< slide content="home.reusable" >}}
 
 {{% /section %}}
+
+---
+
+{{% section %}}
+
+## Slide-specific CSS
+
+Add more variety to your presentation by applying slide-specific CSS.
+
+<br>
+<small>
+navigate down to learn more
+</small>
+<br>
+<a href="#" class="navigate-down">🔽</a>
+
+---
+
+First, use the `slide` shortcode to give the slide a class:
+
+```markdown
+---
+
+{{</* slide class="side-by-side" */>}}
+
+# 📈
+
+# 📊
+
+---
+```
+
+---
+
+Next, use a layout extension partial like `reveal-hugo/head.html` to add CSS selectors:
+
+```html
+<style>
+.reveal section.side-by-side h1 {
+  position: absolute;
+}
+.reveal section.side-by-side h1:first-of-type {
+  left: 25%;
+}
+.reveal section.side-by-side h1:nth-of-type(2) {
+  right: 25%;
+}
+</style>
+```
+
+---
+
+{{< slide class="side-by-side" >}}
+
+# 📈
+
+# 📊
+
+{{% /section %}}

@@ -1,6 +1,6 @@
 reusable = '''
 
-# Reusable slides
+## Reusable slides
 
 Store markdown in a [data template](https://gohugo.io/templates/data-templates/) and reuse it in multiple sections or presentations.
 
