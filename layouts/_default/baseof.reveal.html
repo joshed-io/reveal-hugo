@@ -30,17 +30,19 @@
       link.href = window.location.search.match( /print-pdf/gi ) ? '{{ $reveal_cdn}}/css/print/pdf.css' : '{{ $reveal_cdn }}/css/print/paper.css';
       document.getElementsByTagName( 'head' )[0].appendChild( link );
     </script>
-    <!-- To insert markup before the closing head tag, create layouts/partials/reveal-hugo/head.html -->
+    <!-- To insert markup before the closing head tag for all presentations,
+         create layouts/partials/reveal-hugo/head.html -->
     {{- partial "reveal-hugo/head" . -}}
+    <!-- To insert markup at the end of the head tag for a specific presentation,
+         create layouts/partials/{section}/reveal-hugo/head.html -->
+    {{- $sectionHeadPartial := printf "%s/reveal-hugo/head" (.Page.Section | default "home") -}}
+    {{- if fileExists (printf "layouts/partials/%s.html" $sectionHeadPartial) -}}{{ partial $sectionHeadPartial . }}{{- end }}
   </head>
   <body>
     {{- block "main" . -}}{{- end -}}
     <script type="application/json" id="reveal-hugo-site-params">{{ jsonify .Site.Params.reveal_hugo | safeJS }}</script>
     <script type="application/json" id="reveal-hugo-page-params">{{ jsonify .Page.Params.reveal_hugo | safeJS }}</script>
-    <script type="text/javascript">
-      window.revealHugoDependencies = {
-        dependencies: [
-          { src: '{{ $reveal_cdn }}/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+    <script type="text/javascript"> window.revealHugoDependencies = { dependencies: [ { src: '{{ $reveal_cdn }}/lib/js/classList.js', condition: function() { return !document.body.classList; } },
           { src: '{{ $reveal_cdn }}/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
           { src: '{{ $reveal_cdn }}/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
           { src: '{{ $reveal_cdn }}/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
@@ -78,7 +80,12 @@
         revealHugoDependencies);
       Reveal.initialize(options);
     </script>
-    <!-- To insert markup before the closing body tag, create layouts/partials/reveal-hugo/body.html -->
-    {{ partial "reveal-hugo/body" . }}
+    <!-- To insert markup before the closing body tag for all presentations,
+         create layouts/partials/reveal-hugo/body.html -->
+    {{- partial "reveal-hugo/body" . }}
+    <!-- To insert markup at the end of the head tag for a specific presentation,
+         create layouts/partials/{section}/reveal-hugo/body.html -->
+    {{- $sectionBodyPartial := printf "%s/reveal-hugo/body" (.Page.Section | default "home") -}}
+    {{- if fileExists (printf "layouts/partials/%s.html" $sectionBodyPartial) -}}{{ partial $sectionBodyPartial . }}{{- end }}
   </body>
 </html>
