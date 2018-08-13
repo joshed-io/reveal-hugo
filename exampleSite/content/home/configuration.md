@@ -93,7 +93,7 @@ Here is where partials go for different presentations and places on the page.
 
 ---
 
-## Example customization
+## Custom CSS Example
 
 In `home/reveal-hugo/head.html`:
 
@@ -104,6 +104,10 @@ In `home/reveal-hugo/head.html`:
 }
 </style>
 ```
+
+---
+
+## Custom JS Example
 
 In `home/reveal-hugo/body.html`:
 
