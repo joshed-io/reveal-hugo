@@ -326,7 +326,15 @@ See the [extensive list of Reveal.js configuration options](https://github.com/h
 
 ## Adding HTML to the layout
 
-If you need to add something to the HTML page, just override one or both of the empty partials that live at `layouts/partials/reveal-hugo/body.html` and `layouts/partials/reveal-hugo/head.html`. These partials are injected into the page just before the closing of the body and head tags respectively. Common uses would be to add custom CSS or JavaScript to your presentation.
+If you need to add something to the HTML layout, you can create partials that live at specific locations, depending on which presentation you want to customize and where you want the HTML inserted into the page.
+
+| Presentation | Before &lt;/head&gt;            | Before &lt;/body&gt;            |
+|--------------|---------------------------------|---------------------------------|
+| All          | reveal-hugo/head.html           | reveal-hugo/body.html           |
+| Root         | home/reveal-hugo/head.html      | home/reveal-hugo/body.html      |
+| Section      | {section}/reveal-hugo/head.html | {section}/reveal-hugo/body.html |
+
+This is the recommended way to add custom CSS and JavaScript to each presentation.
 
 ## Recipes
 
