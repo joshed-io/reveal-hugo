@@ -1,6 +1,6 @@
 <!doctype html>
-{{- $reveal_cdn := $.Param "reveal_hugo.reveal_cdn" | default "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.7.0" -}}
-{{- $highlight_cdn := $.Param "reveal_hugo.highlight_cdn" | default "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0" -}}
+{{- $reveal_cdn := $.Param "reveal_hugo.reveal_cdn" | default "/reveal-js" -}}
+{{- $highlight_cdn := $.Param "reveal_hugo.highlight_cdn" | default "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles" -}}
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -10,7 +10,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="{{ $reveal_cdn }}/css/reveal.min.css">
+    <link rel="stylesheet" href="{{ $reveal_cdn }}/css/reveal.css">
     <!-- Theme used for presentation -->
     {{- $theme := $.Param "reveal_hugo.theme" | default "black" -}}
     {{- $custom_theme := $.Param "reveal_hugo.custom_theme" -}}
@@ -21,7 +21,7 @@
     {{- end -}}
     <!-- Theme used for syntax highlighting of code -->
     {{- $highlight_theme := $.Param "reveal_hugo.highlight_theme" | default "default" -}}
-    <link rel="stylesheet" href="{{ $highlight_cdn }}/styles/{{ $highlight_theme }}.min.css">
+    <link rel="stylesheet" href="{{ $highlight_cdn }}/{{ $highlight_theme }}.min.css">
     <!-- Printing and PDF exports -->
     <script>
       var link = document.createElement( 'link' );
@@ -48,7 +48,7 @@
           { src: '{{ $reveal_cdn }}/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
           { src: '{{ $reveal_cdn }}/plugin/zoom-js/zoom.js', async: true },
           // the notes plugin can't run off the CDN b/c the HTML file isn't there
-          { src: '{{ "reveal-hugo/plugin/notes/notes.js" | relURL }}', async: true }
+          { src: '{{ "reveal-js/plugin/notes/notes.js" | relURL }}', async: true }
       ]};
     </script>
     <script src="{{ $reveal_cdn }}/lib/js/head.min.js"></script>
