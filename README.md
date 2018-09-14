@@ -33,9 +33,11 @@ Just use `---` to split content into different slides.
 
 Visit [reveal-hugo.dzello.com](https://reveal-hugo.dzello.com/) to see a presentation created with this theme and learn more about what you can do. Jump to the [exampleSite](exampleSite) folder in this repository to see the source code for that presentation.
 
-If you're looking for a very simple reveal-hugo app you can use as a boilerplate, see the [programming-quotes](https://github.com/dzello/programming-quotes) repository.
-
 For a full-length blog post about reveal-hugo, checkout [Harness the Power of Static Site Generators to Create Presentations](https://forestry.io/blog/harness-the-power-of-static-to-create-presentations/) on the [Forestry.io blog](https://forestry.io/blog).
+
+## Boilerplate
+
+If you want to start creating a presentation right away, clone the [programming-quotes](https://github.com/dzello/programming-quotes) repository and start hacking.
 
 ## Tutorial
 
