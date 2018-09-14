@@ -44,7 +44,7 @@ Add the shortcode above the slide's content, below the `---`.
 
 ---
 
-{{< slide background="#FF4081" >}}
+{{< slide background-color="#FF4081" >}}
 
 ## Custom slide 2
 
@@ -53,12 +53,30 @@ Add the shortcode above the slide's content, below the `---`.
 ```markdown
 ---
 
-{{</* slide background="#FF4081" */>}}
+{{</* slide background-color="#FF4081" */>}}
 
 ## Custom slide 2
 
 ---
 ```
+
+---
+
+{{< slide background-image="/images/alex-litvin-790876-unsplash.jpg" >}}
+
+## Custom slide 3
+
+<small>This slide has a background image.</small>
+
+```markdown
+---
+
+{{</* slide background-image="/images/alex-litvin-790876-unsplash.jpg" */>}}
+
+---
+```
+
+<small>(credit <a href="https://unsplash.com/@alexlitvin">Alex Litvin</a>)</small>
 
 ---
 
