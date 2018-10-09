@@ -82,7 +82,7 @@ Use partials to add HTML to the page for one or all presentations at a time.
 
 ---
 
-Here is where partials go for different presentations and places on the page.
+Here is where to put partials for different presentations and places in the DOM.
 <br><br>
 
 | Presentation | Before &lt;/head&gt;            | Before &lt;/body&gt;            |
@@ -90,6 +90,12 @@ Here is where partials go for different presentations and places on the page.
 | All          | reveal-hugo/head.html           | reveal-hugo/body.html           |
 | Root         | home/reveal-hugo/head.html      | home/reveal-hugo/body.html      |
 | Section      | {section}/reveal-hugo/head.html | {section}/reveal-hugo/body.html |
+
+&nbsp;
+
+<small>
+💡 You can also create an `end.html` to put content before the end of the `.reveal` div tag.
+</small>
 
 ---
 

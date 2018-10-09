@@ -39,7 +39,18 @@
     {{- if fileExists (printf "layouts/partials/%s.html" $sectionHeadPartial) -}}{{ partial $sectionHeadPartial . }}{{- end }}
   </head>
   <body>
-    {{- block "main" . -}}{{- end -}}
+    <div class="reveal">
+      <div class="slides">
+        {{- block "main" . -}}{{- end -}}
+      </div>
+      <!-- To insert markup at the end of the .reveal tag for all presentations,
+           create layouts/partials/reveal-hugo/end.html -->
+      {{- partial "reveal-hugo/end" . -}}
+      <!-- To insert markup at the end of the .reveal tag for a specific presentation,
+           create layouts/partials/{section}/reveal-hugo/end.html -->
+      {{- $sectionHeadPartial := printf "%s/reveal-hugo/end" (.Page.Section | default "home") -}}
+      {{- if fileExists (printf "layouts/partials/%s.html" $sectionHeadPartial) -}}{{ partial $sectionHeadPartial . }}{{- end }}
+    </div>
     <script type="application/json" id="reveal-hugo-site-params">{{ jsonify .Site.Params.reveal_hugo | safeJS }}</script>
     <script type="application/json" id="reveal-hugo-page-params">{{ jsonify .Page.Params.reveal_hugo | safeJS }}</script>
     <script type="text/javascript"> window.revealHugoDependencies = { dependencies: [ { src: '{{ $reveal_cdn }}/lib/js/classList.js', condition: function() { return !document.body.classList; } },
