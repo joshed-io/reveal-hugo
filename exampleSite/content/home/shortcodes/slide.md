@@ -62,7 +62,7 @@ Add the shortcode above the slide's content, below the `---`.
 
 ---
 
-{{< slide background-image="/images/alex-litvin-790876-unsplash.jpg" >}}
+{{< slide background-image="/images/alex-litvin-790876-unsplash.jpg" background-color="#000000" >}}
 
 ## Custom slide 3
 
