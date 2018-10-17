@@ -347,11 +347,11 @@ reveal_hugo.custom_theme = "assets/custom-theme.css"
 
 If you need to add something to the HTML layout, you can create partials that live at specific locations, depending on which presentation you want to customize and where you want the HTML inserted into the page.
 
-| Presentation | Before &lt;/head&gt;            | Before &lt;/body&gt;            |
-|--------------|---------------------------------|---------------------------------|
-| All          | reveal-hugo/head.html           | reveal-hugo/body.html           |
-| Root         | home/reveal-hugo/head.html      | home/reveal-hugo/body.html      |
-| Section      | {section}/reveal-hugo/head.html | {section}/reveal-hugo/body.html |
+| Presentation | Before &lt;/head&gt;            | Before &lt;/body&gt;            | Before closing &lt;/div&gt; of `div.reveal` |
+|--------------|---------------------------------|---------------------------------|---------------------------------------------|
+| All          | reveal-hugo/head.html           | reveal-hugo/body.html           | reveal-hugo/end.html                        |
+| Root         | home/reveal-hugo/head.html      | home/reveal-hugo/body.html      | home/reveal-hugo/end.html                   |
+| Section      | {section}/reveal-hugo/head.html | {section}/reveal-hugo/body.html | {section}/reveal-hugo/end.html              |
 
 This is the recommended way to add custom CSS and JavaScript to each presentation.
 
@@ -364,6 +364,7 @@ This is the recommended way to add custom CSS and JavaScript to each presentatio
 >     - reveal-hugo
 >       - head.html
 >       - body.html
+>       - end.html
 
 ## Recipes
 
