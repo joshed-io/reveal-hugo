@@ -355,6 +355,16 @@ If you need to add something to the HTML layout, you can create partials that li
 
 This is the recommended way to add custom CSS and JavaScript to each presentation.
 
+> 💡 Tip: In Hugo, partials live in the `layouts` folder:
+> 
+> For example, if you have HTML that is to be placed before every presentation, this would be the structure:
+> ```
+> - layouts
+>   - partials
+>     - reveal-hugo
+>       - head.html
+>       - body.html
+
 ## Recipes
 
 ### Add a Reveal.js presentation to an existing Hugo site
