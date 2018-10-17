@@ -112,6 +112,14 @@ This is my first slide.
 This is my second slide.
 ```
 
+### Cloning an existing repository
+
+If you have an existing repository that was setup with the above steps, you have to pull in the theme submodule after cloning your repository using the following command:
+
+```shell
+git submodule update --init
+```
+
 ## Usage
 
 The Usage guide is contained in the example presentation that lives in this repository in the [exampleSite](./exampleSite) directory. You can access a live version at [reveal-hugo.dzello.com](https://reveal-hugo.dzello.com/).
@@ -400,4 +408,3 @@ or simply...
 ```shell
 npm start
 ```
-
