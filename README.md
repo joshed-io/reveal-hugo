@@ -293,7 +293,7 @@ You can use all the additional slide shortcode attributes. They will be applied 
 Customize the Reveal.js presentation by setting these values in `config.toml` or the front matter of any presentation's `_index.md` file.
 
 - `reveal_hugo.theme`: The Reveal.js theme used; defaults to "black"
-- `reveal_hugo.custom_theme`: The path to a locally hosted Reveal.js theme
+- `reveal_hugo.custom_theme`: The path to a locally hosted Reveal.js theme in the static folder
 - `reveal_hugo.highlight_theme`: The [highlight.js](https://highlightjs.org/) theme used; defaults to "default"
 - `reveal_hugo.reveal_cdn`: The location to load Reveal.js files from; defaults to the `reveal-js` folder in the static directory to support offline development. To load from a CDN instead, set this value to `https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.7.0` or whatever CDN you prefer.
 - `reveal_hugo.highlight_cdn`: The location to load highlight.js files from; defaults to `https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0`. For local development, change this to point to a file in the static directory.
@@ -325,6 +325,23 @@ transition = "zoom"
 ```
 
 See the [extensive list of Reveal.js configuration options](https://github.com/hakimel/reveal.js/#configuration) here.
+
+### Custom Reveal.js Themes
+
+If you have a custom reveal theme to use (in .css form), place it somewhere in your static folder. For example, if you have:
+
+```
+- static
+  - assets
+    - custom-theme.css
+```
+
+Then you will need to have this line in `config.toml`
+
+```toml
+[params.reveal_hugo]
+reveal_hugo.custom_theme = "assets/custom-theme.css"
+```
 
 ## Adding HTML to the layout
 
@@ -400,4 +417,3 @@ or simply...
 ```shell
 npm start
 ```
-
