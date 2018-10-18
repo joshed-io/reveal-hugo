@@ -293,7 +293,7 @@ You can use all the additional slide shortcode attributes. They will be applied 
 Customize the Reveal.js presentation by setting these values in `config.toml` or the front matter of any presentation's `_index.md` file.
 
 - `reveal_hugo.theme`: The Reveal.js theme used; defaults to "black"
-- `reveal_hugo.custom_theme`: The path to a locally hosted Reveal.js theme
+- `reveal_hugo.custom_theme`: The path to a locally hosted Reveal.js theme in the static folder
 - `reveal_hugo.highlight_theme`: The [highlight.js](https://highlightjs.org/) theme used; defaults to "default"
 - `reveal_hugo.reveal_cdn`: The location to load Reveal.js files from; defaults to the `reveal-js` folder in the static directory to support offline development. To load from a CDN instead, set this value to `https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.7.0` or whatever CDN you prefer.
 - `reveal_hugo.highlight_cdn`: The location to load highlight.js files from; defaults to `https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0`. For local development, change this to point to a file in the static directory.
@@ -326,17 +326,45 @@ transition = "zoom"
 
 See the [extensive list of Reveal.js configuration options](https://github.com/hakimel/reveal.js/#configuration) here.
 
+### Custom Reveal.js Themes
+
+If you have a custom reveal theme to use (in .css form), place it somewhere in your static folder. For example, if you have:
+
+```
+- static
+  - assets
+    - custom-theme.css
+```
+
+Then you will need to have this line in `config.toml`
+
+```toml
+[params.reveal_hugo]
+reveal_hugo.custom_theme = "assets/custom-theme.css"
+```
+
 ## Adding HTML to the layout
 
 If you need to add something to the HTML layout, you can create partials that live at specific locations, depending on which presentation you want to customize and where you want the HTML inserted into the page.
 
-| Presentation | Before &lt;/head&gt;            | Before &lt;/body&gt;            |
-|--------------|---------------------------------|---------------------------------|
-| All          | reveal-hugo/head.html           | reveal-hugo/body.html           |
-| Root         | home/reveal-hugo/head.html      | home/reveal-hugo/body.html      |
-| Section      | {section}/reveal-hugo/head.html | {section}/reveal-hugo/body.html |
+| Presentation | Before &lt;/head&gt;            | Before &lt;/body&gt;            | Before closing &lt;/div&gt; of `div.reveal` |
+|--------------|---------------------------------|---------------------------------|---------------------------------------------|
+| All          | reveal-hugo/head.html           | reveal-hugo/body.html           | reveal-hugo/end.html                        |
+| Root         | home/reveal-hugo/head.html      | home/reveal-hugo/body.html      | home/reveal-hugo/end.html                   |
+| Section      | {section}/reveal-hugo/head.html | {section}/reveal-hugo/body.html | {section}/reveal-hugo/end.html              |
 
 This is the recommended way to add custom CSS and JavaScript to each presentation.
+
+> 💡 Tip: In Hugo, partials live in the `layouts` folder:
+> 
+> For example, if you have HTML that is to be placed before every presentation, this would be the structure:
+> ```
+> - layouts
+>   - partials
+>     - reveal-hugo
+>       - head.html
+>       - body.html
+>       - end.html
 
 ## Recipes
 
@@ -400,4 +428,3 @@ or simply...
 ```shell
 npm start
 ```
-
