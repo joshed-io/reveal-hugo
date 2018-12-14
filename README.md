@@ -24,7 +24,7 @@ Salut.
 ---
 
 # Español
-Holá.
+Hola.
 ```
 
 Just use `---` to split content into different slides.
