@@ -15,7 +15,7 @@
     {{- $theme := $.Param "reveal_hugo.theme" | default "black" -}}
     {{- $custom_theme := $.Param "reveal_hugo.custom_theme" -}}
     {{- if $custom_theme -}}
-    <link rel="stylesheet" href="{{ $custom_theme | relURL }}" id="theme">
+    <link rel="stylesheet" href="{{ $custom_theme | relURL }}?{{ now.Unix }}" id="theme">
     {{ else -}}
     <link rel="stylesheet" href="{{ $reveal_cdn }}/css/theme/{{ $theme }}.css" id="theme">
     {{- end -}}
