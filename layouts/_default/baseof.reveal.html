@@ -15,8 +15,8 @@
     {{- $theme := $.Param "reveal_hugo.theme" | default "black" -}}
     {{- $custom_theme := $.Param "reveal_hugo.custom_theme" -}}
     {{- if $custom_theme -}}
-      {{- $custom_css := resources.Get ($.Param "reveal_hugo.custom_theme") | fingerprint -}}
-    <link rel="stylesheet" href="{{ $custom_css.Permalink }}" id="theme">
+      {{- $custom_css := resources.Get ($custom_theme) | fingerprint -}}
+    <link rel="stylesheet" href="{{ $custom_css.RelPermalink }}" id="theme">
     {{ else -}}
     <link rel="stylesheet" href="{{ $reveal_cdn }}/css/theme/{{ $theme }}.css" id="theme">
     {{- end -}}
