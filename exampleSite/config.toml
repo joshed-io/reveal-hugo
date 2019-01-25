@@ -4,6 +4,7 @@ title = "A Hugo theme for creating Reveal.js presentations"
 disableKinds = ["sitemap", "RSS"]
 theme = "."
 themesDir = "../"
+assetDir = "static"
 
 [author]
 name = "Josh Dzielak"
