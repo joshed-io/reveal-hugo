@@ -304,7 +304,7 @@ Customize the Reveal.js presentation by setting these values in `config.toml` or
 - `reveal_hugo.custom_theme`: The path to a locally hosted Reveal.js theme in the static folder
 - `reveal_hugo.highlight_theme`: The [highlight.js](https://highlightjs.org/) theme used; defaults to "default"
 - `reveal_hugo.reveal_cdn`: The location to load Reveal.js files from; defaults to the `reveal-js` folder in the static directory to support offline development. To load from a CDN instead, set this value to `https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.7.0` or whatever CDN you prefer.
-- `reveal_hugo.highlight_cdn`: The location to load highlight.js files from; defaults to `https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0`. For local development, change this to point to a file in the static directory.
+- `reveal_hugo.highlight_cdn`: The location to load highlight.js files from; defaults to to the `highlight-js` folder in the static directory to support offline development. To load from a CDN instead, set this value to `https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0` or whatever CDN you prefer.
 
 This is how parameters will look in your `config.toml`:
 
@@ -373,6 +373,17 @@ This is the recommended way to add custom CSS and JavaScript to each presentatio
 >       - head.html
 >       - body.html
 >       - end.html
+
+## Offline development
+
+Offline-friendly development is the default. The Reveal.js and Highlight.js files are loaded from the static directory by default. (See above for how to use a CDN instead). If you need `file:///` URLs to work, make sure to set `relativeURLs` and `uglyURLs` in your `config.toml`.
+
+```toml
+relativeURLs = true
+uglyURLs = true
+```
+
+Note: `uglyURLs` isn't strictly required, but it is useful if you're loading against the filesystem as it makes sure that all URLs end in .html and links point directly at them instead of to a folder.
 
 ## Recipes
 
