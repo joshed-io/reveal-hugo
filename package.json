@@ -3,6 +3,6 @@
     "start": "hugo server -s exampleSite"
   },
   "dependencies": {
-    "npm": "^6.0.0"
+    "npm": "^6.7.0"
   }
 }
