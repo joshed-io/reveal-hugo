@@ -30,6 +30,22 @@ custom_theme = "reveal-hugo/themes/robot-lung.css"
 
 ---
 
+### Use a custom theme (advanced)
+
+To use Hugo pipes to build a custom Reveal.js theme, place the source file (SCSS / PostCSS) in the `assets` directory and set the `custom_theme_compile` param.
+
+```toml
+[params.reveal_hugo]
+custom_theme = "reveal-hugo/themes/custom-theme.scss"
+custom_theme_compile = true
+```
+
+<small>
+💡 See the [custom theme example presentation](/custom-theme-example/) for more details.
+</small>
+
+---
+
 ## Bundled themes
 
 reveal-hugo comes with 2 extra Reveal.js themes:

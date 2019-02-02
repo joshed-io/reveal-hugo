@@ -35,7 +35,7 @@ Hello world!
 
 ---
 
-### Add slides in same file
+### Add slides
 
 Separate them by `---`:
 
@@ -69,13 +69,13 @@ weight = 10
 # Slide 4
 ```
 
-<small>💡 Tip: Use `weight` to specify the order that files should be added.</small>
+<small>💡 Tip: Use `weight` to specify the order that files should be considered.</small>
 
 ---
 
 ### Presentation at '/{section}/'
 
-In `content/{section}/_index.md`:
+Add slides to `content/{section}/_index.md`:
 
 ```markdown
 +++
@@ -105,5 +105,5 @@ weight = 10
 # Slide 4
 ```
 
-<small>💡 Tip: Use `weight` to specify the order that files should be added.</small>
+<small>💡 Tip: Use `weight` to specify the order that files should be considered.</small>
 
