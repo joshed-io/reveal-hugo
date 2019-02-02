@@ -1,5 +1,5 @@
 +++
-title = "This presentation uses a custom, compiled theme"
+title = "Custom theme example presentation"
 outputs = ["Reveal"]
 [reveal_hugo]
 custom_theme = "custom-theme.scss"
