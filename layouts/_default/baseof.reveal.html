@@ -12,12 +12,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="stylesheet" href="{{ printf "%s/css/reveal.css" $reveal_location | relURL }}">
     <!-- Theme used for presentation -->
-    {{- $theme := $.Param "reveal_hugo.theme" | default "black" -}}
     {{- $custom_theme := $.Param "reveal_hugo.custom_theme" -}}
     {{- if $custom_theme -}}
-    <link rel="stylesheet" href="{{ $custom_theme | relURL }}" id="theme">
+      {{- if $.Param "reveal_hugo.custom_theme_compile" -}}
+      {{ $asset := resources.Get $custom_theme | toCSS | minify | fingerprint }}
+      <link rel="stylesheet" href="{{ $asset.Permalink }}" id="theme">
+      {{- else -}}
+      <link rel="stylesheet" href="{{ $custom_theme | relURL }}" id="theme">
+      {{- end -}}
     {{ else -}}
-    <link rel="stylesheet" href="{{ printf "%s/css/theme/%s.css" $reveal_location $theme | relURL }}" id="theme">
+      {{- $theme := $.Param "reveal_hugo.theme" | default "black" -}}
+      <link rel="stylesheet" href="{{ printf "%s/css/theme/%s.css" $reveal_location $theme | relURL }}" id="theme">
     {{ end -}}
     <!-- Theme used for syntax highlighting of code -->
     {{- $highlight_theme := $.Param "reveal_hugo.highlight_theme" | default "default" -}}
