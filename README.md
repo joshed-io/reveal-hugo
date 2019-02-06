@@ -432,20 +432,17 @@ Here are a few useful Reveal.js-related tools:
 
 Find many more on the Reveal.js wiki: [Plugins, tools and hardware](https://github.com/hakimel/reveal.js/wiki/Plugins,-Tools-and-Hardware).
 
+## Implementations
+
+Have you built something with reveal-hugo? Add a link to it here.
+
+- [dzello's Paris Wedding Weekend Guide](https://estelle.and.dzello.com/guide/) ([source](https://github.com/dzello/estelle-and-josh/blob/master/site/content/guide/_index.md))
+
+
 ## Changelog
 
 - 2018-08-03: The slide shortcode is now easier to use. An auto-closing version sits inside the slide instead of needing to surround its content and add a closing tag.
 
 ## Contributing
 
-Contributions are very welcome. To run the example site in this repository locally, clone this repository and run:
-
-```shell
-hugo server -s exampleSite
-```
-
-or simply...
-
-```shell
-npm start
-```
+Contributions are very welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for more details.
