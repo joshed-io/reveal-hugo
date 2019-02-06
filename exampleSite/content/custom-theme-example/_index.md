@@ -40,6 +40,18 @@ custom_theme_compile = true
 
 ---
 
+To pass compilation options, use the `custom_theme_options` param:
+
+```toml
+[reveal_hugo.custom_theme_options]
+targetPath = "css/custom-theme.css"
+enableSourceMap = true
+```
+
+See all the [available options](https://gohugo.io/hugo-pipes/scss-sass/#options).
+
+---
+
 Note: to use a custom theme that doesn't need compilation, put it in the `static` directory and do not set the `custom_theme_compile` parameter. It will be served to the browser directly.
 
 ---

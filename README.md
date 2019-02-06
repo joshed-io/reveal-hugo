@@ -303,6 +303,7 @@ Customize the Reveal.js presentation by setting these values in `config.toml` or
 - `reveal_hugo.theme`: The Reveal.js theme used; defaults to "black"
 - `reveal_hugo.custom_theme`: The path to a locally hosted Reveal.js theme in the static or assets folder
 - `reveal_hugo.custom_theme_compile`: If set to true, the theme will be compiled with Hugo pipes (and must live in the assets folder)
+- `reveal_hugo.custom_theme_options`: Provide a dictionary to customize theme compilation, see [Hugo's SCSS docs](https://gohugo.io/hugo-pipes/scss-sass/#options) for a list of options
 - `reveal_hugo.highlight_theme`: The [highlight.js](https://highlightjs.org/) theme used; defaults to "default"
 - `reveal_hugo.reveal_cdn`: The location to load Reveal.js files from; defaults to the `reveal-js` folder in the static directory to support offline development. To load from a CDN instead, set this value to `https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.7.0` or whatever CDN you prefer.
 - `reveal_hugo.highlight_cdn`: The location to load highlight.js files from; defaults to to the `highlight-js` folder in the static directory to support offline development. To load from a CDN instead, set this value to `https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0` or whatever CDN you prefer.
