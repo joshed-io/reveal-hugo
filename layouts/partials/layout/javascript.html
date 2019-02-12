@@ -1,7 +1,7 @@
 <!-- Printing and PDF exports -->
 <!-- use Hugo to create the right path for the print stylesheet, then conditionally include it -->
 {{- $reveal_location := $.Param "reveal_hugo.reveal_cdn" | default "reveal-js" -}}
-<a href="{{ printf "%s/css/print/" $reveal_location | relURL }}" id="print-location" style="display: none;">
+<a href="{{ printf "%s/css/print/" $reveal_location | relURL }}" id="print-location" style="display: none;"></a>
 <script type="text/javascript">
   var printLocationElement = document.getElementById('print-location');
   var link = document.createElement('link');
