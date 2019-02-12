@@ -29,13 +29,21 @@ Hola.
 
 Just use `---` to split content into different slides.
 
-## Demo
+## Documentation
 
-Visit [reveal-hugo.dzello.com](https://reveal-hugo.dzello.com/) to see a presentation created with this theme and learn more about what you can do. Jump to the [exampleSite](exampleSite) folder in this repository to see the source code for that presentation.
+Visit [reveal-hugo.dzello.com](https://reveal-hugo.dzello.com/) to see a presentation created with this theme and learn about all of the different functionality available to you.
 
 For a full-length blog post about reveal-hugo, checkout [Harness the Power of Static Site Generators to Create Presentations](https://forestry.io/blog/harness-the-power-of-static-to-create-presentations/) on the [Forestry.io blog](https://forestry.io/blog).
 
-## Boilerplate
+### Demos
+
+Jump to the [exampleSite](exampleSite) folder in this repository to see the source code for the above presentation and several mode. Here are links to those presentations live:
+
+- [logo-example](https://reveal-hugo.dzello.com/logo-example/) - Shows how to add a logo to your presentation
+- [custom-theme-example](https://reveal-hugo.dzello.com/custom-theme-example/) - Uses Hugo pipes to compile and use a custom Reveal.js SCSS theme (recommended!)
+- [section-example](https://reveal-hugo.dzello.com/section-example/) - Very basic example that shows how to create a presentation for a Hugo section
+
+### Starter repository
 
 If you want to start creating a presentation right away, clone the [programming-quotes](https://github.com/dzello/programming-quotes) repository and start hacking.
 
