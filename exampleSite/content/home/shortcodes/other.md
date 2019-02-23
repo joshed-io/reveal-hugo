@@ -2,23 +2,39 @@
 weight = 38
 +++
 
-## Note
+## Notes
 
-Add speaker notes to your presentation with the note shortcode.
+Add speaker notes to your presentation with the `note` shortcode. Type 's' to see this slide's speaker notes.
 
 ```markdown
+---
+
 {{%/* note */%}}
-
-Type 's' to see this slide's speaker notes.
-
+You found the speaker notes!
 {{%/* /note */%}}
+
+---
 ```
 
 {{% note %}}
-
 You found the speaker notes!
-
 {{% /note %}}
+
+---
+
+{{< slide notes="You found the notes!" >}}
+
+## Notes
+
+You can also add notes with the `slide` shortcode and `notes` attribute:
+
+```markdown
+---
+
+{{%/* slide notes="You found the notes!" */%}}
+
+---
+```
 
 ---
 
