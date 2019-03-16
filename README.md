@@ -31,7 +31,7 @@ Salut.
 Hola.
 ```
 
-Just use `---` to split content into different slides.
+Just use `---` surrounded by blank lines to split content into different slides.
 
 ## Documentation
 

@@ -37,7 +37,7 @@ Hello world!
 
 ### Add slides
 
-Separate them by `---`:
+Separate them by `---` surrounded by blank lines:
 
 ```
 # Slide 1
