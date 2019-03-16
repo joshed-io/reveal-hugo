@@ -18,12 +18,16 @@
 <script src="{{ printf "%s/js/reveal.js" $reveal_location | relURL }}"></script>
 <!-- load Reveal.js plugins -->
 <script type="text/javascript" src="{{ printf "%s/lib/js/classList.js" $reveal_location | relURL }}"></script>
-<script type="text/javascript" src="{{ printf "%s/plugin/markdown/marked.js" $reveal_location | relURL }}"></script>
-<script type="text/javascript" src="{{ printf "%s/plugin/markdown/markdown.js" $reveal_location | relURL }}"></script>
-<script type="text/javascript" src="{{ printf "%s/plugin/highlight/highlight.js" $reveal_location | relURL }}"></script>
-<script type="text/javascript" src="{{ printf "%s/plugin/zoom-js/zoom.js" $reveal_location | relURL }}"></script>
+{{ $default_plugins := slice "plugin/markdown/marked.js" "plugin/markdown/markdown.js" "plugin/highlight/highlight.js" "plugin/zoom-js/zoom.js" }}
+{{ range $default_plugins }}
+<script type="text/javascript" src="{{ printf "%s/%s" $reveal_location . | relURL }}"></script>
+{{ end }}
 <!-- always use local version of the notes plugin since HTML file it requires isn't on CDN -->
 <script type="text/javascript" src="{{ "reveal-js/plugin/notes/notes.js" | relURL }}"></script>
+<!-- load custom plugins locally only (not CDN since many plugins won't exist there) -->
+{{ range $.Param "reveal_hugo.plugins" }}
+<script type="text/javascript" src="{{ . | relURL }}"></script>
+{{ end }}
 <script type="text/javascript">
   // polyfill needed for IE11 and below
   if (typeof Object.assign != 'function') {
