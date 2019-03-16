@@ -46,6 +46,7 @@ Jump to the [exampleSite](exampleSite) folder in this repository to see the sour
 - [logo-example](https://reveal-hugo.dzello.com/logo-example/) - Shows how to add a logo to your presentation
 - [custom-theme-example](https://reveal-hugo.dzello.com/custom-theme-example/) - Uses Hugo pipes to compile and use a custom Reveal.js SCSS theme (recommended!)
 - [section-example](https://reveal-hugo.dzello.com/section-example/) - Very basic example that shows how to create a presentation for a Hugo section
+- [plugin-example](https://reveal-hugo.dzello.com/plugin-example/) - Shows how to add additional Reveal.js plugins to your presentation, for example an image gallery
 
 ### Starter repository
 
