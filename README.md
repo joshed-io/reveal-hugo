@@ -319,7 +319,7 @@ Customize the Reveal.js presentation by setting these values in `config.toml` or
 - `reveal_hugo.highlight_theme`: The [highlight.js](https://highlightjs.org/) theme used; defaults to "default"
 - `reveal_hugo.reveal_cdn`: The location to load Reveal.js files from; defaults to the `reveal-js` folder in the static directory to support offline development. To load from a CDN instead, set this value to `https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.7.0` or whatever CDN you prefer.
 - `reveal_hugo.highlight_cdn`: The location to load highlight.js files from; defaults to to the `highlight-js` folder in the static directory to support offline development. To load from a CDN instead, set this value to `https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0` or whatever CDN you prefer.
-- `reveal_hugo.plugins`: An array of additional Reveal.js plugins to load, e.g. `["plugin/gallery/gallery.plugin.js"]`. The appropriate files will need to have been copied into the `static` directory. CDN loading is not supported. The plugins included by default are markdown, highlight.js, notes and zoom.
+- `reveal_hugo.plugins`: An array of additional Reveal.js plugins to load, e.g. `["plugin/gallery/gallery.plugin.js"]`. The appropriate files will need to have been copied into the `static` directory. CDN loading is not supported. The plugins included by default are markdown, highlight.js, notes and zoom. See here for a [big list of plugins](https://github.com/hakimel/reveal.js/wiki/Plugins,-Tools-and-Hardware).
 
 This is how parameters will look in your `config.toml`:
 
