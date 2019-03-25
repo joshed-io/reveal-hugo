@@ -25,25 +25,25 @@ It can make any slide an image gallery. Here are a few examples.
 ---
 
 <ul class="gallery">
-  <li><img src="/images/sample1.jpg" alt="Default settings (Photo by Oscar Fernandez Alonso on Flickr)"></li>
-  <li><img src="/images/sample2.jpg" alt="Default settings (Photo by bullcitydogs on Flickr)"></li>
-  <li><img src="/images/sample3.jpg" alt="Default settings (Photo by Lance McCord on Flickr)"></li>
+  <li><img src="sample1.jpg" alt="Default settings (Photo by Oscar Fernandez Alonso on Flickr)"></li>
+  <li><img src="sample2.jpg" alt="Default settings (Photo by bullcitydogs on Flickr)"></li>
+  <li><img src="sample3.jpg" alt="Default settings (Photo by Lance McCord on Flickr)"></li>
 </ul>
 
 ---
 
 <ul class="gallery" data-iterations="0" data-interval="1">
-  <li><img src="/images/sample1.jpg" alt="Infinite iterations, fast transition (Photo by Oscar Fernandez Alonso on Flickr)"></li>
-  <li><img src="/images/sample2.jpg" alt="Infinite iterations, fast transition (Photo by bullcitydogs on Flickr)"></li>
-  <li><img src="/images/sample3.jpg" alt="Infinite iterations, fast transition (Photo by Lance McCord on Flickr)"></li>
+  <li><img src="sample1.jpg" alt="Infinite iterations, fast transition (Photo by Oscar Fernandez Alonso on Flickr)"></li>
+  <li><img src="sample2.jpg" alt="Infinite iterations, fast transition (Photo by bullcitydogs on Flickr)"></li>
+  <li><img src="sample3.jpg" alt="Infinite iterations, fast transition (Photo by Lance McCord on Flickr)"></li>
 </ul>
 
 ---
 
 <ul class="gallery" data-iterations="2" data-interval="2" data-mode="full-screen">
-  <li><img src="/images/sample1.jpg" alt="Full screen, two iterations, slow transition (Photo by Oscar Fernandez Alonso on Flickr)"></li>
-  <li><img src="/images/sample2.jpg" alt="Full screen, two iterations, slow transition (Photo by bullcitydogs on Flickr)"></li>
-  <li><img src="/images/sample3.jpg" alt="Full screen, two iterations, slow transition (Photo by Lance McCord on Flickr)"></li>
+  <li><img src="sample1.jpg" alt="Full screen, two iterations, slow transition (Photo by Oscar Fernandez Alonso on Flickr)"></li>
+  <li><img src="sample2.jpg" alt="Full screen, two iterations, slow transition (Photo by bullcitydogs on Flickr)"></li>
+  <li><img src="sample3.jpg" alt="Full screen, two iterations, slow transition (Photo by Lance McCord on Flickr)"></li>
 </ul>
 
 ---

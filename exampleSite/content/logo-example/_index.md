@@ -2,7 +2,7 @@
 title = "Logo presentation example"
 outputs = ["Reveal"]
 [logo]
-src = "/images/github-logo.png"
+src = "github-logo.png"
 alt = "GitHub logo with Octocat"
 [reveal_hugo]
 custom_theme = "reveal-hugo/themes/robot-lung.css"
