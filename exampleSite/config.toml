@@ -5,6 +5,10 @@ disableKinds = ["sitemap", "RSS"]
 theme = "."
 themesDir = "../"
 
+# uncomment for browsing at file:///
+# relativeURLs = true
+# uglyURLs = true
+
 [author]
 name = "Josh Dzielak"
 
