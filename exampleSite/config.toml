@@ -8,10 +8,15 @@ themesDir = "../"
 [author]
 name = "Josh Dzielak"
 
-[params.reveal_hugo]
-history = true
-
 [outputFormats.Reveal]
 baseName = "index"
 mediaType = "text/html"
 isHTML = true
+
+[params.reveal_hugo]
+history = true
+
+# used in content/template-example
+[params.reveal_hugo.templates.grey]
+background = "#424242"
+transition = "convex"
