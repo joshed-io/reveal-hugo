@@ -433,6 +433,22 @@ Note: If you specify `outputs = ["Reveal"]` for a single content file, you can p
 
 **Tip**: As of Hugo 0.42, Hugo [has theme inheritence](https://gohugo.io/news/0.42-relnotes/). You can avoid the file copying step above by adding `"reveal-hugo"` to your site's array of themes.
 
+### Create a presentation from a leaf bundle or single page type
+
+By default, reveal-hugo doesn't create presentations for single pages (i.e. pages other than `_index.md`) as it assumes those pages are pieces of a larger presentation in the section starting with `_index.md`. This might not be the case if your content is structured in a leaf bundle (the main file is then `index.md` with no underscore, which Hugo treats as a single page) or if you just want to put a presentation in a single file, say `presentation.md`. In these cases, you just need to tell Hugo to use a different layout.
+
+If you're using a leaf page bundle, set the following in the front matter of the `index.md` file:
+
+```toml
+layout = "bundle"
+```
+
+If you're in a single page file like `presentation.md`, set the following in the front matter:
+
+```toml
+layout = "list"
+```
+
 ## Reveal.js tips
 
 These are some useful Reveal.js features and shortcuts.
