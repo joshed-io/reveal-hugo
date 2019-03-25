@@ -352,22 +352,63 @@ transition = "zoom"
 
 See the [extensive list of Reveal.js configuration options](https://github.com/hakimel/reveal.js/#configuration) here.
 
-### Custom Reveal.js Themes
+### Custom Reveal.js themes
 
-If you have a custom reveal theme to use (in .css form), place it somewhere in your static folder. For example, if you have:
+If you have a custom reveal theme to use (in .css form), place it in the `static` folder and specify it in the configuration. For example, if your css file lives here:
 
 ```
-- static
-  - assets
+| static
+  | stylesheets
     - custom-theme.css
 ```
 
-Then you will need to have this line in `config.toml`
+Then this is what you'll put in `config.toml`:
 
 ```toml
 [params.reveal_hugo]
-reveal_hugo.custom_theme = "assets/custom-theme.css"
+reveal_hugo.custom_theme = "stylesheets/custom-theme.css"
 ```
+
+### Compiling a custom Reveal.js theme with Hugo pipes
+
+Reveal.js theme customization is easiest to do by overriding variables in the SCSS or PostCSS build process. You can take advantage of Hugo pipes to do the theme compilation. In this case, your SCSS, Saas or PostCSS file needs to live in assets:
+
+```
+| assets
+  | stylesheets
+    - custom-theme.scss
+```
+
+If you just wanted to change the presentation colors, here's what you might put in `custom-theme.scss`:
+
+```scss
+@import "reveal-js/css/theme/template/mixins";
+@import "reveal-js/css/theme/template/settings";
+
+$backgroundColor: rgb(3, 129, 45);
+$mainColor: #fff;
+$headingColor: #fff;
+```
+
+To learn more about Reveal.js theme customization, check out the [Reveal.js theme docs](https://github.com/hakimel/reveal.js/blob/master/css/theme/README.md).
+
+This is what the front matter would look like:
+
+```toml
+[params.reveal_hugo]
+reveal_hugo.custom_theme = "stylesheets/custom-theme.css"
+reveal_hugo.custom_theme_compile = true
+```
+
+You can also add options that will be passed to [Hugo's toCSS method](https://gohugo.io/hugo-pipes/scss-sass/#options):
+
+```toml
+[reveal_hugo.custom_theme_options]
+targetPath = "css/custom-theme.css"
+enableSourceMap = true
+```
+
+Check out the [custom-theme-example presentation](https://reveal-hugo.dzello.com/custom-theme-example/) to see a working example.
 
 ## Adding HTML to the layout
 
