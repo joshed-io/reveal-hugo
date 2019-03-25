@@ -47,6 +47,8 @@ Jump to the [exampleSite](exampleSite) folder in this repository to see the sour
 - [custom-theme-example](https://reveal-hugo.dzello.com/custom-theme-example/) - Uses Hugo pipes to compile and use a custom Reveal.js SCSS theme (recommended!)
 - [section-example](https://reveal-hugo.dzello.com/section-example/) - Very basic example that shows how to create a presentation for a Hugo section
 - [plugin-example](https://reveal-hugo.dzello.com/plugin-example/) - Shows how to add additional Reveal.js plugins to your presentation, for example an image gallery
+- [template-example](https://reveal-hugo.dzello.com/template-example/) - An example of using the slide shortcode with powerful templates
+- [bundle-example](https://reveal-hugo.dzello.com/bundle-example/) - An example of creating a presentation from one or more markdown files in a leaf bundle
 
 ### Starter repository
 
