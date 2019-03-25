@@ -1,0 +1,4 @@
+{{ define "main" }}
+  {{ partial "reveal-hugo/slides" (slice .Page) }}
+  {{ partial "reveal-hugo/slides" (.Resources.ByType "page") }}
+{{ end }}
