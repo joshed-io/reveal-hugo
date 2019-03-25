@@ -2,7 +2,8 @@
 title = "Section presentation example"
 outputs = ["Reveal"]
 [reveal_hugo]
-theme = "moon"
+theme = "night"
+margin = 0.2
 +++
 
 # Section Presentation
