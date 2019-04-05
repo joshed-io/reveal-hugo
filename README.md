@@ -64,19 +64,25 @@ You should be able to complete this section with no prior knowledge of Hugo or R
 To start, [install Hugo](https://gohugo.io/) and create a new Hugo site:
 
 ```shell
-$ hugo new site my-presentation
+hugo new site my-presentation
 ```
 
 Change into the directory of the new site:
 
 ```shell
-$ cd my-presentation
+cd my-presentation
+```
+
+Initialize a git repository:
+
+```shell
+git init
 ```
 
 Add the reveal-hugo theme as a submodule in the themes directory:
 
 ```shell
-$ git submodule add git@github.com:dzello/reveal-hugo.git themes/reveal-hugo
+git submodule add git@github.com:dzello/reveal-hugo.git themes/reveal-hugo
 ```
 
 Open `config.toml` and add the following contents:
