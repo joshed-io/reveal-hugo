@@ -52,7 +52,7 @@
 <script type="text/javascript" src="{{ printf "%s/%s" $reveal_location . | relURL }}"></script>
 {{ end }}
 <!-- always use local version of the notes plugin since HTML file it requires isn't on CDN -->
-<script type="text/javascript" src="{{ "reveal-js/plugin/notes/notes.js" | relURL }}"></script>
+<script type="text/javascript" src="{{ printf "%s/plugin/notes/notes.js" $reveal_location | relURL }}"></script>
 <!-- load custom plugins locally only (not CDN since many plugins won't exist there) -->
 {{ range $.Param "reveal_hugo.plugins" }}
 <script type="text/javascript" src="{{ . | relURL }}"></script>
