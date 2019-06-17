@@ -497,6 +497,10 @@ If you're in a single page file like `presentation.md`, set the following in the
 layout = "list"
 ```
 
+### Create a page that lists out all presentations
+
+See [this issue](https://github.com/dzello/reveal-hugo/issues/37) for a template that you can use.
+
 ## Reveal.js tips
 
 These are some useful Reveal.js features and shortcuts.
