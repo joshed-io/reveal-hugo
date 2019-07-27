@@ -1,0 +1,21 @@
+reusable = '''
+
+You can organize reusables into folder.
+
+An an `example` key in `data/common/nested.toml`
+
+```toml
+example = "I'm a slide"
+```
+<br>
+
+Set the `content` attribute to "common.nested.example":
+
+```markdown
+---
+
+{{< slide content="common.nested.example" >}}
+```
+
+'''
+

@@ -183,6 +183,10 @@ If a template exists in multiple configurations, it's properties will be merged.
 
 {{< slide content="home.reusable" >}}
 
+---
+
+{{< slide content="common.nested.reusable" >}}
+
 {{% /section %}}
 
 ---
