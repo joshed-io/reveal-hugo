@@ -38,4 +38,10 @@ Set the `content` attribute to "home.example":
 
 💡 All other slide shortcode attributes (background, transition, etc.) can be used and will be applied to each slide in the data template entry.
 
+---
+
+💡 Adding a new file in `data` folder requires to restart `hugo`
+
+💡 Symbolinc links are not allowed in `data` folder
+
 '''
