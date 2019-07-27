@@ -3,7 +3,11 @@
 {{- $content := .Get "content" -}}
 {{- if $content -}}
   {{- $lookup := split $content "." }}
-  {{- $html := index .Page.Site.Data (index $lookup 0) (index $lookup 1) | markdownify -}}
+  {{ $markdownContent := .Page.Site.Data }}
+  {{- range $dataPath := $lookup -}}
+    {{- $markdownContent = index $markdownContent $dataPath -}}
+  {{- end -}}
+  {{- $html := $markdownContent | markdownify -}}
   {{- $slides := split $html "<hr />" -}}
   {{- range $slides -}}
     {{- $scratch.Add "slides" . -}}
