@@ -1,4 +1,4 @@
 {{ define "main" }}
   {{ partial "reveal-hugo/slides" (slice .Page) }}
-  {{ partial "reveal-hugo/slides" .Pages }}
+  {{ partial "reveal-hugo/slides" .Site.RegularPages }}
 {{ end }}
