@@ -1,1 +1,4 @@
+{{/* Markdown is not rendered inside <aside> tags! So we use the following      */}}
+{{/* config which causes .Inner to be rendered before processing the shortcode. */}}
+{{ $_hugo_config := `{ "version": 1 }` }}
 <aside class="notes">{{ .Inner }}</aside>
