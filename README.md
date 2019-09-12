@@ -50,6 +50,7 @@ Jump to the [exampleSite](exampleSite) folder in this repository to see the sour
 - [plugin-example](https://reveal-hugo.dzello.com/plugin-example/) - Shows how to add additional Reveal.js plugins to your presentation, for example an image gallery
 - [template-example](https://reveal-hugo.dzello.com/template-example/) - An example of using the slide shortcode with powerful templates
 - [bundle-example](https://reveal-hugo.dzello.com/bundle-example/) - An example of creating a presentation from one or more markdown files in a leaf bundle
+- [hugo-hl-example](https://reveal-hugo.dzello.com/hugo-hl-example/) - An example of using Hugo's compile-time syntax highlighter
 
 ### Starter repository
 
