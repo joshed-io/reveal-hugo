@@ -21,3 +21,7 @@
   {{- $highlight_theme := $.Param "reveal_hugo.highlight_theme" | default "default" -}}
   <link rel="stylesheet" href="{{ printf "%s/%s.min.css" $highlight_location $highlight_theme | relURL }}">
 {{- end }}
+{{- $custom_css := $.Param "reveal_hugo.custom_css" -}}
+{{- if $custom_css -}}
+<link rel="stylesheet" href="{{ $custom_css | relURL }}" id="custom_css">
+{{- end -}}
