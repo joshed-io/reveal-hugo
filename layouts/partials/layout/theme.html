@@ -16,6 +16,8 @@
   {{- $theme := $.Param "reveal_hugo.theme" | default "black" -}}
   <link rel="stylesheet" href="{{ printf "%s/css/theme/%s.css" $reveal_location $theme | relURL }}" id="theme">
 {{ end -}}
-<!-- Theme used for syntax highlighting of code -->
-{{- $highlight_theme := $.Param "reveal_hugo.highlight_theme" | default "default" -}}
-<link rel="stylesheet" href="{{ printf "%s/%s.min.css" $highlight_location $highlight_theme | relURL }}">
+{{ if $.Param "reveal_hugo.load_default_plugins" | default true -}}
+  <!-- Theme used for syntax highlighting of code -->
+  {{- $highlight_theme := $.Param "reveal_hugo.highlight_theme" | default "default" -}}
+  <link rel="stylesheet" href="{{ printf "%s/%s.min.css" $highlight_location $highlight_theme | relURL }}">
+{{- end }}
