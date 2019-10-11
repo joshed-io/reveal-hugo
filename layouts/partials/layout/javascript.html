@@ -16,7 +16,6 @@
 <script type="application/json" id="reveal-hugo-site-params">{{ jsonify .Site.Params.reveal_hugo | safeJS }}</script>
 <script type="application/json" id="reveal-hugo-page-params">{{ jsonify .Page.Params.reveal_hugo | safeJS }}</script>
 <!-- load Reveal.js javascripts -->
-<script src="{{ printf "%s/lib/js/head.min.js" $reveal_location | relURL }}"></script>
 <script src="{{ printf "%s/js/reveal.js" $reveal_location | relURL }}"></script>
 <!-- load Reveal.js plugins -->
 <script type="text/javascript">
@@ -46,7 +45,6 @@
   Reveal.initialize(options);
 </script>
 <!-- load Reveal.js plugins after Reveal.js is initialized -->
-<script type="text/javascript" src="{{ printf "%s/lib/js/classList.js" $reveal_location | relURL }}"></script>
 {{ if $.Param "reveal_hugo.load_default_plugins" | default true }}
   {{ $default_plugins := slice "plugin/markdown/marked.js" "plugin/markdown/markdown.js" "plugin/highlight/highlight.js" "plugin/zoom-js/zoom.js" }}
   {{ range $default_plugins }}
@@ -59,11 +57,6 @@
 {{ range $.Param "reveal_hugo.plugins" }}
 <script type="text/javascript" src="{{ . | relURL }}"></script>
 {{ end }}
-<!-- init highlighting plugin if it was loaded -->
-<script type="text/javascript">
-if (hljs)
-  hljs.initHighlightingOnLoad();
-</script>
 {{- $custom_js := $.Param "reveal_hugo.custom_js" -}}
 {{- if $custom_js -}}
 <script type="text/javascript" src="{{ $custom_js | relURL }}"></script>
