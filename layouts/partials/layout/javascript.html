@@ -64,3 +64,7 @@
 if (hljs)
   hljs.initHighlightingOnLoad();
 </script>
+{{- $custom_js := $.Param "reveal_hugo.custom_js" -}}
+{{- if $custom_js -}}
+<script type="text/javascript" src="{{ $custom_js | relURL }}"></script>
+{{- end -}}

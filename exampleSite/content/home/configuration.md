@@ -140,3 +140,22 @@ Reveal.addEventListener('slidechanged', function(event) {
 });
 </script>
 ```
+
+---
+
+### Extending the layout 
+#### (alternative)
+
+You can declare a custom CSS or javascript in your configuration.
+
+```toml
+[reveal_hugo]
+custom_css = "css/custom.css"
+custom_js = "js/custom.js"
+```
+
+<small>
+These files can be located in `static/css`, `static/js` folder 
+
+💡 See the [extending layout example](/extending-layout-example/#) for more details.
+</small>
