@@ -4,20 +4,20 @@ weight = 38
 
 ## Notes
 
-Add speaker notes to your presentation with the `note` shortcode. Type 's' to see this slide's speaker notes.
+Add speaker notes (with markdown) to your presentation with the `note` shortcode. Type 's' to see this slide's speaker notes.
 
 ```markdown
 ---
 
 {{%/* note */%}}
-You found the speaker notes!
+- You found the **speaker notes**!
 {{%/* /note */%}}
 
 ---
 ```
 
 {{% note %}}
-You found the speaker notes!
+- You found the **speaker notes**!
 {{% /note %}}
 
 ---
