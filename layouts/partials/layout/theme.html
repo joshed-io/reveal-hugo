@@ -9,7 +9,7 @@
   {{- $custom_theme_options := $.Param "reveal_hugo.custom_theme_options" | default dict -}}
   {{- if $.Param "reveal_hugo.custom_theme_compile" -}}
   {{ $asset := resources.Get $custom_theme | resources.ExecuteAsTemplate "_.scss" . | toCSS $custom_theme_options | minify | fingerprint }}
-  <link rel="stylesheet" href="{{ $asset.Permalink }}" id="theme">
+  <link rel="stylesheet" href="{{ $asset.Permalink | relURL }}" id="theme">
   {{- else -}}
   <link rel="stylesheet" href="{{ $custom_theme | relURL }}" id="theme">
   {{- end -}}
