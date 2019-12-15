@@ -12,6 +12,12 @@ themesDir = "../"
 [author]
 name = "Josh Dzielak"
 
+# as of hugo 0.60 goldmark is the default
+# reveal-hugo doesn't support goldmark yet
+# so force to black friday
+[markup]
+defaultMarkdownHandler = "blackfriday"
+
 [outputFormats.Reveal]
 baseName = "index"
 mediaType = "text/html"

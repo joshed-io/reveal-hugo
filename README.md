@@ -40,6 +40,15 @@ Visit [reveal-hugo.dzello.com](https://reveal-hugo.dzello.com/) to see a present
 
 For a full-length blog post about reveal-hugo, checkout [Harness the Power of Static Site Generators to Create Presentations](https://forestry.io/blog/harness-the-power-of-static-to-create-presentations/) on the [Forestry.io blog](https://forestry.io/blog).
 
+### ⚠️ hugo 0.60 compatibility
+
+reveal-hugo doesn't support Goldmark yet, which is Hugo's default markdown parser as of 0.60. To use reveal-hugo with hugo 0.60+ you can set `markdown.defaultMarkdownHandler` to `"blackfriday"` in `config.toml`.
+
+```toml
+[markup]
+defaultMarkdownHandler = "blackfriday"
+```
+
 ### Demos
 
 Jump to the [exampleSite](exampleSite) folder in this repository to see the source code for the above presentation and several more. Here are links to those presentations live:
