@@ -9,6 +9,8 @@ weight = 10
 - Two custom Reveal.js themes (including this one)
 
 <br>
+<br>
+
 [see the code on github](https://github.com/dzello/reveal-hugo)
 
 ---

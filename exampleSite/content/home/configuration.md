@@ -41,7 +41,9 @@ custom_theme_compile = true
 ```
 
 <small>
+
 💡 See the [custom theme example presentation](/custom-theme-example/) for more details.
+
 </small>
 
 ---
@@ -54,8 +56,11 @@ reveal-hugo comes with 2 extra Reveal.js themes:
 - [sunblind](https://github.com/dzello/revealjs-themes#sunblind)
 
 <br>
+
 <small>
+
 They live in the `static/reveal-hugo/themes` folder and also [on Github](https://github.com/dzello/revealjs-themes).
+
 </small>
 
 ---
@@ -110,7 +115,9 @@ Here is where to put partials for different presentations and places in the DOM.
 &nbsp;
 
 <small>
+
 💡 You can also create an `end.html` to put content before the end of the `.reveal` div tag.
+
 </small>
 
 ---
@@ -155,7 +162,9 @@ custom_js = "js/custom.js"
 ```
 
 <small>
+
 These files can be located in `static/css`, `static/js` folder 
 
 💡 See the [extending layout example](/extending-layout-example/#) for more details.
+
 </small>
