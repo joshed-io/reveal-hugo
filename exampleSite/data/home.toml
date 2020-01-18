@@ -1,3 +1,6 @@
+# Note: it seems that under goldmark, markdown in data templates has issues.
+#       In particular "---" is converted to <hr> even inside code fences!
+
 reusable = '''
 
 ## Reusable slides
@@ -23,11 +26,7 @@ example = "I'm a slide"
 Set the `content` attribute to "home.example":
 
 ```markdown
----
-
 {{< slide content="home.example" >}}
-
----
 ```
 
 ---

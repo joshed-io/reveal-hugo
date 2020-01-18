@@ -102,6 +102,7 @@ Add the shortcode above the slide's content, below the `---`.
 ```
 
 <br>
+
 [Try the link](#custom-slide)
 
 ---
