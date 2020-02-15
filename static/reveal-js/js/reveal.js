@@ -3,7 +3,7 @@
  * http://revealjs.com
  * MIT licensed
  *
- * Copyright (C) 2019 Hakim El Hattab, http://hakim.se
+ * Copyright (C) 2020 Hakim El Hattab, http://hakim.se
  */
 (function( root, factory ) {
 	if( typeof define === 'function' && define.amd ) {
@@ -26,13 +26,17 @@
 	var Reveal;
 
 	// The reveal.js version
-	var VERSION = '3.8.0';
+	var VERSION = '3.9.2';
 
 	var SLIDES_SELECTOR = '.slides section',
 		HORIZONTAL_SLIDES_SELECTOR = '.slides>section',
 		VERTICAL_SLIDES_SELECTOR = '.slides>section.present>section',
 		HOME_SLIDE_SELECTOR = '.slides>section:first-of-type',
+
 		UA = navigator.userAgent,
+
+		// Methods that may not be invoked via the postMessage API
+		POST_MESSAGE_METHOD_BLACKLIST = /registerPlugin|registerKeyboardShortcut|addKeyBinding|addEventListener/,
 
 		// Configuration defaults, can be overridden at initialization time
 		config = {
@@ -77,9 +81,9 @@
 			// - "c/t":	  Flattened slide number / total slides
 			//
 			// Alternatively, you can provide a function that returns the slide
-			// number for the current slide. The function needs to return an array
-			// with one string [slideNumber] or three strings [n1,delimiter,n2].
-			// See #formatSlideNumber().
+			// number for the current slide. The function should take in a slide
+			// object and return an array with one string [slideNumber] or
+			// three strings [n1,delimiter,n2]. See #formatSlideNumber().
 			slideNumber: false,
 
 			// Can be used to limit the contexts in which the slide number appears
@@ -270,6 +274,11 @@
 			// Number of slides away from the current that are visible
 			viewDistance: 3,
 
+			// Number of slides away from the current that are visible on mobile
+			// devices. It is advisable to set this to a lower number than
+			// viewDistance in order to save resources.
+			mobileViewDistance: 2,
+
 			// The display mode that will be used to show slides
 			display: 'block',
 
@@ -447,7 +456,8 @@
 	 */
 	function checkCapabilities() {
 
-		isMobileDevice = /(iphone|ipod|ipad|android)/gi.test( UA );
+		isMobileDevice = /(iphone|ipod|ipad|android)/gi.test( UA ) ||
+							( navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1 ); // iPadOS
 		isChrome = /chrome/i.test( UA ) && !/edge/i.test( UA );
 
 		var testElement = document.createElement( 'div' );
@@ -849,17 +859,10 @@
 		// Make sure stretch elements fit on slide
 		layoutSlideContents( slideWidth, slideHeight );
 
-		// Add each slide's index as attributes on itself, we need these
-		// indices to generate slide numbers below
-		toArray( dom.wrapper.querySelectorAll( HORIZONTAL_SLIDES_SELECTOR ) ).forEach( function( hslide, h ) {
-			hslide.setAttribute( 'data-index-h', h );
-
-			if( hslide.classList.contains( 'stack' ) ) {
-				toArray( hslide.querySelectorAll( 'section' ) ).forEach( function( vslide, v ) {
-					vslide.setAttribute( 'data-index-h', h );
-					vslide.setAttribute( 'data-index-v', v );
-				} );
-			}
+		// Compute slide numbers now, before we start duplicating slides
+		var doingSlideNumbers = config.slideNumber && /all|print/i.test( config.showSlideNumber );
+		toArray( dom.wrapper.querySelectorAll( SLIDES_SELECTOR ) ).forEach( function( slide ) {
+			slide.setAttribute( 'data-slide-number', getSlideNumber( slide ) );
 		} );
 
 		// Slide and slide background layout
@@ -930,14 +933,11 @@
 				}
 
 				// Inject slide numbers if `slideNumbers` are enabled
-				if( config.slideNumber && /all|print/i.test( config.showSlideNumber ) ) {
-					var slideNumberH = parseInt( slide.getAttribute( 'data-index-h' ), 10 ) + 1,
-						slideNumberV = parseInt( slide.getAttribute( 'data-index-v' ), 10 ) + 1;
-
+				if( doingSlideNumbers ) {
 					var numberElement = document.createElement( 'div' );
 					numberElement.classList.add( 'slide-number' );
 					numberElement.classList.add( 'slide-number-pdf' );
-					numberElement.innerHTML = formatSlideNumber( slideNumberH, '.', slideNumberV );
+					numberElement.innerHTML = slide.getAttribute( 'data-slide-number' );
 					page.appendChild( numberElement );
 				}
 
@@ -1217,6 +1217,8 @@
 		if( data.backgroundColor ) element.style.backgroundColor = data.backgroundColor;
 		if( data.backgroundTransition ) element.setAttribute( 'data-background-transition', data.backgroundTransition );
 
+		if( slide.hasAttribute( 'data-preload' ) ) element.setAttribute( 'data-preload', '' );
+
 		// Background image options are set on the content wrapper
 		if( data.backgroundSize ) contentElement.style.backgroundSize = data.backgroundSize;
 		if( data.backgroundRepeat ) contentElement.style.backgroundRepeat = data.backgroundRepeat;
@@ -1276,7 +1278,20 @@
 
 					// Check if the requested method can be found
 					if( data.method && typeof Reveal[data.method] === 'function' ) {
-						Reveal[data.method].apply( Reveal, data.args );
+
+						if( POST_MESSAGE_METHOD_BLACKLIST.test( data.method ) === false ) {
+
+							var result = Reveal[data.method].apply( Reveal, data.args );
+
+							// Dispatch a postMessage event with the returned value from
+							// our method invocation for getter functions
+							dispatchPostMessage( 'callback', { method: data.method, result: result } );
+
+						}
+						else {
+							console.warn( 'reveal.js: "'+ data.method +'" is is blacklisted from the postMessage API' );
+						}
+
 					}
 				}
 			}, false );
@@ -1447,8 +1462,8 @@
 			keyboardShortcuts['&#8595;  ,  J'] = 'Navigate down';
 		}
 
-		keyboardShortcuts['Home  ,  &#8984;/CTRL &#8592;'] = 'First slide';
-		keyboardShortcuts['End  ,  &#8984;/CTRL &#8594;']  = 'Last slide';
+		keyboardShortcuts['Home  ,  Shift &#8592;']        = 'First slide';
+		keyboardShortcuts['End  ,  Shift &#8594;']         = 'Last slide';
 		keyboardShortcuts['B  ,  .']                       = 'Pause';
 		keyboardShortcuts['F']                             = 'Fullscreen';
 		keyboardShortcuts['ESC, O']                        = 'Slide overview';
@@ -1981,8 +1996,25 @@
 
 		// If we're in an iframe, post each reveal.js event to the
 		// parent window. Used by the notes plugin
+		dispatchPostMessage( type );
+
+	}
+
+	/**
+	 * Dispatched a postMessage of the given type from our window.
+	 */
+	function dispatchPostMessage( type, data ) {
+
 		if( config.postMessageEvents && window.parent !== window.self ) {
-			window.parent.postMessage( JSON.stringify({ namespace: 'reveal', eventName: type, state: getState() }), '*' );
+			var message = {
+				namespace: 'reveal',
+				eventName: type,
+				state: getState()
+			};
+
+			extend( message, data );
+
+			window.parent.postMessage( JSON.stringify( message ), '*' );
 		}
 
 	}
@@ -2243,10 +2275,12 @@
 					transformSlides( { layout: '' } );
 				}
 				else {
-					// Prefer zoom for scaling up so that content remains crisp.
-					// Don't use zoom to scale down since that can lead to shifts
-					// in text layout/line breaks.
-					if( scale > 1 && features.zoom ) {
+					// Zoom Scaling
+					// Content remains crisp no matter how much we scale. Side
+					// effects are minor differences in text layout and iframe
+					// viewports changing size. A 200x200 iframe viewport in a
+					// 2x zoomed presentation ends up having a 400x400 viewport.
+					if( scale > 1 && features.zoom && window.devicePixelRatio < 2 ) {
 						dom.slides.style.zoom = scale;
 						dom.slides.style.left = '';
 						dom.slides.style.top = '';
@@ -2254,7 +2288,10 @@
 						dom.slides.style.right = '';
 						transformSlides( { layout: '' } );
 					}
-					// Apply scale transform as a fallback
+					// Transform Scaling
+					// Content layout remains the exact same when scaled up.
+					// Side effect is content becoming blurred, especially with
+					// high scale values on ldpi screens.
 					else {
 						dom.slides.style.zoom = '';
 						dom.slides.style.left = '50%';
@@ -2623,34 +2660,37 @@
 	}
 
 	/**
-	 * Return a hash URL that will resolve to the current slide location.
+	 * Return a hash URL that will resolve to the given slide location.
+	 *
+	 * @param {HTMLElement} [slide=currentSlide] The slide to link to
 	 */
-	function locationHash() {
+	function locationHash( slide ) {
 
 		var url = '/';
 
 		// Attempt to create a named link based on the slide's ID
-		var id = currentSlide ? currentSlide.getAttribute( 'id' ) : null;
+		var s = slide || currentSlide;
+		var id = s ? s.getAttribute( 'id' ) : null;
 		if( id ) {
 			id = encodeURIComponent( id );
 		}
 
-		var indexf;
-		if( config.fragmentInURL ) {
-			indexf = getIndices().f;
+		var index = getIndices( slide );
+		if( !config.fragmentInURL ) {
+			index.f = undefined;
 		}
 
 		// If the current slide has an ID, use that as a named link,
 		// but we don't support named links with a fragment index
-		if( typeof id === 'string' && id.length && indexf === undefined ) {
+		if( typeof id === 'string' && id.length && index.f === undefined ) {
 			url = '/' + id;
 		}
 		// Otherwise use the /h/v index
 		else {
 			var hashIndexBase = config.hashOneBasedIndex ? 1 : 0;
-			if( indexh > 0 || indexv > 0 || indexf !== undefined ) url += indexh + hashIndexBase;
-			if( indexv > 0 || indexf !== undefined ) url += '/' + (indexv + hashIndexBase );
-			if( indexf !== undefined ) url += '/' + indexf;
+			if( index.h > 0 || index.v > 0 || index.f !== undefined ) url += index.h + hashIndexBase;
+			if( index.v > 0 || index.f !== undefined ) url += '/' + (index.v + hashIndexBase );
+			if( index.f !== undefined ) url += '/' + index.f;
 		}
 
 		return url;
@@ -3039,10 +3079,10 @@
 		syncBackground( slide );
 		syncFragments( slide );
 
+		loadSlide( slide );
+
 		updateBackground();
 		updateNotes();
-
-		loadSlide( slide );
 
 	}
 
@@ -3255,9 +3295,10 @@
 			// be visible
 			var viewDistance = isOverview() ? 10 : config.viewDistance;
 
-			// Limit view distance on weaker devices
+			// Shorten the view distance on devices that typically have
+			// less resources
 			if( isMobileDevice ) {
-				viewDistance = isOverview() ? 6 : 2;
+				viewDistance = isOverview() ? 6 : config.mobileViewDistance;
 			}
 
 			// All slides need to be visible when exporting to PDF
@@ -3309,7 +3350,7 @@
 			}
 
 			// Flag if there are ANY vertical slides, anywhere in the deck
-			if( dom.wrapper.querySelectorAll( '.slides>section>section' ).length ) {
+			if( hasVerticalSlides() ) {
 				dom.wrapper.classList.add( 'has-vertical-slides' );
 			}
 			else {
@@ -3317,7 +3358,7 @@
 			}
 
 			// Flag if there are ANY horizontal slides, anywhere in the deck
-			if( dom.wrapper.querySelectorAll( '.slides>section' ).length > 1 ) {
+			if( hasHorizontalSlides() ) {
 				dom.wrapper.classList.add( 'has-horizontal-slides' );
 			}
 			else {
@@ -3393,45 +3434,55 @@
 
 		// Update slide number if enabled
 		if( config.slideNumber && dom.slideNumber ) {
-
-			var value;
-			var format = 'h.v';
-
-			if( typeof config.slideNumber === 'function' ) {
-				value = config.slideNumber();
-			}
-			else {
-				// Check if a custom number format is available
-				if( typeof config.slideNumber === 'string' ) {
-					format = config.slideNumber;
-				}
-
-				// If there are ONLY vertical slides in this deck, always use
-				// a flattened slide number
-				if( !/c/.test( format ) && dom.wrapper.querySelectorAll( HORIZONTAL_SLIDES_SELECTOR ).length === 1 ) {
-					format = 'c';
-				}
-
-				value = [];
-				switch( format ) {
-					case 'c':
-						value.push( getSlidePastCount() + 1 );
-						break;
-					case 'c/t':
-						value.push( getSlidePastCount() + 1, '/', getTotalSlides() );
-						break;
-					case 'h/v':
-						value.push( indexh + 1 );
-						if( isVerticalSlide() ) value.push( '/', indexv + 1 );
-						break;
-					default:
-						value.push( indexh + 1 );
-						if( isVerticalSlide() ) value.push( '.', indexv + 1 );
-				}
-			}
-
-			dom.slideNumber.innerHTML = formatSlideNumber( value[0], value[1], value[2] );
+			dom.slideNumber.innerHTML = getSlideNumber();
 		}
+
+	}
+
+	/**
+	 * Returns the HTML string corresponding to the current slide number,
+	 * including formatting.
+	 */
+	function getSlideNumber( slide ) {
+
+		var value;
+		var format = 'h.v';
+		if( slide === undefined ) {
+			slide = currentSlide;
+		}
+
+		if ( typeof config.slideNumber === 'function' ) {
+			value = config.slideNumber( slide );
+		} else {
+			// Check if a custom number format is available
+			if( typeof config.slideNumber === 'string' ) {
+				format = config.slideNumber;
+			}
+
+			// If there are ONLY vertical slides in this deck, always use
+			// a flattened slide number
+			if( !/c/.test( format ) && dom.wrapper.querySelectorAll( HORIZONTAL_SLIDES_SELECTOR ).length === 1 ) {
+				format = 'c';
+			}
+
+			value = [];
+			switch( format ) {
+				case 'c':
+					value.push( getSlidePastCount( slide ) + 1 );
+					break;
+				case 'c/t':
+					value.push( getSlidePastCount( slide ) + 1, '/', getTotalSlides() );
+					break;
+				default:
+					var indices = getIndices( slide );
+					value.push( indices.h + 1 );
+					var sep = format === 'h/v' ? '/' : '.';
+					if( isVerticalSlide( slide ) ) value.push( sep, indices.v + 1 );
+			}
+		}
+
+		var url = '#' + locationHash( slide );
+		return formatSlideNumber( value[0], value[1], value[2], url );
 
 	}
 
@@ -3442,11 +3493,14 @@
 	 * @param {number} a Current slide
 	 * @param {string} delimiter Character to separate slide numbers
 	 * @param {(number|*)} b Total slides
+	 * @param {HTMLElement} [url='#'+locationHash()] The url to link to
 	 * @return {string} HTML string fragment
 	 */
-	function formatSlideNumber( a, delimiter, b ) {
+	function formatSlideNumber( a, delimiter, b, url ) {
 
-		var url = '#' + locationHash();
+		if( url === undefined ) {
+			url = '#' + locationHash();
+		}
 		if( typeof b === 'number' && !isNaN( b ) ) {
 			return  '<a href="' + url + '">' +
 					'<span class="slide-number-a">'+ a +'</span>' +
@@ -3599,7 +3653,7 @@
 		// Stop content inside of previous backgrounds
 		if( previousBackground ) {
 
-			stopEmbeddedContent( previousBackground );
+			stopEmbeddedContent( previousBackground, { unloadIframes: !shouldPreload( previousBackground ) } );
 
 		}
 
@@ -3778,6 +3832,7 @@
 			background.style.display = 'block';
 
 			var backgroundContent = slide.slideBackgroundContentElement;
+			var backgroundIframe = slide.getAttribute( 'data-background-iframe' );
 
 			// If the background contains media, load it
 			if( background.hasAttribute( 'data-loaded' ) === false ) {
@@ -3786,8 +3841,7 @@
 				var backgroundImage = slide.getAttribute( 'data-background-image' ),
 					backgroundVideo = slide.getAttribute( 'data-background-video' ),
 					backgroundVideoLoop = slide.hasAttribute( 'data-background-video-loop' ),
-					backgroundVideoMuted = slide.hasAttribute( 'data-background-video-muted' ),
-					backgroundIframe = slide.getAttribute( 'data-background-iframe' );
+					backgroundVideoMuted = slide.hasAttribute( 'data-background-video-muted' );
 
 				// Images
 				if( backgroundImage ) {
@@ -3827,15 +3881,9 @@
 					iframe.setAttribute( 'allowfullscreen', '' );
 					iframe.setAttribute( 'mozallowfullscreen', '' );
 					iframe.setAttribute( 'webkitallowfullscreen', '' );
+					iframe.setAttribute( 'allow', 'autoplay' );
 
-					// Only load autoplaying content when the slide is shown to
-					// avoid having it play in the background
-					if( /autoplay=(1|true|yes)/gi.test( backgroundIframe ) ) {
-						iframe.setAttribute( 'data-src', backgroundIframe );
-					}
-					else {
-						iframe.setAttribute( 'src', backgroundIframe );
-					}
+					iframe.setAttribute( 'data-src', backgroundIframe );
 
 					iframe.style.width  = '100%';
 					iframe.style.height = '100%';
@@ -3844,6 +3892,19 @@
 
 					backgroundContent.appendChild( iframe );
 				}
+			}
+
+			// Start loading preloadable iframes
+			var backgroundIframeElement = backgroundContent.querySelector( 'iframe[data-src]' );
+			if( backgroundIframeElement ) {
+
+				// Check if this iframe is eligible to be preloaded
+				if( shouldPreload( background ) && !/autoplay=(1|true|yes)/gi.test( backgroundIframe ) ) {
+					if( backgroundIframeElement.getAttribute( 'src' ) !== backgroundIframe ) {
+						backgroundIframeElement.setAttribute( 'src', backgroundIframe );
+					}
+				}
+
 			}
 
 		}
@@ -3865,6 +3926,11 @@
 		var background = getSlideBackground( slide );
 		if( background ) {
 			background.style.display = 'none';
+
+			// Unload any background iframes
+			toArray( background.querySelectorAll( 'iframe[src]' ) ).forEach( function( element ) {
+				element.removeAttribute( 'src' );
+			} );
 		}
 
 		// Reset lazy-loaded media elements with src attributes
@@ -4185,9 +4251,15 @@
 	 * Returns the number of past slides. This can be used as a global
 	 * flattened index for slides.
 	 *
+	 * @param {HTMLElement} [slide=currentSlide] The slide we're counting before
+	 *
 	 * @return {number} Past slide count
 	 */
-	function getSlidePastCount() {
+	function getSlidePastCount( slide ) {
+
+		if( slide === undefined ) {
+			slide = currentSlide;
+		}
 
 		var horizontalSlides = toArray( dom.wrapper.querySelectorAll( HORIZONTAL_SLIDES_SELECTOR ) );
 
@@ -4203,7 +4275,7 @@
 			for( var j = 0; j < verticalSlides.length; j++ ) {
 
 				// Stop as soon as we arrive at the present
-				if( verticalSlides[j].classList.contains( 'present' ) ) {
+				if( verticalSlides[j] === slide ) {
 					break mainLoop;
 				}
 
@@ -4212,7 +4284,7 @@
 			}
 
 			// Stop as soon as we arrive at the present
-			if( horizontalSlide.classList.contains( 'present' ) ) {
+			if( horizontalSlide === slide ) {
 				break;
 			}
 
@@ -4429,7 +4501,44 @@
 	 */
 	function getSlides() {
 
-		return toArray( dom.wrapper.querySelectorAll( SLIDES_SELECTOR + ':not(.stack)' ));
+		return toArray( dom.wrapper.querySelectorAll( SLIDES_SELECTOR + ':not(.stack)' ) );
+
+	}
+
+	/**
+	 * Returns a list of all horizontal slides in the deck. Each
+	 * vertical stack is included as one horizontal slide in the
+	 * resulting array.
+	 */
+	function getHorizontalSlides() {
+
+		return toArray( dom.wrapper.querySelectorAll( HORIZONTAL_SLIDES_SELECTOR ) );
+
+	}
+
+	/**
+	 * Returns all vertical slides that exist within this deck.
+	 */
+	function getVerticalSlides() {
+
+		return toArray( dom.wrapper.querySelectorAll( '.slides>section>section' ) );
+
+	}
+
+	/**
+	 * Returns true if there are at least two horizontal slides.
+	 */
+	function hasHorizontalSlides() {
+
+		return getHorizontalSlides().length > 1;
+	}
+
+	/**
+	 * Returns true if there are at least two vertical slides.
+	 */
+	function hasVerticalSlides() {
+
+		return getVerticalSlides().length > 1;
 
 	}
 
@@ -4667,6 +4776,8 @@
 
 			if( fragments.length ) {
 
+				var maxIndex = 0;
+
 				if( typeof index !== 'number' ) {
 					var currentFragment = sortFragments( currentSlide.querySelectorAll( '.fragment.visible' ) ).pop();
 					if( currentFragment ) {
@@ -4679,6 +4790,8 @@
 					if( el.hasAttribute( 'data-fragment-index' ) ) {
 						i = parseInt( el.getAttribute( 'data-fragment-index' ), 10 );
 					}
+
+					maxIndex = Math.max( maxIndex, i );
 
 					// Visible fragments
 					if( i <= index ) {
@@ -4702,6 +4815,13 @@
 					}
 
 				} );
+
+				// Write the current fragment index to the slide <section>.
+				// This can be used by end users to apply styles based on
+				// the current fragment index.
+				index = typeof index === 'number' ? index : -1;
+				index = Math.max( Math.min( index, maxIndex ), -1 );
+				currentSlide.setAttribute( 'data-fragment', index );
 
 			}
 
@@ -5116,8 +5236,8 @@
 
 		// Whitelist specific modified + keycode combinations
 		var prevSlideShortcut = event.shiftKey && event.keyCode === 32;
-		var firstSlideShortcut = ( event.metaKey || event.ctrlKey ) && keyCode === 37;
-		var lastSlideShortcut = ( event.metaKey || event.ctrlKey ) && keyCode === 39;
+		var firstSlideShortcut = event.shiftKey && keyCode === 37;
+		var lastSlideShortcut = event.shiftKey && keyCode === 39;
 
 		// Prevent all other events when a modifier is pressed
 		var unusedModifier = 	!prevSlideShortcut && !firstSlideShortcut && !lastSlideShortcut &&
@@ -5143,6 +5263,10 @@
 		if( isPaused() && resumeKeyCodes.indexOf( keyCode ) === -1 ) {
 			return false;
 		}
+
+		// Use linear navigation if we're configured to OR if
+		// the presentation is one-dimensional
+		var useLinearMode = config.navigationMode === 'linear' || !hasHorizontalSlides() || !hasVerticalSlides();
 
 		var triggered = false;
 
@@ -5216,7 +5340,7 @@
 				if( firstSlideShortcut ) {
 					slide( 0 );
 				}
-				else if( !isOverview() && config.navigationMode === 'linear' ) {
+				else if( !isOverview() && useLinearMode ) {
 					navigatePrev();
 				}
 				else {
@@ -5228,7 +5352,7 @@
 				if( lastSlideShortcut ) {
 					slide( Number.MAX_VALUE );
 				}
-				else if( !isOverview() && config.navigationMode === 'linear' ) {
+				else if( !isOverview() && useLinearMode ) {
 					navigateNext();
 				}
 				else {
@@ -5237,7 +5361,7 @@
 			}
 			// K, UP
 			else if( keyCode === 75 || keyCode === 38 ) {
-				if( !isOverview() && config.navigationMode === 'linear' ) {
+				if( !isOverview() && useLinearMode ) {
 					navigatePrev();
 				}
 				else {
@@ -5246,7 +5370,7 @@
 			}
 			// J, DOWN
 			else if( keyCode === 74 || keyCode === 40 ) {
-				if( !isOverview() && config.navigationMode === 'linear' ) {
+				if( !isOverview() && useLinearMode ) {
 					navigateNext();
 				}
 				else {
@@ -5356,19 +5480,49 @@
 
 				if( deltaX > touch.threshold && Math.abs( deltaX ) > Math.abs( deltaY ) ) {
 					touch.captured = true;
-					navigateLeft();
+					if( config.navigationMode === 'linear' ) {
+						if( config.rtl ) {
+							navigateNext();
+						}
+						else {
+							navigatePrev();
+						}
+					}
+					else {
+						navigateLeft();
+					}
 				}
 				else if( deltaX < -touch.threshold && Math.abs( deltaX ) > Math.abs( deltaY ) ) {
 					touch.captured = true;
-					navigateRight();
+					if( config.navigationMode === 'linear' ) {
+						if( config.rtl ) {
+							navigatePrev();
+						}
+						else {
+							navigateNext();
+						}
+					}
+					else {
+						navigateRight();
+					}
 				}
 				else if( deltaY > touch.threshold ) {
 					touch.captured = true;
-					navigateUp();
+					if( config.navigationMode === 'linear' ) {
+						navigatePrev();
+					}
+					else {
+						navigateUp();
+					}
 				}
 				else if( deltaY < -touch.threshold ) {
 					touch.captured = true;
-					navigateDown();
+					if( config.navigationMode === 'linear' ) {
+						navigateNext();
+					}
+					else {
+						navigateDown();
+					}
 				}
 
 				// If we're embedded, only block touch events if they have
@@ -5904,6 +6058,15 @@
 
 		// Returns the speaker notes string for a slide, or null
 		getSlideNotes: getSlideNotes,
+
+		// Returns an array with all horizontal/vertical slides in the deck
+		getHorizontalSlides: getHorizontalSlides,
+		getVerticalSlides: getVerticalSlides,
+
+		// Checks if the presentation contains two or more
+		// horizontal/vertical slides
+		hasHorizontalSlides: hasHorizontalSlides,
+		hasVerticalSlides: hasVerticalSlides,
 
 		// Returns the previous slide element, may be null
 		getPreviousSlide: function() {
