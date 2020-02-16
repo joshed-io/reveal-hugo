@@ -6,7 +6,11 @@
     {{- $content := replace .Content "<div class=\"footnotes\">\n\n<hr />" "<div class=\"footnotes\">" -}}
     <!-- <code> blocks processed by Hugo's highlighter have a data-lang attribute. For those, we disable -->
     <!-- highlight.js by changing the language class to "nohighlight", and adding "data-noescape".       -->
-    {{- $content := replaceRE `<code class="language-\w+"\s+data-lang="\w+"` `<code class="nohighlight" data-noescape` $content -}}
+    {{- $content := replaceRE `<code class="language-\w+"\s+data-lang="\w+"` `<code class="nohighlight" data-noescape` $content -}}    
+    <!-- enable Highlight.js line numbers when the markdown code block language selection is followed by "{}" e.g. ```js{} -->
+    {{- $content := replaceRE `(<code class="language-\w+){}(">)` `$1" data-line-numbers>` $content -}}
+    <!-- enable Highlight.js line highlights when the language selection is followed by "{<line numbers>}" e.g. ```js{1,5-7} -->          
+    {{- $content := replaceRE `(<code class="language-\w+){(\S+)}(">)` `$1" data-line-numbers="$2">` $content -}}            
     <!-- Support both <hr /> (blackfriday) and <hr> (mmark) -->
     {{- $content := replace $content "<hr>" "<hr />" -}}
     <!-- Split the processed content by <hr /> tag -->
