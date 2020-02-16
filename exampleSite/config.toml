@@ -20,8 +20,12 @@ name = "Josh Dzielak"
 [markup.goldmark.renderer]
 unsafe = true
 [markup.highlight]
+# setting the theme for highlighting by Hugo 
 # we need a style that looks good in both light and dark background!
 style = "tango"
+# to allow the use of Highlight.js line numbers and highlights
+# (see https://github.com/hakimel/reveal.js#line-numbers--highlights)
+codeFences = false
 
 [outputFormats.Reveal]
 baseName = "index"
@@ -30,6 +34,8 @@ isHTML = true
 
 [params.reveal_hugo]
 history = true
+# setting the theme for highlighting by Highlight.js
+highlight_theme = "github"
 
 # used in content/template-example
 [params.reveal_hugo.templates.grey]
