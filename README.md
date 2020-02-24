@@ -373,7 +373,7 @@ To see an example of highlighting with Reveal.js, checs out the [highlightjs-lin
 By default, markdown code fences will be processed with Hugo. To turn that off, add this to your `config.toml` file:
 
 ``` toml
-[markdown.highlight]
+[markup.highlight]
 codeFences = false
 ```
 
