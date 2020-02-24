@@ -65,9 +65,6 @@ by putting this in `config.toml`:
 [markup.highlight]
 codeFences = true
 style = "github"
-pygmentsCodefences = true
-pygmentsCodefencesGuessSyntax = true
-pygmentsStyle = "github"
 
 {{< /highlight >}}
 
