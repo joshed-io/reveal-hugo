@@ -17,16 +17,12 @@ This presentation shows the use of the [new highlighting features](https://githu
 
 ## Prerequisite
 
-Disable `codeFences` in to your `config.toml` to prevent Hugo's built-in highlighting.
+Disable `codeFences` in to your `config.toml` to prevent Hugo's built-in highlighting for code inside of `---` fences.
 
 {{< highlight toml "style=github" >}}
 [markup.highlight]
 codeFences = false
 {{< /highlight >}}
-
----
-
-❗ To properly view the rest of this example presentation with Highlight.js highlighting, you must now uncomment the line to disable `codeFences` in the `exampleSite/config.toml` file.
 
 ---
 

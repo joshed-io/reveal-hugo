@@ -16,10 +16,12 @@ name = "Josh Dzielak"
 [markup.goldmark.renderer]
 unsafe = true
 
-# uncomment these lines to run the highlightjs-linenumbers-example
-# [markup.highlight]
-# codeFences = false  # prevent hugo from processing code fences
-# style = "tango"  # hugo highlighting for light + dark background
+# choose between Hugo compile-time or Highlight.js
+# syntax highlighting for code inside of code fences
+[markup.highlight]
+codeFences = false  # use highlight.js 
+# codeFences = true  # use hugo highlighting at compile time
+style = "tango"  # set a style for hugo highlighting
 
 [outputFormats.Reveal]
 baseName = "index"
