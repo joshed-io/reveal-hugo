@@ -51,6 +51,7 @@ Jump to the [exampleSite](exampleSite) folder in this repository to see the sour
 - [template-example](https://reveal-hugo.dzello.com/template-example/) - An example of using the slide shortcode with powerful templates
 - [bundle-example](https://reveal-hugo.dzello.com/bundle-example/) - An example of creating a presentation from one or more markdown files in a leaf bundle
 - [hugo-hl-example](https://reveal-hugo.dzello.com/hugo-hl-example/) - An example of using Hugo's compile-time syntax highlighter
+- [highlightjs-numbers-example](https://reveal-hugo.dzello.com/highlightjs-numbers-example/) - An example of using the multiline and multi-step capabilities of highlight.js
 
 ### Starter repository
 
@@ -360,6 +361,23 @@ transition = "zoom"
 ```
 
 See the [extensive list of Reveal.js configuration options](https://github.com/hakimel/reveal.js/#configuration) here.
+
+### Syntax highlighting
+
+Syntax highlighting can be done with Hugo at compile-time or using Reveal.js with the pre-installed highlight.js plugin. Presentations can use both if they wish for different pieces of code.
+
+To do highlighting with Hugo, use the [highlight shortcode](https://gohugo.io/content-management/syntax-highlighting/#highlight-shortcode) and check out the [hugo-hl-example](https://reveal-hugo.dzello.com/hugo-hl-example/) example presentation.
+
+To see an example of highlighting with Reveal.js, including line numbers and multi-step features, check out the [highlightjs-numbers-example](https://reveal-hugo.dzello.com/highlightjs-numbers-example/) presentation.
+
+By default, markdown code fences will be processed with Hugo. To turn that off, add this to your `config.toml` file:
+
+``` toml
+[markdown.highlight]
+codeFences = false
+```
+
+Now, the code in the fences will be highlighted by highlight.js instead.
 
 ### Custom Reveal.js themes
 
