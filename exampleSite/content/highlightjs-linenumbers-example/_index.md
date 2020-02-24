@@ -7,17 +7,17 @@ theme = "white"
 highlight_theme = "vs"
 +++
 
-## New highlighting features Presentation
+## Multiline highlighting with Highlight.js
 
 ---
 
-This presentation shows the use of the [new highlighting features](https://github.com/hakimel/reveal.js/blob/master/README.md#step-by-step-highlights) which were introduced with Reveal.js [v3.9.0](https://github.com/hakimel/reveal.js/releases/tag/3.9.0)
+This presentation shows the use of the [new highlighting features](https://github.com/hakimel/reveal.js/blob/master/README.md#step-by-step-highlights) which were introduced with Reveal.js [v3.9.0](https://github.com/hakimel/reveal.js/releases/tag/3.9.0).
 
 ---
 
 ## Prerequisite
 
-First, disable `CodeFences` in to your `config.toml`:
+Disable `codeFences` in to your `config.toml` to prevent Hugo's built-in highlighting.
 
 {{< highlight toml "style=github" >}}
 [markup.highlight]
@@ -25,6 +25,11 @@ codeFences = false
 {{< /highlight >}}
 
 ---
+
+❗ To properly view the rest of this example presentation with Highlight.js highlighting, you must now uncomment the line to disable `codeFences` in the `exampleSite/config.toml` file.
+
+---
+
 ## Theme
 
 Specify a theme for Highlight.js in `config.toml`
@@ -34,7 +39,9 @@ Specify a theme for Highlight.js in `config.toml`
 highlight_theme = "github"
 {{< /highlight >}}
 
-or in the `frontmatter`
+---
+
+...or in the `_index.md` front matter
 
 {{< highlight toml "style=github" >}}
 [reveal_hugo]
@@ -138,8 +145,20 @@ However it can be achieved by adding the some [custom CSS](https://github.com/dz
 </style>
 {{< /highlight >}}
 
-<small>💡 Tip: To hide line numbers for every presentation, put it here:</small>
+---
+
+💡 Put the custom CSS in either of these partials:
 
 ```text
+# for all presentations
 layouts/partials/reveal-hugo/body.html
 ```
+
+```text
+# for one presentation
+layouts/partials/{presentation-name}/reveal-hugo/body.html
+```
+
+---
+
+Thanks!
