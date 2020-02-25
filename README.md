@@ -92,6 +92,9 @@ Open `config.toml` and add the following contents:
 ```toml
 theme = "reveal-hugo"
 
+[markup.goldmark.renderer]
+unsafe = true
+
 [outputFormats.Reveal]
 baseName = "index"
 mediaType = "text/html"
