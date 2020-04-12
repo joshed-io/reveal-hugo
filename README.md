@@ -271,6 +271,39 @@ Markdown surrounded by the markdown shortcode will not be rendered by Hugo but b
 {{% /markdown %}}
 ```
 
+### MathJax support
+
+Add the following to `layouts/partials/reveal-hugo/body.html`:
+
+```
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  },
+  svg: {
+    fontCache: 'global'
+  }
+};
+</script>
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+</script>
+```
+
+Then you can do this in a slide:
+
+```
+## Cool equations
+
+Displayed equations are wrapped in double-\$
+
+$$\frac{n!}{k!(n-k)!} = \binom{n}{k}$$  
+
+Inline equations like $E=mc^2$ are wrapped in single-\$
+```
+
 ### HTML slides
 
 If you need to create fancier HTML for a slide than you can do with markdown, just add `data-noprocess` to the &lt;section&gt; element.
