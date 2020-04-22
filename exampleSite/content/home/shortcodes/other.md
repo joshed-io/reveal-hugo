@@ -44,6 +44,6 @@ You can also add notes with the `slide` shortcode and `notes` attribute:
   <pre>
 &lt;section data-noprocess&gt;
   &lt;h1&gt;Hello world!&lt;/h1&gt;
-&lt;section&gt;</pre>
+&lt;/section&gt;</pre>
   <small>💡 This is useful if you can't get Markdown to output exactly what you want.</small>
 </section>
