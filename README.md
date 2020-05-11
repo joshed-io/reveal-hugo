@@ -577,6 +577,7 @@ Find many more on the Reveal.js wiki: [Plugins, tools and hardware](https://gith
 Have you built something with reveal-hugo? Add a link to it here.
 
 - [dzello's Paris Wedding Weekend Guide](https://estelle.and.dzello.com/guide/) ([source](https://github.com/dzello/estelle-and-josh/blob/master/site/content/guide/_index.md))
+- [DevOps Training](https://devops.training.barpilot.io/) ([source](https://github.com/guilhem/devops-training))
 
 
 ## Changelog
