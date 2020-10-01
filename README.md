@@ -459,7 +459,7 @@ This is what the front matter would look like:
 
 ```toml
 [params.reveal_hugo]
-reveal_hugo.custom_theme = "stylesheets/custom-theme.css"
+reveal_hugo.custom_theme = "stylesheets/custom-theme.scss"
 reveal_hugo.custom_theme_compile = true
 ```
 
