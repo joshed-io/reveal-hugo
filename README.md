@@ -429,7 +429,7 @@ Then this is what you'll put in `config.toml`:
 
 ```toml
 [params.reveal_hugo]
-reveal_hugo.custom_theme = "stylesheets/custom-theme.css"
+custom_theme = "stylesheets/custom-theme.css"
 ```
 
 ### Compiling a custom Reveal.js theme with Hugo pipes
@@ -445,8 +445,8 @@ Reveal.js theme customization is easiest to do by overriding variables in the SC
 If you just wanted to change the presentation colors, here's what you might put in `custom-theme.scss`:
 
 ```scss
-@import "reveal-js/css/theme/template/mixins";
-@import "reveal-js/css/theme/template/settings";
+@import "../reveal-js/css/theme/template/mixins";
+@import "../reveal-js/css/theme/template/settings";
 
 $backgroundColor: rgb(3, 129, 45);
 $mainColor: #fff;
@@ -459,8 +459,8 @@ This is what the front matter would look like:
 
 ```toml
 [params.reveal_hugo]
-reveal_hugo.custom_theme = "stylesheets/custom-theme.scss"
-reveal_hugo.custom_theme_compile = true
+custom_theme = "stylesheets/custom-theme.scss"
+custom_theme_compile = true
 ```
 
 You can also add options that will be passed to [Hugo's toCSS method](https://gohugo.io/hugo-pipes/scss-sass/#options):
