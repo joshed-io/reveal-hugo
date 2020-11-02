@@ -3,7 +3,6 @@ title = "Logo presentation example"
 outputs = ["Reveal"]
 [logo]
 src = "github-logo.png"
-alt = "GitHub logo with Octocat"
 [reveal_hugo]
 custom_theme = "reveal-hugo/themes/robot-lung.css"
 margin = 0.2
@@ -17,82 +16,70 @@ You can generalize the concept to add any additional markup to your presentation
 
 ---
 
-[See the code for this presentation](https://github.com/dzello/reveal-hugo/blob/master/exampleSite/content/logo-example/_index.md)
+[See the code for this presentation](https://github.com/dzello/reveal-hugo/blob/master/exampleSite/content/logo-example)
 
 ---
 
-First, create a partial called `body.html` and put it in this directory:
+For a basic setup, in the front matter, add an image to the presentation's directory.
 
+Then, add a logo section in the front matter:
+```toml
+[logo]
+src = "github-logo.png"
+```
+The front matter should end up looking like this:
+```toml
++++
+title = "Logo presentation example"
+outputs = ["Reveal"]
+[logo]
+src = "github-logo.png"
++++
+```
+
+---
+
+If the logo placement doesn't quite match your needs, you may customize it with the following paramaters:
+
+```toml
+[logo]
+src = "github-logo.png" # Location of the file displayed.
+alt = "" # Alt text. 
+width = "15%" # Size of the file.
+diag = "1%" # How far from the top right should the file be.
+top = "1%" # Overrides diag.
+right = "1%" # Overrides diag.
+```
+
+ - Instead of absolute (`250px`), relative measurments (`12.5%`) should be used. They work better with different screen sizes.
+
+ - By default, null (`""`) is used as alt text for logos, as otherwise the alt text would unneededly get read by screen readers.
+
+---
+
+💡 Tip: to make the logo settings present on every presentation, add the settings to your site's configuration file `config.toml` under `[params.logo]`:
+
+```toml
+[params.logo]
+src = "/img/logo.png"
+```
+Note that now, the path to the logo file shall be absolute, and should be stored in `static/img/logo.png` instead.
+
+---
+
+Depending on the theme you're using, your styles will be different. <br>You may also prefer to put your CSS in an external file or your Reveal.js theme.
+
+For per-presentation override, you may add custom CSS with the ID `#logo` to:
 ```text
 layouts/partials/{section}/reveal-hugo/body.html
 ```
 
----
-
 Substitute `{section}` for `home` if you are adding a logo to the presentation at `content/_index.md`. Otherwise, substitute the name of the Hugo section where your presentation lives. 
 
----
-
-The presentation you're looking at right now is in `content/logo-example`, so the partial to add the logo lives in:
-
+For a site-wide override, use:
 ```text
-layouts/partials/logo-example/reveal-hugo/body.html
+layouts/partials/{section}/reveal-hugo/body.html
 ```
-
----
-
-💡 Tip: to make the logo appear in every presentation, put it here:
-
-```text
-layouts/partials/reveal-hugo/body.html
-```
-
----
-
-💡 Tip: In addition to `body.html`, you can create partials `head.html` and `end.html` in any of those directories. 
-
----
-
-- head.html: Add markup just before the closing `</head>` tag
-- body.html: Add markup just before the closing `</body>` tag
-- end.html: Add markup just before the closing of the Reveal.js `div.slides` container
-
----
-
-Once the partial exists in `body.html`, we can add our image tag to it:
-
-```html
-<img id="logo" src="{{ .Param "logo.src" }}" alt="{{ .Param "logo.alt" }}">
-```
-
----
-
-In this example, the src and alt attributes are set to values from the content's front matter or site's configuration, which you can see in `logo-example/_index.md`:
-
-```toml
-[logo]
-src = "/images/github-logo.png"
-alt = "GitHub logo with Octocat"
-```
-
----
-
-To position the logo, we can add a style tag to `body.html`:
-
-```html
-<style>
-  #logo {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    width: 250px;
-  }
-</style>
-```
-
-<small>
-💡 Depending on the theme you're using, your styles will be different. <br>You may also prefer to put your CSS in an external file or your Reveal.js theme.
-</small>
 
 ---
 
