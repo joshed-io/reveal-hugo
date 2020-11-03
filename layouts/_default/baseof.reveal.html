@@ -12,6 +12,17 @@
     {{- if fileExists (printf "layouts/partials/%s.html" $sectionHeadPartial) -}}{{ partial $sectionHeadPartial . }}{{- end }}
   </head>
   <body>
+    {{ if .Param "logo.src" }}
+    <style>
+      #logo {
+        position: absolute;
+        top: {{ if .Param "logo.top"}}{{ .Param "logo.top" }}{{ else if .Param "logo.diag" }}{{ .Param "logo.diag" }}{{ else }}1%{{ end }};
+        left: {{ if .Param "logo.top"}}{{ .Param "logo.left" }}{{ else if .Param "logo.diag" }}{{ .Param "logo.diag" }}{{ else }}1%{{ end }};
+        width: {{ if .Param "logo.width"}}{{ .Param "logo.width" }}{{ else }}15%{{ end }};
+      }
+    </style>
+    <img id="logo" src="{{ .Param "logo.src" }}" alt="{{ .Param "logo.alt" }}">
+    {{ end }}
     <div class="reveal">
       <div class="slides">
         {{- block "main" . -}}{{- end -}}
