@@ -41,6 +41,6 @@ Set the `content` attribute to "home.example":
 
 💡 Adding a new file in `data` folder requires to restart `hugo`
 
-💡 Symbolinc links are not allowed in `data` folder
+💡 Symbolic links are not allowed in `data` folder
 
 '''
