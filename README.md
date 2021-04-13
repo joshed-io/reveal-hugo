@@ -515,7 +515,7 @@ If your Hugo site already has a theme but you'd like to create a presentation fr
 
 ```shell
 cd my-hugo-site
-git clone git@github.com:dzello/reveal-hugo.git themes/reveal-hugo
+git clone https://github.com/dzello/reveal-hugo.git themes/reveal-hugo
 cd themes/reveal-hugo
 cp -r layouts static ../../
 ```
