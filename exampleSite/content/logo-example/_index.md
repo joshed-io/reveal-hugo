@@ -51,9 +51,9 @@ top = "1%" # Overrides diag.
 right = "1%" # Overrides diag.
 ```
 
- - Instead of absolute (`250px`), relative measurments (`12.5%`) should be used. They work better with different screen sizes.
+ - Instead of absolute (`250px`), relative measurements (`12.5%`) should be used. They work better with different screen sizes.
 
- - By default, null (`""`) is used as alt text for logos, as otherwise the alt text would unneededly get read by screen readers.
+ - By default, null (`""`) is used as alt text for logos, as otherwise the alt text would unnecessarily get read by screen readers.
 
 ---
 

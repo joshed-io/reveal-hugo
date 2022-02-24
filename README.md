@@ -404,7 +404,7 @@ Syntax highlighting can be done with Hugo at compile-time or using Reveal.js wit
 
 To do highlighting with Hugo, use the [highlight shortcode](https://gohugo.io/content-management/syntax-highlighting/#highlight-shortcode) and check out the [hugo-hl-example](https://reveal-hugo.dzello.com/hugo-hl-example/) example presentation.
 
-To see an example of highlighting with Reveal.js, checs out the [highlightjs-linenumbers-example](https://reveal-hugo.dzello.com/highlightjs-linenumbers-example/) presentation.
+To see an example of highlighting with Reveal.js, check out the [highlightjs-linenumbers-example](https://reveal-hugo.dzello.com/highlightjs-linenumbers-example/) presentation.
 
 By default, markdown code fences will be processed with Hugo. To turn that off, add this to your `config.toml` file:
 
@@ -535,7 +535,7 @@ Now you can add `outputs = ["Reveal"]` to the front matter of any section's `_in
 
 Note: If you specify `outputs = ["Reveal"]` for a single content file, you can prevent anything being generated for that file. This is handy if you other default layouts that would have created a regular HTML file from it. Only the list file is required for the presentation.
 
-**Tip**: As of Hugo 0.42, Hugo [has theme inheritence](https://gohugo.io/news/0.42-relnotes/). You can avoid the file copying step above by adding `"reveal-hugo"` to your site's array of themes.
+**Tip**: As of Hugo 0.42, Hugo [has theme inheritance](https://gohugo.io/news/0.42-relnotes/). You can avoid the file copying step above by adding `"reveal-hugo"` to your site's array of themes.
 
 ### Create a presentation from a leaf bundle or single page type
 
