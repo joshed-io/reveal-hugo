@@ -36,3 +36,8 @@ history = true
 [params.reveal_hugo.templates.grey]
 background = "#424242"
 transition = "convex"
+
+[module]
+  # needs hugo v0.109.0 or higher and go 1.18 or higher:
+  # uncomment line below for local development of module
+  # workspace = "hugo.work"

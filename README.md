@@ -86,7 +86,7 @@ git init
 
 ### Get the `reveal-hugo` theme
 
-#### Route 1 (recommended): use theme as hugo module
+#### Method 1 (recommended): use theme as hugo module
 
 Turn your new skeleton site into a hugo module by issuing this command from site root:
 
@@ -106,7 +106,7 @@ Open `config.toml` and add the following line:
 theme = ["github.com/dzello/reveal-hugo"]
 ```
 
-#### Route 2 (traditional): use theme as git submodule
+#### Method 2 (traditional): use theme as git submodule
 
 Add the `reveal-hugo` theme as a submodule in the themes directory:
 
@@ -172,13 +172,31 @@ This is my first slide.
 This is my second slide.
 ```
 
-### Cloning an existing repository (route 2 only)
+### Cloning an existing repository (method 2 only)
 
 If you have an existing repository that was setup with the above steps, you have to pull in the theme submodule after cloning your repository using the following command:
 
 ```shell
 git submodule update --init
 ```
+
+## Theme update (method 1 only)
+
+When making use of `reveal-hugo` theme as hugo module, updating your theme is really easy:
+
+At the command prompt, change to the root directory of your existing site.
+
+```
+cd /path/to/my-presentation
+```
+
+Then invoke hugo's module `get` subcommand with the update flag `-u`:
+
+```
+hugo mod get -u github.com/dzello/reveal-hugo
+```
+
+Hugo will automatically pull in the latest theme version. That's it, your update is done!
 
 ## Usage
 
@@ -548,12 +566,7 @@ If your Hugo site already has a theme but you'd like to create a presentation fr
 
 ### Get the `reveal-hugo` theme
 
-#### Hugo 0.42 and higher
-
-As of Hugo 0.42, Hugo features [theme inheritance](https://gohugo.io/news/0.42-relnotes/).
-This makes it really easy to add `reveal-hugo` to an existing site:
-
-##### Route 1 (recommended): use theme as hugo module
+#### Method 1 (recommended): use theme as hugo module
 
 On your site root, check for the existence of a file `go.mod` which marks your site as hugo module.
 If this file is not present yet, create it by issuing this command from site root:
@@ -574,7 +587,7 @@ Open `config.toml`, look for the line `theme = ...` and add `reveal-hugo` to you
 theme = ["your-current-theme", "github.com/dzello/reveal-hugo"]
 ```
 
-##### Route 2 (traditional): use theme as git submodule
+#### Method 2 (traditional): use theme as git submodule
 
 Add the `reveal-hugo` theme as a submodule in the themes directory:
 
@@ -588,7 +601,7 @@ Open `config.toml`, look for the line `theme = ...` and add `reveal-hugo` to you
 theme = ["your-current-theme", "reveal-hugo"]
 ```
 
-#### With Hugo versions below 0.42
+#### Note: Use of Hugo versions below 0.42
 
 With hugo < v0.42, you have to manually copy a few files out of this theme into a few of your site's directories:
 
