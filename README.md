@@ -445,8 +445,8 @@ Reveal.js theme customization is easiest to do by overriding variables in the SC
 If you just wanted to change the presentation colors, here's what you might put in `custom-theme.scss`:
 
 ```scss
-@import "../reveal-js/css/theme/template/mixins";
-@import "../reveal-js/css/theme/template/settings";
+@import "../reveal-js/dist/theme/template/mixins";
+@import "../reveal-js/dist/theme/template/settings";
 
 $backgroundColor: rgb(3, 129, 45);
 $mainColor: #fff;
