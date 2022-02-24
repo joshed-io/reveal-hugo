@@ -3,20 +3,12 @@
 <!-- Printing and PDF exports -->
 <!-- use Hugo to create the right path for the print stylesheet, then conditionally include it -->
 {{- $reveal_location := $.Param "reveal_hugo.reveal_cdn" | default "reveal-js" -}}
-<a href="{{ printf "%s/css/print/" $reveal_location | relURL }}" id="print-location" style="display: none;"></a>
-<script type="text/javascript">
-  var printLocationElement = document.getElementById('print-location');
-  var link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.type = 'text/css';
-  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
-  document.getElementsByTagName('head')[0].appendChild(link);
-</script>
+<a href="{{ printf "%s/dist/print/" $reveal_location | relURL }}" id="print-location" style="display: none;"></a>
 <!-- output Hugo parameters into JavaScript to be used when initializing Reveal.js -->
 <script type="application/json" id="reveal-hugo-site-params">{{ jsonify .Site.Params.reveal_hugo | safeJS }}</script>
 <script type="application/json" id="reveal-hugo-page-params">{{ jsonify .Page.Params.reveal_hugo | safeJS }}</script>
 <!-- load Reveal.js javascripts -->
-<script src="{{ printf "%s/js/reveal.js" $reveal_location | relURL }}"></script>
+<script src="{{ printf "%s/dist/reveal.js" $reveal_location | relURL }}"></script>
 <!-- load Reveal.js plugins -->
 <script type="text/javascript">
   // Hugo lowercases all params and Reveal.js needs camelcase

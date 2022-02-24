@@ -2,8 +2,8 @@
 {{- $reveal_location := $.Param "reveal_hugo.reveal_cdn" | default "reveal-js" -}}
 {{- $highlight_location := $.Param "reveal_hugo.highlight_cdn" | default "highlight-js" -}}
 {{- $custom_theme := $.Param "reveal_hugo.custom_theme" -}}
-<link rel="stylesheet" href="{{ printf "%s/css/reset.css" $reveal_location | relURL }}">
-<link rel="stylesheet" href="{{ printf "%s/css/reveal.css" $reveal_location | relURL }}">
+<link rel="stylesheet" href="{{ printf "%s/dist/reset.css" $reveal_location | relURL }}">
+<link rel="stylesheet" href="{{ printf "%s/dist/reveal.css" $reveal_location | relURL }}">
 {{- $custom_theme := $.Param "reveal_hugo.custom_theme" -}}
 {{- if $custom_theme -}}
   {{- $custom_theme_options := $.Param "reveal_hugo.custom_theme_options" | default dict -}}
@@ -15,7 +15,7 @@
   {{- end -}}
 {{ else -}}
   {{- $theme := $.Param "reveal_hugo.theme" | default "black" -}}
-  <link rel="stylesheet" href="{{ printf "%s/css/theme/%s.css" $reveal_location $theme | relURL }}" id="theme">
+  <link rel="stylesheet" href="{{ printf "%s/dist/theme/%s.css" $reveal_location $theme | relURL }}" id="theme">
 {{ end -}}
 {{ if $.Param "reveal_hugo.load_default_plugins" | default true -}}
   <!-- Theme used for syntax highlighting of code -->
