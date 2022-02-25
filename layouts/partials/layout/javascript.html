@@ -9,6 +9,17 @@
 <script type="application/json" id="reveal-hugo-page-params">{{ jsonify .Page.Params.reveal_hugo | safeJS }}</script>
 <!-- load Reveal.js javascripts -->
 <script src="{{ printf "%s/dist/reveal.js" $reveal_location | relURL }}"></script>
+<!-- load Reveal.js plugins after Reveal.js is initialized -->
+{{ if $.Param "reveal_hugo.load_default_plugins" | default true }}
+  {{ $default_plugins := slice "plugin/markdown/marked.js" "plugin/markdown/markdown.js" "plugin/highlight/highlight.js" "plugin/zoom-js/zoom.js" }}
+  {{ range $default_plugins }}
+  <script type="text/javascript" src="{{ printf "%s/%s" $reveal_location . | relURL }}"></script>
+  {{ end }}
+  <!-- always use local version of the notes plugin since HTML file it requires isn't on CDN -->
+  <script type="text/javascript" src="{{ "reveal-js/plugin/notes/notes.js" | relURL }}"></script>
+{{ end }}
+
+
 <!-- load Reveal.js plugins -->
 <script type="text/javascript">
   // Hugo lowercases all params and Reveal.js needs camelcase
@@ -27,24 +38,20 @@
   }
   // pattern inspired by https://github.com/RealOrangeOne/hugo-theme-revealjs
   var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
+
+  var revealHugoPlugins = { 
+    plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom ]
+   };
   var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
   var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
   // See all options - https://github.com/hakimel/reveal.js#configuration
   var options = Object.assign({},
     camelize(revealHugoDefaults),
     camelize(revealHugoSiteParams),
-    camelize(revealHugoPageParams));
+    camelize(revealHugoPageParams),
+    camelize(revealHugoPlugins));
   Reveal.initialize(options);
 </script>
-<!-- load Reveal.js plugins after Reveal.js is initialized -->
-{{ if $.Param "reveal_hugo.load_default_plugins" | default true }}
-  {{ $default_plugins := slice "plugin/markdown/marked.js" "plugin/markdown/markdown.js" "plugin/highlight/highlight.js" "plugin/zoom-js/zoom.js" }}
-  {{ range $default_plugins }}
-  <script type="text/javascript" src="{{ printf "%s/%s" $reveal_location . | relURL }}"></script>
-  {{ end }}
-  <!-- always use local version of the notes plugin since HTML file it requires isn't on CDN -->
-  <script type="text/javascript" src="{{ "reveal-js/plugin/notes/notes.js" | relURL }}"></script>
-{{ end }}
 <!-- load custom plugins locally only (not CDN since many plugins won't exist there) -->
 {{ range $.Param "reveal_hugo.plugins" }}
 <script type="text/javascript" src="{{ . | relURL }}"></script>
