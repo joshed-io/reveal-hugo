@@ -15,6 +15,12 @@
 
 <!-- load Reveal.js javascripts -->
 <script src="{{ printf "%s/dist/reveal.js" $reveal_location | relURL }}"></script>
+
+{{- $plugins := partial "internal/plugins" . -}}
+{{- range $plugins }}
+  <script type="text/javascript" src="{{ .source | relURL }}"></script>
+{{- end -}}
+
 <!-- load Reveal.js plugins -->
 <script type="text/javascript">
   // Hugo lowercases all params and Reveal.js needs camelcase
@@ -35,19 +41,18 @@
   var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
   var revealHugoSiteParams = {{ jsonify (partial "internal/func/cleanParams" .Site.Params.reveal_hugo) | safeJS }};
   var revealHugoPageParams = {{ jsonify (partial "internal/func/cleanParams" .Page.Params.reveal_hugo) | safeJS }};
+  var revealHugoPlugins = {
+    plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom ]
+  };
 
   // See all options - https://github.com/hakimel/reveal.js#configuration
   var options = Object.assign({},
     camelize(revealHugoDefaults),
     camelize(revealHugoSiteParams),
-    camelize(revealHugoPageParams));
+    camelize(revealHugoPageParams),
+    camelize(revealHugoPlugins));
   Reveal.initialize(options);
 </script>
-
-{{- $plugins := partial "internal/plugins" . -}}
-{{- range $plugins }}
-  <script type="text/javascript" src="{{ .source | relURL }}"></script>
-{{- end -}}
 
 {{/*  check if we need to load mermaid and its render trick.
       mermaid is not rendered correctly in reveal if we don't hook
