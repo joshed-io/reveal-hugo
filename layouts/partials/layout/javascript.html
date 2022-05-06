@@ -57,6 +57,41 @@
 {{ range $.Param "reveal_hugo.plugins" }}
 <script type="text/javascript" src="{{ . | relURL }}"></script>
 {{ end }}
+
+{{/*  check if we need to load mermaid and its render trick.
+      mermaid is not rendered correctly in reveal if we don't hook
+      to the slidechanged event. (mermaid viewBox element has wrong sizes).
+      manage hot-reload by using the reveal ready event.
+*/}}
+{{ $hasMermaid := true }}
+{{ range .Site.RegularPages }}
+{{ if .Store.Get "hasMermaid" }}
+  {{ $hasMermaid = true }}
+{{ end }}
+{{ end }}
+
+{{ if $hasMermaid }}
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({startOnLoad: false});
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              // https://github.com/mermaid-js/mermaid/issues/311#issuecomment-332557344
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    Reveal.addEventListener('slidechanged', render);
+    Reveal.addEventListener('ready', render);
+  </script>
+{{ end }}
+
 {{- $custom_js := $.Param "reveal_hugo.custom_js" -}}
 {{- if $custom_js -}}
 <script type="text/javascript" src="{{ $custom_js | relURL }}"></script>
