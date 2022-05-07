@@ -55,23 +55,35 @@ Hello program!
 
 ### Mermaid
 
-Slides can contain [mermaid](https://mermaid-js.github.io/mermaid/#/) diagrams
+Slides can contain [mermaid](https://mermaid-js.github.io/mermaid/#/) diagrams:
 
-```code
-graph LR
-    A --> B
-    B --> C
-```
-
-results in:
-
+````code
 ```mermaid
 graph LR
     A --> B
     B --> C
 ```
+````
 
-<small>💡 Note: hugo highlighting must be on (codeFences = true in config.toml)</small>
+Or (see [mermaid shortcode](#/mermaid-shortcode))
+
+```code
+{{</* mermaid */>}}
+graph LR
+    A --> B
+    B --> C
+{{</* /mermaid */>}}
+```
+
+results in:
+
+{{< mermaid >}}
+graph LR
+    A --> B
+    B --> C
+{{< /mermaid >}}
+
+<small>💡 Note: for codeblocks support (` ```mermaid ...``` `), hugo highlighting must be on (codeFences = true in config.toml)</small>
 
 
 ---
