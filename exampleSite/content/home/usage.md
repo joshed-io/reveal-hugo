@@ -53,6 +53,41 @@ Hello program!
 
 ---
 
+### Mermaid
+
+Slides can contain [mermaid](https://mermaid-js.github.io/mermaid/#/) diagrams:
+
+````code
+```mermaid
+graph LR
+    A --> B
+    B --> C
+```
+````
+
+Or (see [mermaid shortcode](#/mermaid-shortcode))
+
+```code
+{{</* mermaid */>}}
+graph LR
+    A --> B
+    B --> C
+{{</* /mermaid */>}}
+```
+
+results in:
+
+{{< mermaid >}}
+graph LR
+    A --> B
+    B --> C
+{{< /mermaid >}}
+
+<small>💡 Note: for codeblocks support (` ```mermaid ...``` `), hugo highlighting must be on (codeFences = true in config.toml)</small>
+
+
+---
+
 ### Add slides with other files
 
 Add slides to `content/home/*.md`
