@@ -9,6 +9,8 @@ A Hugo theme for [Reveal.js](https://revealjs.com/) that makes authoring and cus
 
 ![screenshot of reveal-hugo](https://github.com/dzello/reveal-hugo/blob/master/images/screenshot.png?raw=true)
 
+⚠️ The latest version of this theme requires hugo version >= v0.93.0. If you need compatibility with an earlier version, try a previous release.
+
 ## Example
 
 Using reveal-hugo, presentations with multiple slides can be created with just one markdown file, like so:
