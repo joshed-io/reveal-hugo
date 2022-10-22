@@ -63,11 +63,11 @@
       to the slidechanged event. (mermaid viewBox element has wrong sizes).
       manage hot-reload by using the reveal ready event.
 */}}
-{{ $hasMermaid := true }}
+{{ $hasMermaid := false }}
 {{ range .Site.RegularPages }}
-{{ if .Store.Get "hasMermaid" }}
-  {{ $hasMermaid = true }}
-{{ end }}
+  {{ if .Store.Get "hasMermaid" }}
+    {{ $hasMermaid = true }}
+  {{ end }}
 {{ end }}
 
 {{ if $hasMermaid }}
