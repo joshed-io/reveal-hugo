@@ -71,7 +71,8 @@
 {{ end }}
 
 {{ if $hasMermaid }}
-  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+  {{ $mermaidSrc := resources.GetRemote "https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js" }}
+  <script src="{{ $mermaidSrc.RelPermalink }}"></script>
   <script>
     mermaid.initialize({startOnLoad: false});
     let render = (event) => {
