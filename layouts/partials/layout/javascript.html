@@ -72,8 +72,8 @@
 
 {{ if $hasMermaid }}
   {{ $mermaidSrc := resources.GetRemote "https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js" }}
-  <script src="{{ $mermaidSrc.RelPermalink }}"></script>
-  <script>
+  <script type="text/javascript" src="{{ $mermaidSrc.RelPermalink }}"></script>
+  <script type="text/javascript">
     mermaid.initialize({startOnLoad: false});
     let render = (event) => {
       let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
@@ -88,6 +88,9 @@
           }
       });
     };
+    // support current page reload with possible mermaid element
+    render({currentSlide: Reveal.getCurrentSlide()});
+
     Reveal.addEventListener('slidechanged', render);
     Reveal.addEventListener('ready', render);
   </script>
