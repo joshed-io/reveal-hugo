@@ -64,7 +64,7 @@
       manage hot-reload by using the reveal ready event.
 */}}
 {{ $hasMermaid := false }}
-{{ range .Site.RegularPages }}
+{{ range .Site.AllPages }}
   {{ if .Store.Get "hasMermaid" }}
     {{ $hasMermaid = true }}
   {{ end }}
