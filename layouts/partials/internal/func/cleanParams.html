@@ -1,0 +1,11 @@
+{{/* This function is meant to remove reveal-js unrelated initializers (like the
+     plugins array)
+*/}}
+{{- $params := dict -}}
+{{- range $k, $v := . -}}
+  {{ if not (in (slice "plugins") $k) }}
+    {{ $params = merge $params (dict $k $v) }}
+  {{- end -}}
+{{- end -}}
+
+{{ return $params }}
