@@ -44,27 +44,11 @@
     camelize(revealHugoPageParams));
   Reveal.initialize(options);
 </script>
-<!-- load Reveal.js plugins after Reveal.js is initialized -->
-{{ if $.Param "reveal_hugo.load_default_plugins" | default true }}
-  {{ $default_plugins := slice (dict "name"   "marked"
-                                     "source" "plugin/markdown/marked.js")
-                               (dict "name"   "markdown"
-                                     "source" "plugin/markdown/markdown.js")
-                               (dict "name"   "highlight"
-                                     "source" "plugin/highlight/highlight.js")
-                               (dict "name"   "zoom"
-                                     "source" "plugin/zoom-js/zoom.js") }}
-  {{ range $default_plugins }}
-  <script type="text/javascript" src="{{ printf "%s/%s" $reveal_location .source | relURL }}"></script>
-  {{ end }}
-  <!-- always use local version of the notes plugin since HTML file it requires isn't on CDN -->
-  <script type="text/javascript" src="{{ "reveal-js/plugin/notes/notes.js" | relURL }}"></script>
-{{ end }}
 
-<!-- load custom plugins locally only (not CDN since many plugins won't exist there) -->
-{{ range $.Param "reveal_hugo.plugins" }}
-<script type="text/javascript" src="{{ . | relURL }}"></script>
-{{ end }}
+{{- $plugins := partialCached "internal/plugins" . -}}
+{{- range $plugins }}
+  <script type="text/javascript" src="{{ .source | relURL }}"></script>
+{{- end -}}
 
 {{/*  check if we need to load mermaid and its render trick.
       mermaid is not rendered correctly in reveal if we don't hook
