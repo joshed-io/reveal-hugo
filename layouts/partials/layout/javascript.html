@@ -44,7 +44,7 @@
   Reveal.initialize(options);
 </script>
 
-{{- $plugins := partialCached "internal/plugins" . -}}
+{{- $plugins := partial "internal/plugins" . -}}
 {{- range $plugins }}
   <script type="text/javascript" src="{{ .source | relURL }}"></script>
 {{- end -}}

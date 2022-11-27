@@ -1,0 +1,19 @@
+
+{{ $plugin_path := "" }}
+{{/* try different sources of local plugin paths. They can be in the static dir,
+     or the current content bundle. Setting the "verbatim" attribute to true overrides
+     the heuristic.
+*/}}
+
+{{ if .verbatim | default false }}
+  {{/*  take this path for face value  */}}
+  {{ $plugin_path = .path }}
+{{ else if or (fileExists .path) (fileExists (path.Join "static" .path)) }}
+  {{/*  file exists in content or static, use that  */}}
+  {{ $plugin_path = .path }}
+{{ else }}
+  {{/*  file exists on filesystem or in CDN use that  */}}
+  {{ $plugin_path = path.Join .reveal_location .path }}
+{{ end }}
+
+{{ return $plugin_path }}
