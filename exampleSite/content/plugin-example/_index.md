@@ -5,7 +5,12 @@ outputs = ["Reveal"]
 [reveal_hugo]
 theme = "night"
 margin = 0.2
-plugins = ["plugin/gallery/gallery.plugin.js"]
+[[reveal_hugo.plugins]]
+name = "gallery"
+# order = 5
+source = "plugin/gallery/gallery.plugin.js"
+css = "plugin/gallery/gallery.css"
+
 +++
 
 # plugin-example
@@ -64,20 +69,13 @@ Copy the plugin CSS and JavaScript into the static directory
 
 ### 2
 
-Add the JavaScript file path to the `plugins` field in the front matter
+Add the JavaScript and (optionally css) file path to the `plugins` field in the front matter
+
+```toml
+[[reveal_hugo.plugins]]
+source = "plugin/gallery/gallery.plugin.js"
+css = "plugin/gallery/gallery.css"
+```
 
 ---
-
-### 3
-
-Create a `head.html` partial inside of `layouts/partials/plugin-example/reveal-hugo`
-
----
-
-### 4
-
-In `head.html`, add a stylesheet link tag that loads the plugin CSS
-
----
-
 ## THE END
