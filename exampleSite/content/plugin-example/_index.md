@@ -5,9 +5,15 @@ outputs = ["Reveal"]
 [reveal_hugo]
 theme = "night"
 margin = 0.2
+
+# Deprecated array form. Css needs to be added in
+# a head layout override
+# plugins = ["plugin/gallery/gallery.plugin.js"]
+
+# New plugin object form; reveal-hugo
+# will load your css for you
 [[reveal_hugo.plugins]]
 name = "gallery"
-# order = 5
 source = "plugin/gallery/gallery.plugin.js"
 css = "plugin/gallery/gallery.css"
 

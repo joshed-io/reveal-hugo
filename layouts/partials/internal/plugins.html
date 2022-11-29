@@ -24,10 +24,10 @@ We support the legacy style of plugin paths (although this might break in reveal
   {{ $startOrder = 5 }}
 {{ end }}
 
-{{ $allPlugins := $.Site.Param "reveal_hugo.plugins" }}
-{{ $allPlugins = append $allPlugins ($.Page.Param "reveal_hugo.plugins")}}
+{{ $allPlugins := $.Site.Param "reveal_hugo.plugins" | default slice }}
+{{ $allPlugins = append $allPlugins ($.Page.Param "reveal_hugo.plugins" | default slice ) }}
 
-{{/*  load custom plugins */}}
+{{/*  load custom user plugins */}}
 {{ range $allPlugins }}
   {{ if reflect.IsMap . }}
     {{/*  we already have a plugin definition object  */}}
