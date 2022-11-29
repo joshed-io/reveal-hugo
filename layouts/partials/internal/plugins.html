@@ -25,7 +25,7 @@ We support the legacy style of plugin paths (although this might break in reveal
 {{ end }}
 
 {{ $allPlugins := $.Site.Param "reveal_hugo.plugins" }}
-{{ $allPlugins = $allPlugins | append ($.Page.Param "reveal_hugo.plugins")}}
+{{ $allPlugins = append $allPlugins ($.Page.Param "reveal_hugo.plugins")}}
 
 {{/*  load custom plugins */}}
 {{ range $allPlugins }}
@@ -35,10 +35,15 @@ We support the legacy style of plugin paths (although this might break in reveal
       {{ $startOrder = . }}
     {{ end }}
     {{ $plugins.SetInMap "plugins" (print .name) (merge . (dict "order" $startOrder) )}}
+  {{ else if reflect.IsSlice . }}
+    {{ range . }}
+      {{/*  convert from old plugin path to new plugin object format  */}}
+      {{ $plugins.SetInMap "plugins" (path.BaseName .) (dict "source" . "order" $startOrder) }}
+    {{ end }}
   {{ else }}
-    {{/*  convert from old plugin path to new plugin object format  */}}
-    {{ $plugins.SetInMap "plugins" (path.BaseName .) (dict "source" . "order" $startOrder) }}
+      {{ $plugins.SetInMap "plugins" (path.BaseName .) (dict "source" . "order" $startOrder) }}
   {{ end }}
+
   {{ $startOrder = add $startOrder 1 }}
 {{ end }}
 
