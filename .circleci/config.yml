@@ -7,13 +7,12 @@ jobs:
     docker:
       - image: cimg/base:stable
     steps:
-      - checkout
       - hugo/build:
           html-proofer: true
       - store_test_results:
           path: test_results
 
 workflows:
-  main-workflow:
+  main:
     jobs:
       - build-and-test
