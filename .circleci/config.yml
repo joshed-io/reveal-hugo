@@ -18,7 +18,7 @@ jobs:
           override-ci-command: npm install
       - run:
           name: "install hugo"
-          command: sudo snap install hugo
+          command: npm install hugo-bin
       - run:
           name: "build site"
           command: npm run build
