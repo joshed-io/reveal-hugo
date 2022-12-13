@@ -18,11 +18,10 @@ jobs:
           override-ci-command: npm install
       - run:
           name: "install hugo"
-          command: sudo apt install hugo
+          command: sudo snap install hugo
       - run:
           name: "build site"
           command: npm run build
-
 workflows:
   main:
     jobs:
