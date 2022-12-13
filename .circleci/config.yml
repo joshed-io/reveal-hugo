@@ -1,18 +1,31 @@
 version: 2.1
 orbs:
-  hugo: circleci/hugo@1.3.0
+  node: circleci/node@5.0.3
 
 jobs:
   build-and-test:
-    docker:
-      - image: cimg/base:stable
+    executor:
+      name: node/default
+      tag: current
     steps:
-      - hugo/build:
-          html-proofer: true
-      - store_test_results:
-          path: test_results
+      - checkout
+      - run:
+          name: "utilise npm"
+          command: sudo npm install -g npm@latest
+      - node/install-packages:
+          pkg-manager: npm
+          cache-path: ~/project/node_modules
+          override-ci-command: npm install
+      - run:
+          name: "install hugo"
+          command: npm install -g hugo-bin
+      - run:
+          name: "build site"
+          command: npm run build
 
 workflows:
   main:
     jobs:
       - build-and-test
+
+# VS Code Extension Version: 1.4.0
