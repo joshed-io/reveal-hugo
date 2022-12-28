@@ -1,0 +1,37 @@
+version: 2.1
+orbs:
+  node: circleci/node@5.0.3
+
+jobs:
+  build-and-test:
+    executor:
+      name: node/default
+      tag: current
+    steps:
+      - checkout
+      - run:
+          name: "utilise npm"
+          command: sudo npm install -g npm@latest
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package-lock.json" }}
+      - node/install-packages:
+          pkg-manager: npm
+          cache-path: ~/project/node_modules
+          override-ci-command: npm install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package-lock.json" }}
+      - run:
+          name: "install hugo"
+          command: npm install hugo-extended
+      - run:
+          name: "build site"
+          command: npm run build
+workflows:
+  main:
+    jobs:
+      - build-and-test
+
+# VS Code Extension Version: 1.4.0

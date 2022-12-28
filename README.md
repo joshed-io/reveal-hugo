@@ -1,6 +1,7 @@
 # reveal-hugo
 
 ![License badge](https://img.shields.io/github/license/dzello/reveal-hugo.svg)
+[![CircleCI](https://circleci.com/gh/dzello/reveal-hugo.svg?style=svg)](https://circleci.com/gh/dzello/reveal-hugo)
 [![Website up/down badge](https://img.shields.io/website-up-down-green-red/https/reveal-hugo.dzello.com.svg)](https://reveal-hugo.dzello.com/)
 ![Last commit badge](https://img.shields.io/github/last-commit/dzello/reveal-hugo.svg)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/70c5c7a6-5fb2-40a9-98e1-20aa21336201/deploy-status)](https://app.netlify.com/sites/reveal-hugo/deploys)
