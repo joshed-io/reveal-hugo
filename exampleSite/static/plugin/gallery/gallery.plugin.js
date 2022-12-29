@@ -28,7 +28,7 @@
 		galleryMode = galleryNode.dataset.mode || 'normal';
 
 		if (galleryMode === 'full-screen') {
-			// FIXME remove depenency on Reveal, have a callback? function
+			// FIXME remove dependency on Reveal, have a callback? function
 			// that will get a root node to move full screen slides to (ie. slidesNode)
 
 			// for full screen mode we need to: 
