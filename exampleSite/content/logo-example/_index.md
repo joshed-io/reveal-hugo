@@ -39,7 +39,7 @@ src = "github-logo.png"
 
 ---
 
-If the logo placement doesn't quite match your needs, you may customize it with the following paramaters:
+If the logo placement doesn't quite match your needs, you may customize it with the following parameters:
 
 ```toml
 [logo]

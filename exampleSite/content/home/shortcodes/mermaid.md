@@ -6,8 +6,8 @@ weight = 32
 
 # Mermaid diagrams
 
-Use the `mermaid` shortcode if you need to enable reveal-js highligting module
-(`codeFences = false`). Otherwize, when `codeFences = true`, ` ```mermaid ``` ` codeblocks
+Use the `mermaid` shortcode if you need to enable reveal-js highlighting module
+(`codeFences = false`). Otherwise, when `codeFences = true`, ` ```mermaid ``` ` codeblocks
 are also supported. [More info](hugo-hl-example/#/5).
 
 ```code
