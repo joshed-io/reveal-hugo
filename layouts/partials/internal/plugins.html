@@ -1,0 +1,68 @@
+{{/* We want to construct a plugins slice of unique plugins. We start by taking the
+default plugins if they are enabled, then iterate on additional user defined
+plugins.
+
+We support the legacy style of plugin paths (although this might break in reveal-js
+>= 4.0 - we might revisit this.)
+*/}}
+
+{{/* Use a scratch dict to ensure unicity of plugins. This dict has an order key
+     because the plugins need to be loaded in a specific order (i.e. markdown
+     depends on marked)
+*/}}
+{{ $startOrder := 0}}
+{{ $plugins := newScratch }}
+{{ if $.Param "reveal_hugo.load_default_plugins" | default true }}
+  {{ $plugins.SetInMap "plugins" "marked" (dict "order" 0 "source" "plugin/markdown/marked.js") }}
+  {{ $plugins.SetInMap "plugins" "RevealMarkdown" (dict "order" 1 "source" "plugin/markdown/markdown.js") }}
+  {{ $plugins.SetInMap "plugins" "RevealHighlight" (dict "order" 2 "source" "plugin/highlight/highlight.js") }}
+  {{ $plugins.SetInMap "plugins" "zoom" (dict "order" 3 "source" "plugin/zoom-js/zoom.js") }}
+
+  <!-- always use local version of the notes plugin since HTML file it requires isn't on CDN -->
+  {{ $plugins.SetInMap "plugins" "RevealNotes" (dict "order" 4 "source" "reveal-js/plugin/notes/notes.js"
+                                                     "verbatim" true) }}
+  {{ $startOrder = 5 }}
+{{ end }}
+
+{{ $allPlugins := $.Site.Param "reveal_hugo.plugins" | default slice }}
+{{ $allPlugins = append $allPlugins ($.Page.Param "reveal_hugo.plugins" | default slice ) }}
+
+{{/*  load custom user plugins */}}
+{{ range $allPlugins }}
+  {{ if reflect.IsMap . }}
+    {{/*  we already have a plugin definition object  */}}
+    {{ with .order }}
+      {{ $startOrder = . }}
+    {{ end }}
+    {{ $plugins.SetInMap "plugins" (print .name) (merge . (dict "order" $startOrder) )}}
+  {{ else if reflect.IsSlice . }}
+    {{ range . }}
+      {{/*  convert from old plugin path to new plugin object format  */}}
+      {{ $plugins.SetInMap "plugins" (path.BaseName .) (dict "source" . "order" $startOrder) }}
+    {{ end }}
+  {{ else }}
+      {{ $plugins.SetInMap "plugins" (path.BaseName .) (dict "source" . "order" $startOrder) }}
+  {{ end }}
+
+  {{ $startOrder = add $startOrder 1 }}
+{{ end }}
+
+{{ $revealLoc := dict "reveal_location" ($.Param "reveal_hugo.reveal_cdn" | default "reveal-js") }}
+{{ $normalizedPlugins := slice }}
+
+{{ range $name, $plugin := (sort ($plugins.Get "plugins") "order") }}
+  {{ $normalizedPlugin := (dict "name" $name) }}
+
+  {{ with $plugin.css }}
+    {{ $normalizedCssPath := partial "internal/func/normalizePath" (merge $plugin (dict "path" . ) $revealLoc ) }}
+    {{ $normalizedPlugin = merge $plugin (dict "css" $normalizedCssPath)}}
+  {{ end }}
+  {{ with $plugin.source }}
+    {{ $normalizedSourcePath := partial "internal/func/normalizePath" (merge $plugin (dict "path" . ) $revealLoc ) }}
+    {{ $normalizedPlugin = merge $plugin (dict "source" $normalizedSourcePath)}}
+  {{ end }}
+
+  {{ $normalizedPlugins = $normalizedPlugins | append $normalizedPlugin }}
+{{ end}}
+
+{{ return $normalizedPlugins }}

@@ -350,7 +350,7 @@ Then you can do this in a slide:
 
 Displayed equations are wrapped in double-\$
 
-$$\frac{n!}{k!(n-k)!} = \binom{n}{k}$$  
+$$\frac{n!}{k!(n-k)!} = \binom{n}{k}$$
 
 Inline equations like $E=mc^2$ are wrapped in single-\$
 ```
@@ -419,13 +419,23 @@ Customize the Reveal.js presentation by setting these values in `config.toml` or
 - `reveal_hugo.reveal_cdn`: The location to load Reveal.js files from; defaults to the `reveal-js` folder in the static directory to support offline development. To load from a CDN instead, set this value to `https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.7.0` or whatever CDN you prefer.
 - `reveal_hugo.highlight_cdn`: The location to load highlight.js files from; defaults to to the `highlight-js` folder in the static directory to support offline development. To load from a CDN instead, set this value to `https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0` or whatever CDN you prefer.
 - `reveal_hugo.load_default_plugins`: If set to true (default), the plugins included by default are loaded. These are markdown, highlight.js, notes and zoom.
-- `reveal_hugo.plugins`: An array of additional Reveal.js plugins to load, e.g. `["plugin/gallery/gallery.plugin.js"]`. The appropriate files will need to have been copied into the `static` directory. CDN loading is not supported. See here for a [big list of plugins](https://github.com/hakimel/reveal.js/wiki/Plugins,-Tools-and-Hardware) you can try.
+- `reveal_hugo.plugins`: (see below) An array of additional Reveal.js plugins to load. The appropriate files will need to have been copied into the `static` or content directory. See here for a [big list of plugins](https://github.com/hakimel/reveal.js/wiki/Plugins,-Tools-and-Hardware) you can try. The original implementation used to accept an array of javascript files (e.g. `["plugin/gallery/gallery.plugin.js"]`), but now reveal-hugo can fully load plugin javascript and css. To enable this mode, You need to provide an array of plugin definition objects with `name`, `source` and an optional `css`, `verbatim` and `order` fields. Reveal-hugo will try to load the plugins at the path specified by `source`. If `verbatim=true` is used, the path is tried as-is. Otherwise, the path is resolved from the content dir or `static` dir. Finally, the `reveal_cdn` is prepended to the path if no other conditions are satisfied. The `order` field controls the order of javascript loading and will seldomly used. See [plugin-example](https://reveal-hugo.dzello.com/plugin-example/) for a plugin walkthrough.
 
 This is how parameters will look in your `config.toml`:
 
 ```TOML
 [params.reveal_hugo]
 theme = "moon"
+
+# the following supposes that menu is accessible in static dir
+[[params.reveal_hugo.plugins]]
+# Name the plugin. This should be the same name used to register a reveal-js plugin,
+# for example RevealMenu, RevealNotes
+name = RevealMenu
+source = "menu/menu.js"
+css = "menu/menu.css"
+# verbatim = true # should the css and source paths be used as-is ?
+# order = 6 # control the order in which the plugin should be used.
 ```
 
 Or in the front matter of an `_index.md` file:
@@ -433,6 +443,12 @@ Or in the front matter of an `_index.md` file:
 ```TOML
 [reveal_hugo]
 theme = "moon"
+
+[[reveal_hugo.plugins]]
+name = "gallery"
+source = "plugin/gallery/gallery.plugin.js"
+css = "plugin/gallery/gallery.css"
+
 ```
 
 Include any other attributes in those sections that you'd like to be fed as arguments to `Reveal.initialize` in **snakecase**, so `slide_number` instead of `slideNumber`. Params are converted from snakecase to camelcase before passing to Reveal.js. This is necessary to maintain the proper case of the parameters.
@@ -537,7 +553,7 @@ If you need to add something to the HTML layout, you can create partials that li
 This is the recommended way to add custom CSS and JavaScript to each presentation.
 
 > 💡 Tip: In Hugo, partials live in the `layouts` folder:
-> 
+>
 > For example, if you have HTML that is to be placed before every presentation, this would be the structure:
 > ```
 > - layouts

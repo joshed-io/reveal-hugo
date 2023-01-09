@@ -12,9 +12,7 @@
   link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
   document.getElementsByTagName('head')[0].appendChild(link);
 </script>
-<!-- output Hugo parameters into JavaScript to be used when initializing Reveal.js -->
-<script type="application/json" id="reveal-hugo-site-params">{{ jsonify .Site.Params.reveal_hugo | safeJS }}</script>
-<script type="application/json" id="reveal-hugo-page-params">{{ jsonify .Page.Params.reveal_hugo | safeJS }}</script>
+
 <!-- load Reveal.js javascripts -->
 <script src="{{ printf "%s/js/reveal.js" $reveal_location | relURL }}"></script>
 <!-- load Reveal.js plugins -->
@@ -35,8 +33,9 @@
   }
   // pattern inspired by https://github.com/RealOrangeOne/hugo-theme-revealjs
   var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
-  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
-  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  var revealHugoSiteParams = {{ jsonify (partial "internal/func/cleanParams" .Site.Params.reveal_hugo) | safeJS }};
+  var revealHugoPageParams = {{ jsonify (partial "internal/func/cleanParams" .Page.Params.reveal_hugo) | safeJS }};
+
   // See all options - https://github.com/hakimel/reveal.js#configuration
   var options = Object.assign({},
     camelize(revealHugoDefaults),
@@ -44,19 +43,11 @@
     camelize(revealHugoPageParams));
   Reveal.initialize(options);
 </script>
-<!-- load Reveal.js plugins after Reveal.js is initialized -->
-{{ if $.Param "reveal_hugo.load_default_plugins" | default true }}
-  {{ $default_plugins := slice "plugin/markdown/marked.js" "plugin/markdown/markdown.js" "plugin/highlight/highlight.js" "plugin/zoom-js/zoom.js" }}
-  {{ range $default_plugins }}
-  <script type="text/javascript" src="{{ printf "%s/%s" $reveal_location . | relURL }}"></script>
-  {{ end }}
-  <!-- always use local version of the notes plugin since HTML file it requires isn't on CDN -->
-  <script type="text/javascript" src="{{ "reveal-js/plugin/notes/notes.js" | relURL }}"></script>
-{{ end }}
-<!-- load custom plugins locally only (not CDN since many plugins won't exist there) -->
-{{ range $.Param "reveal_hugo.plugins" }}
-<script type="text/javascript" src="{{ . | relURL }}"></script>
-{{ end }}
+
+{{- $plugins := partial "internal/plugins" . -}}
+{{- range $plugins }}
+  <script type="text/javascript" src="{{ .source | relURL }}"></script>
+{{- end -}}
 
 {{/*  check if we need to load mermaid and its render trick.
       mermaid is not rendered correctly in reveal if we don't hook
