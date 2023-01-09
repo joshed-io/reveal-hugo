@@ -60,13 +60,13 @@ Jump to the [exampleSite](exampleSite) folder in this repository to see the sour
 
 If you want to start creating a presentation right away, clone the [programming-quotes](https://github.com/dzello/programming-quotes) repository and start hacking.
 
-## Tutorial
+## Tutorial: Create your first presentation
 
 You should be able to complete this section with no prior knowledge of Hugo or Reveal.js. At the end, you'll have a working presentation with instant reloading.
 
-### Create your first presentation
+### Create a hugo skeleton site
 
-To start, [install Hugo](https://gohugo.io/) and create a new Hugo site:
+To start, [install Hugo](https://gohugo.io/getting-started/installing/) and create a new Hugo site:
 
 ```shell
 hugo new site my-presentation
@@ -84,17 +84,47 @@ Initialize a git repository:
 git init
 ```
 
-Add the reveal-hugo theme as a submodule in the themes directory:
+### Get the `reveal-hugo` theme
+
+#### Method 1 (recommended): use theme as hugo module
+
+Turn your new skeleton site into a hugo module by issuing this command from site root:
+
+```shell
+hugo mod init github.com/me/my-presentation
+```
+
+- Declare the `reveal-hugo` theme module as a dependency of your site:
+
+```
+hugo mod get github.com/dzello/reveal-hugo
+```
+
+Open `config.toml` and add the following line:
+
+```toml
+theme = ["github.com/dzello/reveal-hugo"]
+```
+
+#### Method 2 (traditional): use theme as git submodule
+
+Add the `reveal-hugo` theme as a submodule in the themes directory:
 
 ```shell
 git submodule add git@github.com:dzello/reveal-hugo.git themes/reveal-hugo
 ```
 
-Open `config.toml` and add the following contents:
+Open `config.toml` and add the following line:
 
 ```toml
-theme = "reveal-hugo"
+theme = ["reveal-hugo"]
+```
 
+### Configure your presentation
+
+Add some more contents to your `config.toml`:
+
+```toml
 [markup.goldmark.renderer]
 unsafe = true
 
@@ -142,13 +172,31 @@ This is my first slide.
 This is my second slide.
 ```
 
-### Cloning an existing repository
+### Cloning an existing repository (method 2 only)
 
 If you have an existing repository that was setup with the above steps, you have to pull in the theme submodule after cloning your repository using the following command:
 
 ```shell
 git submodule update --init
 ```
+
+## Theme update (method 1 only)
+
+When making use of `reveal-hugo` theme as hugo module, updating your theme is really easy:
+
+At the command prompt, change to the root directory of your existing site.
+
+```
+cd /path/to/my-presentation
+```
+
+Then invoke hugo's module `get` subcommand with the update flag `-u`:
+
+```
+hugo mod get -u github.com/dzello/reveal-hugo
+```
+
+Hugo will automatically pull in the latest theme version. That's it, your update is done!
 
 ## Usage
 
@@ -510,11 +558,52 @@ uglyURLs = true
 
 Note: `uglyURLs` isn't strictly required, but it is useful if you're loading against the filesystem as it makes sure that all URLs end in .html and links point directly at them instead of to a folder.
 
-## Recipes
 
-### Add a Reveal.js presentation to an existing Hugo site
 
-If your Hugo site already has a theme but you'd like to create a presentation from some of its content, that's very easy. First, manually copy a few files out of this theme into a few of your site's directories:
+## Tutorial: Add a Reveal.js presentation to an existing Hugo site
+
+If your Hugo site already has a theme but you'd like to create a presentation from some of its content, that's very easy.
+
+### Get the `reveal-hugo` theme
+
+#### Method 1 (recommended): use theme as hugo module
+
+On your site root, check for the existence of a file `go.mod` which marks your site as hugo module.
+If this file is not present yet, create it by issuing this command from site root:
+
+```shell
+hugo mod init github.com/me/my-presentation
+```
+
+- Declare the `reveal-hugo` theme module as a dependency of your site:
+
+```
+hugo mod get github.com/dzello/reveal-hugo
+```
+
+Open `config.toml`, look for the line `theme = ...` and add `reveal-hugo` to your site's array of themes :
+
+```toml
+theme = ["your-current-theme", "github.com/dzello/reveal-hugo"]
+```
+
+#### Method 2 (traditional): use theme as git submodule
+
+Add the `reveal-hugo` theme as a submodule in the themes directory:
+
+```shell
+git submodule add git@github.com:dzello/reveal-hugo.git themes/reveal-hugo
+```
+
+Open `config.toml`, look for the line `theme = ...` and add `reveal-hugo` to your site's array of themes :
+
+```toml
+theme = ["your-current-theme", "reveal-hugo"]
+```
+
+#### Note: Use of Hugo versions below 0.42
+
+With hugo < v0.42, you have to manually copy a few files out of this theme into a few of your site's directories:
 
 ```shell
 cd my-hugo-site
@@ -524,6 +613,8 @@ cp -r layouts static ../../
 ```
 
 Files and directories are named such that they shouldn't conflict with your existing content. Of course, you should double check before copying, especially the shortcodes which can't be put under a directory.
+
+### Configure your site for presentations
 
 Next, add the Reveal output format to your site's `config.toml` file
 
@@ -538,7 +629,7 @@ Now you can add `outputs = ["Reveal"]` to the front matter of any section's `_in
 
 Note: If you specify `outputs = ["Reveal"]` for a single content file, you can prevent anything being generated for that file. This is handy if you other default layouts that would have created a regular HTML file from it. Only the list file is required for the presentation.
 
-**Tip**: As of Hugo 0.42, Hugo [has theme inheritance](https://gohugo.io/news/0.42-relnotes/). You can avoid the file copying step above by adding `"reveal-hugo"` to your site's array of themes.
+## Recipes
 
 ### Create a presentation from a leaf bundle or single page type
 
