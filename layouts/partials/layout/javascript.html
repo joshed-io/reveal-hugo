@@ -16,12 +16,15 @@
 <!-- load Reveal.js javascripts -->
 <script src="{{ printf "%s/dist/reveal.js" $reveal_location | relURL }}"></script>
 
+<!-- load default and user plugins -->
 {{- $plugins := partial "internal/plugins" . -}}
+{{ $pluginNames := slice }}
 {{- range $plugins }}
   <script type="text/javascript" src="{{ .source | relURL }}"></script>
+  {{ $pluginNames = $pluginNames | append .name }}
 {{- end -}}
 
-<!-- load Reveal.js plugins -->
+<!-- initialize Reveal.js -->
 <script type="text/javascript">
   // Hugo lowercases all params and Reveal.js needs camelcase
   // So params in Hugo must be stored in snakecase and we camelize them here
@@ -37,12 +40,14 @@
     }
     return map;
   }
-  // pattern inspired by https://github.com/RealOrangeOne/hugo-theme-revealjs
+
   var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
   var revealHugoSiteParams = {{ jsonify (partial "internal/func/cleanParams" .Site.Params.reveal_hugo) | safeJS }};
   var revealHugoPageParams = {{ jsonify (partial "internal/func/cleanParams" .Page.Params.reveal_hugo) | safeJS }};
+
   var revealHugoPlugins = {
-    plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealZoom ]
+    // generate an array of javascript objects
+    plugins: {{ (printf "%s" (replace ( jsonify ( $pluginNames ) ) "\"" "")) | safeJS }}
   };
 
   // See all options - https://github.com/hakimel/reveal.js#configuration
@@ -51,6 +56,7 @@
     camelize(revealHugoSiteParams),
     camelize(revealHugoPageParams),
     camelize(revealHugoPlugins));
+
   Reveal.initialize(options);
 </script>
 
