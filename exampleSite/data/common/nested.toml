@@ -12,7 +12,7 @@ example = "I'm a slide"
 Set the `content` attribute to "common.nested.example":
 
 ```markdown
-{{< slide content="common.nested.example" >}}
+{{</* slide content="common.nested.example" */>}}
 ```
 
 '''
