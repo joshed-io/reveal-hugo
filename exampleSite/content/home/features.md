@@ -1,6 +1,7 @@
 +++
 weight = 10
 +++
+{{< slide id=included >}}
 
 ## What's included?
 
@@ -14,6 +15,7 @@ weight = 10
 [see the code on github](https://github.com/dzello/reveal-hugo)
 
 ---
+{{< slide id=features >}}
 
 ## Features
 
@@ -21,5 +23,6 @@ weight = 10
 - Shortcodes for fragments, sections, slides & more
 - All Reveal.js parameters can be customized
 - Any Hugo section can be output as a presentation
-- Supports mermaid codeblocks
+- Supports math code blocks
+- Supports mermaid code blocks
 - Supports offline development or using a CDN

@@ -1,0 +1,31 @@
+{{ $math := "" -}}
+
+{{ with .Get "inline" -}}
+  {{/* Error checking */ -}}
+  {{ if $.Inner -}}
+    {{ errorf "%s: shortcode math with parameter 'inline' must not have inner content declared" $.Page.File.Path -}}
+  {{ end -}}
+  {{ if ne ( printf "%T" . ) "string" -}}
+    {{ errorf "%s: shortcode math: parameter 'inline' must be a string" $.Page.File.Path -}}
+  {{ end -}}
+  {{ $math = . -}}
+{{ else -}}
+  {{ with $.Get 0 -}}
+    {{ if $.Inner -}}
+      {{ errorf "%s: shortcode math for inline content must not have inner content declared" $.Page.File.Path -}}
+    {{ end -}}
+    {{ $math = $.Get 0 -}}
+  {{ else }}
+  {{ if .IsNamedParams}}  
+      {{ errorf "%s: shortcode math: Invalid named parameter(s) (%v) detected. Only named parameter 'inline' is allowed." $.Page.File.Path .Params -}}
+    {{ end }}
+  {{ end -}}
+{{ end -}}
+
+{{ if eq $math "" -}}
+<p>$${{- .Inner | safeHTML }}$$</p>
+{{ else -}}
+${{- $math | safeHTML }}$
+{{ end -}}
+
+{{ .Page.Store.Set "hasMath" true }}

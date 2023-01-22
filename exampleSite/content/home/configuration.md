@@ -1,6 +1,7 @@
 +++
 weight = 21
 +++
+{{< slide id=configuration >}}
 
 # Configuration
 
