@@ -16,7 +16,7 @@ jobs:
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package-lock.json" }}
-      = go/install:
+      - go/install:
           version: 1.18.10
       - node/install-packages:
           pkg-manager: npm
