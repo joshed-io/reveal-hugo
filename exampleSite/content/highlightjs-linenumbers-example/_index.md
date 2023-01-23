@@ -1,5 +1,5 @@
 +++
-title = "Reveal.js 3.9.0 highlighting example"
+title = "Reveal.js highlighting example"
 outputs = ["Reveal"]
 
 [reveal_hugo]
@@ -11,7 +11,7 @@ highlight_theme = "vs"
 
 ---
 
-This presentation shows the use of the [new highlighting features](https://github.com/hakimel/reveal.js/blob/master/README.md#step-by-step-highlights) which were introduced with Reveal.js [v3.9.0](https://github.com/hakimel/reveal.js/releases/tag/3.9.0).
+This presentation shows the use of the [new highlighting features](https://revealjs.com/code/) which were introduced with Reveal.js [v3.9.0](https://github.com/hakimel/reveal.js/releases/tag/3.9.0).
 
 ---
 
@@ -50,7 +50,7 @@ highlight_theme = "github"
 
 The line highlighting is configured by adding `{}` immediately after the language selection of the markdown code block.
 
-{{< highlight md >}}  
+{{< highlight md >}}
 ```foo{}
 
 ```
@@ -62,7 +62,7 @@ The line highlighting is configured by adding `{}` immediately after the languag
 
 `{}`
 
-{{< highlight md >}}  
+{{< highlight md >}}
 ```go{}
 package main
 import "fmt"
@@ -71,7 +71,7 @@ func main() {
 }
 ```
 {{< /highlight >}}
-   
+
 ```go{}
 package main
 import "fmt"
@@ -130,7 +130,7 @@ func main() {
 
 ## Hiding the line numbers
 
-There is no Reveal.js parameter to use line highlighting *without* line numbers. 
+There is no Reveal.js parameter to use line highlighting *without* line numbers.
 However it can be achieved by adding the some [custom CSS](https://github.com/dzello/reveal-hugo#adding-html-to-the-layout).
 
 {{< highlight html "style=github" >}}

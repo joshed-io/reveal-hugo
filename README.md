@@ -430,8 +430,8 @@ theme = "moon"
 # the following supposes that menu is accessible in static dir
 [[params.reveal_hugo.plugins]]
 # Name the plugin. This should be the same name used to register a reveal-js plugin,
-# for example RevealMenu, RevealNotes
-name = RevealMenu
+# for example: `RevealMenu`, `RevealNotes`
+name = "RevealMenu"
 source = "menu/menu.js"
 css = "menu/menu.css"
 # verbatim = true # should the css and source paths be used as-is ?

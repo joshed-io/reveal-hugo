@@ -10,7 +10,7 @@ Place configuration values in `config.toml` or a presentation's front matter (`_
 
 ## Reveal.js themes
 
-Themes control the look and feel of your presentation. Set the `theme` param to any [valid Reveal.js theme](https://github.com/hakimel/reveal.js/#theming).
+Themes control the look and feel of your presentation. Set the `theme` param to any [valid Reveal.js theme](https://revealjs.com/themes/).
 
 ```toml
 [params.reveal_hugo]
