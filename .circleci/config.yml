@@ -16,6 +16,8 @@ jobs:
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package-lock.json" }}
+      = go/install:
+          version: 1.18.10
       - node/install-packages:
           pkg-manager: npm
           cache-path: ~/project/node_modules
@@ -34,5 +36,3 @@ workflows:
   main:
     jobs:
       - build-and-test
-
-# VS Code Extension Version: 1.5.1
