@@ -84,8 +84,8 @@
     // support current page reload with possible mermaid element
     render({currentSlide: Reveal.getCurrentSlide()});
 
-    Reveal.addEventListener('slidechanged', render);
-    Reveal.addEventListener('ready', render);
+    Reveal.on('slidechanged', render);
+    Reveal.on('ready', render);
   </script>
 {{ end }}
 
