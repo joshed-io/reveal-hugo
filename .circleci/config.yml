@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   node: circleci/node@5.0.3
+  go: circleci/go@1.7.2
 
 jobs:
   build-and-test:
@@ -15,6 +16,8 @@ jobs:
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package-lock.json" }}
+      - go/install:
+          version: 1.18.10
       - node/install-packages:
           pkg-manager: npm
           cache-path: ~/project/node_modules
@@ -33,5 +36,3 @@ workflows:
   main:
     jobs:
       - build-and-test
-
-# VS Code Extension Version: 1.4.0
