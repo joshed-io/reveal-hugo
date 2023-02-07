@@ -1,5 +1,5 @@
-@import "reveal-js/css/theme/template/mixins";
-@import "reveal-js/css/theme/template/settings";
+@import "reveal-js/dist/theme/template/mixins";
+@import "reveal-js/dist/theme/template/settings";
 
 $backgroundColor: rgb(3, 129, 45);
 
@@ -22,7 +22,7 @@ $heading2Size: 1.6em;
 $heading3Size: 1.3em;
 $heading4Size: 1.0em;
 
-@import "reveal-js/css/theme/template/theme";
+@import "reveal-js/dist/theme/template/theme";
 
 section.has-light-background {
 	&, h1, h2, h3, h4, h5, h6 {

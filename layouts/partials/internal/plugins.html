@@ -13,13 +13,12 @@ We support the legacy style of plugin paths (although this might break in reveal
 {{ $startOrder := 0}}
 {{ $plugins := newScratch }}
 {{ if $.Param "reveal_hugo.load_default_plugins" | default true }}
-  {{ $plugins.SetInMap "plugins" "marked" (dict "order" 0 "source" "plugin/markdown/marked.js") }}
-  {{ $plugins.SetInMap "plugins" "RevealMarkdown" (dict "order" 1 "source" "plugin/markdown/markdown.js") }}
-  {{ $plugins.SetInMap "plugins" "RevealHighlight" (dict "order" 2 "source" "plugin/highlight/highlight.js") }}
-  {{ $plugins.SetInMap "plugins" "zoom" (dict "order" 3 "source" "plugin/zoom-js/zoom.js") }}
+  {{ $plugins.SetInMap "plugins" "RevealMarkdown" (dict "name" "RevealMarkdown" "order" 1 "source" "plugin/markdown/markdown.js") }}
+  {{ $plugins.SetInMap "plugins" "RevealHighlight" (dict "name" "RevealHighlight" "order" 2 "source" "plugin/highlight/highlight.js") }}
+  {{ $plugins.SetInMap "plugins" "zoom" (dict "name" "RevealZoom" "order" 3 "source" "plugin/zoom/zoom.js") }}
 
   <!-- always use local version of the notes plugin since HTML file it requires isn't on CDN -->
-  {{ $plugins.SetInMap "plugins" "RevealNotes" (dict "order" 4 "source" "reveal-js/plugin/notes/notes.js"
+  {{ $plugins.SetInMap "plugins" "RevealNotes" (dict "name" "RevealNotes" "order" 4 "source" "reveal-js/plugin/notes/notes.js"
                                                      "verbatim" true) }}
   {{ $startOrder = 5 }}
 {{ end }}
@@ -34,14 +33,17 @@ We support the legacy style of plugin paths (although this might break in reveal
     {{ with .order }}
       {{ $startOrder = . }}
     {{ end }}
-    {{ $plugins.SetInMap "plugins" (print .name) (merge . (dict "order" $startOrder) )}}
+    {{ $name := print .name }}
+    {{ $plugins.SetInMap "plugins" $name (merge . (dict "name" $name "order" $startOrder) )}}
   {{ else if reflect.IsSlice . }}
     {{ range . }}
       {{/*  convert from old plugin path to new plugin object format  */}}
-      {{ $plugins.SetInMap "plugins" (path.BaseName .) (dict "source" . "order" $startOrder) }}
+      {{ $name := path.BaseName .}}
+      {{ $plugins.SetInMap "plugins" $name (dict "name" $name "source" . "order" $startOrder) }}
     {{ end }}
   {{ else }}
-      {{ $plugins.SetInMap "plugins" (path.BaseName .) (dict "source" . "order" $startOrder) }}
+      {{ $name := path.BaseName .}}
+      {{ $plugins.SetInMap "plugins" $name (dict "name" $name "source" . "order" $startOrder) }}
   {{ end }}
 
   {{ $startOrder = add $startOrder 1 }}
@@ -50,16 +52,16 @@ We support the legacy style of plugin paths (although this might break in reveal
 {{ $revealLoc := dict "reveal_location" ($.Param "reveal_hugo.reveal_cdn" | default "reveal-js") }}
 {{ $normalizedPlugins := slice }}
 
-{{ range $name, $plugin := (sort ($plugins.Get "plugins") "order") }}
-  {{ $normalizedPlugin := (dict "name" $name) }}
+{{ range $plugin := (sort ($plugins.Get "plugins") "order") }}
+  {{ $normalizedPlugin := $plugin }}
 
   {{ with $plugin.css }}
     {{ $normalizedCssPath := partial "internal/func/normalizePath" (merge $plugin (dict "path" . ) $revealLoc ) }}
-    {{ $normalizedPlugin = merge $plugin (dict "css" $normalizedCssPath)}}
+    {{ $normalizedPlugin = merge $normalizedPlugin (dict "css" $normalizedCssPath)}}
   {{ end }}
   {{ with $plugin.source }}
     {{ $normalizedSourcePath := partial "internal/func/normalizePath" (merge $plugin (dict "path" . ) $revealLoc ) }}
-    {{ $normalizedPlugin = merge $plugin (dict "source" $normalizedSourcePath)}}
+    {{ $normalizedPlugin = merge $normalizedPlugin (dict "source" $normalizedSourcePath)}}
   {{ end }}
 
   {{ $normalizedPlugins = $normalizedPlugins | append $normalizedPlugin }}

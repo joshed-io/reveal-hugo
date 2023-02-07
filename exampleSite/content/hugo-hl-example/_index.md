@@ -26,9 +26,9 @@ You can enable it using the `highlight` shortcode.
 {{</* highlight go */>}}
 
 package main
- 
+
 import "fmt"
- 
+
 func main() {
     fmt.Println("Hello world!")
 }
@@ -44,9 +44,9 @@ Several options are supported, check [Hugo's documentation](https://gohugo.io/co
 {{</* highlight go "style=github,linenos=inline,hl_lines=6" */>}}
 
 package main
- 
+
 import "fmt"
- 
+
 func main() {
     fmt.Println("Hello world!")
 }
@@ -56,7 +56,7 @@ func main() {
 
 ---
 
-You can also use Hugo's highlighter in markdown code fences, 
+You can also use Hugo's highlighter in markdown code fences,
 by putting this in `config.toml`:
 
 {{< highlight toml "style=github" >}}
@@ -77,9 +77,9 @@ style = "github"
 
 {{< highlight go >}}
 package main
- 
+
 import "fmt"
- 
+
 func main() {
     fmt.Println("Hello world!")
 }
@@ -87,9 +87,9 @@ func main() {
 
 ```go
 package main
- 
+
 import "fmt"
- 
+
 func main() {
     fmt.Println("Hello world!")
 }
@@ -107,7 +107,11 @@ If you don't need highlight.js at all, you can prevent it from loading.
 
 [params.reveal_hugo]
 load_default_plugins = false
-plugins = [
-  "reveal-js/plugin/zoom-js/zoom.js",
-  "reveal-js/plugin/notes/notes.js",
-]
+
+[[params.reveal_hugo.plugins]]
+name = "RevealZoom"
+source = "reveal-js/plugin/zoom-js/zoom.js"
+
+[[params.reveal_hugo.plugins]]
+name = "RevealNotes"
+source = "reveal-js/plugin/notes/notes.js"

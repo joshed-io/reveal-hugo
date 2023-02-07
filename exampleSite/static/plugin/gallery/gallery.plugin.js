@@ -1,6 +1,8 @@
 (function(Gallery) {
 	var galleryTimer, galleryMode;
 
+	Gallery.id = 'gallery';
+
 	Gallery.step = function (items, iterations) {
 		var length = items.length,
 			ptr = 0,
@@ -31,7 +33,7 @@
 			// FIXME remove dependency on Reveal, have a callback? function
 			// that will get a root node to move full screen slides to (ie. slidesNode)
 
-			// for full screen mode we need to: 
+			// for full screen mode we need to:
 			// - take the gallery out of the flow and insert it before "slides"
 			// - hide slides
 			// - make it full screen
@@ -94,15 +96,15 @@
 })(window.Gallery = window.Gallery || {});(function() {
 	if( typeof window.addEventListener === 'function' ) {
 		var slidesNode = document.querySelector(".slides");
-		Reveal.addEventListener("slidechanged", function (event) {
+		Reveal.on("slidechanged", function (event) {
 	    console.log(event)
-			var galleryNode = event.previousSlide.querySelector('.gallery') || document.querySelector('.reveal > .gallery');
+			var galleryNode = event.previousSlide?.querySelector('.gallery') || document.querySelector('.reveal > .gallery');
 			if (galleryNode) {
 				Gallery.stop(galleryNode, slidesNode);
 			}
 
 			galleryNode = event.currentSlide.querySelector('.gallery');
-			if (galleryNode) {				
+			if (galleryNode) {
 				Gallery.start(galleryNode, slidesNode);
 			}
 

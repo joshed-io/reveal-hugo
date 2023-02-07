@@ -3,19 +3,19 @@
 <!-- Printing and PDF exports -->
 <!-- use Hugo to create the right path for the print stylesheet, then conditionally include it -->
 {{- $reveal_location := $.Param "reveal_hugo.reveal_cdn" | default "reveal-js" -}}
-<a href="{{ printf "%s/css/print/" $reveal_location | relURL }}" id="print-location" style="display: none;"></a>
-<script type="text/javascript">
-  var printLocationElement = document.getElementById('print-location');
-  var link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.type = 'text/css';
-  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
-  document.getElementsByTagName('head')[0].appendChild(link);
-</script>
 
 <!-- load Reveal.js javascripts -->
-<script src="{{ printf "%s/js/reveal.js" $reveal_location | relURL }}"></script>
-<!-- load Reveal.js plugins -->
+<script src="{{ printf "%s/dist/reveal.js" $reveal_location | relURL }}"></script>
+
+<!-- load default and user plugins -->
+{{- $plugins := partial "internal/plugins" . -}}
+{{ $pluginNames := slice }}
+{{- range $plugins }}
+  <script type="text/javascript" src="{{ .source | relURL }}"></script>
+  {{ $pluginNames = $pluginNames | append .name }}
+{{- end -}}
+
+<!-- initialize Reveal.js -->
 <script type="text/javascript">
   // Hugo lowercases all params and Reveal.js needs camelcase
   // So params in Hugo must be stored in snakecase and we camelize them here
@@ -31,23 +31,25 @@
     }
     return map;
   }
-  // pattern inspired by https://github.com/RealOrangeOne/hugo-theme-revealjs
+
   var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
   var revealHugoSiteParams = {{ jsonify (partial "internal/func/cleanParams" .Site.Params.reveal_hugo) | safeJS }};
   var revealHugoPageParams = {{ jsonify (partial "internal/func/cleanParams" .Page.Params.reveal_hugo) | safeJS }};
+
+  var revealHugoPlugins = {
+    // generate an array of javascript objects
+    plugins: {{ (printf "%s" (replace ( jsonify ( $pluginNames ) ) "\"" "")) | safeJS }}
+  };
 
   // See all options - https://github.com/hakimel/reveal.js#configuration
   var options = Object.assign({},
     camelize(revealHugoDefaults),
     camelize(revealHugoSiteParams),
-    camelize(revealHugoPageParams));
+    camelize(revealHugoPageParams),
+    camelize(revealHugoPlugins));
+
   Reveal.initialize(options);
 </script>
-
-{{- $plugins := partial "internal/plugins" . -}}
-{{- range $plugins }}
-  <script type="text/javascript" src="{{ .source | relURL }}"></script>
-{{- end -}}
 
 {{/*  check if we need to load mermaid and its render trick.
       mermaid is not rendered correctly in reveal if we don't hook
@@ -82,8 +84,8 @@
     // support current page reload with possible mermaid element
     render({currentSlide: Reveal.getCurrentSlide()});
 
-    Reveal.addEventListener('slidechanged', render);
-    Reveal.addEventListener('ready', render);
+    Reveal.on('slidechanged', render);
+    Reveal.on('ready', render);
   </script>
 {{ end }}
 

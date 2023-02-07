@@ -430,8 +430,8 @@ theme = "moon"
 # the following supposes that menu is accessible in static dir
 [[params.reveal_hugo.plugins]]
 # Name the plugin. This should be the same name used to register a reveal-js plugin,
-# for example RevealMenu, RevealNotes
-name = RevealMenu
+# for example: `RevealMenu`, `RevealNotes`
+name = "RevealMenu"
 source = "menu/menu.js"
 css = "menu/menu.css"
 # verbatim = true # should the css and source paths be used as-is ?
@@ -512,8 +512,8 @@ Reveal.js theme customization is easiest to do by overriding variables in the SC
 If you just wanted to change the presentation colors, here's what you might put in `custom-theme.scss`:
 
 ```scss
-@import "../reveal-js/css/theme/template/mixins";
-@import "../reveal-js/css/theme/template/settings";
+@import "../reveal-js/dist/theme/template/mixins";
+@import "../reveal-js/dist/theme/template/settings";
 
 $backgroundColor: rgb(3, 129, 45);
 $mainColor: #fff;

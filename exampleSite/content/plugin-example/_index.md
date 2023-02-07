@@ -13,7 +13,7 @@ margin = 0.2
 # New plugin object form; reveal-hugo
 # will load your css for you
 [[reveal_hugo.plugins]]
-name = "gallery"
+name = "Gallery"
 source = "plugin/gallery/gallery.plugin.js"
 css = "plugin/gallery/gallery.css"
 
@@ -63,7 +63,7 @@ See the [revealjs-simple-gallery GitHub repo](https://github.com/marcins/revealj
 
 ---
 
-These were the steps to use this plugin for this reveal-hugo presentation.
+These are the steps to use this plugin for this reveal-hugo presentation.
 
 ---
 
@@ -75,10 +75,13 @@ Copy the plugin CSS and JavaScript into the static directory
 
 ### 2
 
-Add the JavaScript and (optionally css) file path to the `plugins` field in the front matter
+Add the JavaScript (and optionally css) file path to the `plugins` field in the
+front matter
 
 ```toml
 [[reveal_hugo.plugins]]
+# name must match the name by which the plugin is exported
+name = "Gallery"
 source = "plugin/gallery/gallery.plugin.js"
 css = "plugin/gallery/gallery.css"
 ```
