@@ -115,3 +115,5 @@ source = "reveal-js/plugin/zoom-js/zoom.js"
 [[params.reveal_hugo.plugins]]
 name = "RevealNotes"
 source = "reveal-js/plugin/notes/notes.js"
+
+{{< /highlight >}}
