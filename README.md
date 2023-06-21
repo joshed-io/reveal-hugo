@@ -322,38 +322,46 @@ Markdown surrounded by the markdown shortcode will not be rendered by Hugo but b
 {{% /markdown %}}
 ```
 
-### MathJax support
+### Maths and equations (via `MathJax`)
 
-Add the following to `layouts/partials/reveal-hugo/body.html`:
+### Option 1: `math` code block
 
+You can author your equation inside a `math` [code block](https://reveal-hugo.dzello.com/#/math-equations):
+
+````markdown
+```math
+\tag*{(1)} P(E) = {n \choose k} p^k (1-p)^{n-k}
 ```
-<script>
-MathJax = {
-  tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']]
-  },
-  svg: {
-    fontCache: 'global'
-  }
-};
-</script>
+````
 
-<script type="text/javascript" id="MathJax-script" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
-</script>
+Use of the code block will automatically activate needed `MathJax` script for equation display.
+
+If you want to use inline equations (like $E=mc^2$) wrap your math content in two single-\$:
+
+```markdown
+Albert Einstein's famous formula: $E=mc^2$
 ```
 
-Then you can do this in a slide:
+If you want to use inline equations and no `math` code block for auto activation is present in your slides, you need to manually enable `MathJax` by setting the parameter `math` to `true` in your page frontmatter.
 
+### Option 2: `math` shortcode
+
+Alternatively, you can author your equation inside a `math` [shortcode](https://reveal-hugo.dzello.com/#/math-shortcode):
+
+```markdown
+{{< math >}}
+\tag*{(1)} \frac{n!}{k!(n-k)!} = \binom{n}{k}
+{{< /math >}}
 ```
-## Cool equations
 
-Displayed equations are wrapped in double-\$
+Use of the shortcode will automatically activate needed `MathJax` script for equation display.
 
-$$\frac{n!}{k!(n-k)!} = \binom{n}{k}$$
+For inline equations (like $E=mc^2$) use the self closing form of the `math` shortcode:
 
-Inline equations like $E=mc^2$ are wrapped in single-\$
+```markdown
+Albert Einstein's famous formula: {{< math "E=mc^2" />}}
 ```
+For the sake of brevity, the inline content can be given as unnamed first shortcode parameter, as in the code fragment above. In a more concise form, the math content can also be assigned to a named shortcode parameter `inline`: `{{< math inline="E=mc^2" />}}`.
 
 ### HTML slides
 

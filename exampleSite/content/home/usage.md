@@ -1,10 +1,12 @@
 +++
 weight = 20
 +++
+{{< slide id=usage >}}
 
 # Usage
 
 ---
+{{< slide id=prerequisite >}}
 
 ## Prerequisite
 
@@ -34,6 +36,7 @@ Hello world!
 ```
 
 ---
+{{< slide id=adding-slides >}}
 
 ### Add slides
 
@@ -52,6 +55,37 @@ Hello program!
 ```
 
 ---
+{{< slide id=math-equations >}}
+
+### Cool equations
+
+For equations, you can use a [`math`](https://docs.gitlab.com/ee/user/markdown.html#math) code block:
+
+````code
+```math
+\tag*{(1)} \lim\limits_{x \to \infty} \exp(-x) = 0
+```
+````
+<small>
+renders to:
+</small>
+
+{{< math >}}
+\tag*{(1)} \lim\limits_{x \to \infty} \exp(-x) = 0
+{{< /math >}}
+
+Inline equations (e. g. $E=mc^2$) are wrapped in single $:
+
+```code
+Albert Einstein's famous formula: $E=mc^2$
+```
+
+<small>💡 Note: When using inline math only (no math code block present), you have to set `math=true` in the frontmatter of your slide page.</small>
+
+<small>💡 Note: for code blocks support (` ```math ...``` `), hugo highlighting must be on (`codeFences = true` in `config.toml`). If you want to set `codeFences = false`, use the `math` [shortcode](#/math-shortcode).</small>
+
+---
+{{< slide id=mermaid-diagrams >}}
 
 ### Mermaid
 
@@ -83,7 +117,7 @@ graph LR
     B --> C
 {{< /mermaid >}}
 
-<small>💡 Note: for codeblocks support (` ```mermaid ...``` `), hugo highlighting must be on (codeFences = true in config.toml)</small>
+<small>💡 Note: for code blocks support (` ```mermaid ...``` `), hugo highlighting must be on (codeFences = true in config.toml)</small>
 
 
 ---

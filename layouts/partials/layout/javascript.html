@@ -57,9 +57,13 @@
       manage hot-reload by using the reveal ready event.
 */}}
 {{ $hasMermaid := false }}
+{{ $hasMath := false }}
 {{ range .Site.AllPages }}
   {{ if .Store.Get "hasMermaid" }}
     {{ $hasMermaid = true }}
+  {{ end }}
+  {{ if or .Params.math (.Store.Get "hasMath")  }}
+    {{ $hasMath = true }}
   {{ end }}
 {{ end }}
 
@@ -87,6 +91,22 @@
     Reveal.on('slidechanged', render);
     Reveal.on('ready', render);
   </script>
+{{ end }}
+
+{{ if $hasMath }}
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+</script>
+  
+{{ $mathjaxSrc := resources.GetRemote "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" }}
+<script type="text/javascript" id="MathJax-script" async src="{{ $mathjaxSrc.RelPermalink }}"></script>
 {{ end }}
 
 {{- $custom_js := $.Param "reveal_hugo.custom_js" -}}
