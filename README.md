@@ -100,7 +100,7 @@ hugo mod init github.com/me/my-presentation
 hugo mod get github.com/dzello/reveal-hugo
 ```
 
-Open `config.toml` and add the following line:
+Open `hugo.toml` and add the following line:
 
 ```toml
 theme = ["github.com/dzello/reveal-hugo"]
@@ -114,7 +114,7 @@ Add the `reveal-hugo` theme as a submodule in the themes directory:
 git submodule add git@github.com:dzello/reveal-hugo.git themes/reveal-hugo
 ```
 
-Open `config.toml` and add the following line:
+Open `hugo.toml` and add the following line:
 
 ```toml
 theme = ["reveal-hugo"]
@@ -122,7 +122,7 @@ theme = ["reveal-hugo"]
 
 ### Configure your presentation
 
-Add some more contents to your `config.toml`:
+Add some more contents to your `hugo.toml`:
 
 ```toml
 [markup.goldmark.renderer]
@@ -417,7 +417,7 @@ You can use all the additional slide shortcode attributes. They will be applied 
 
 ## Configuration
 
-Customize the Reveal.js presentation by setting these values in `config.toml` or the front matter of any presentation's `_index.md` file.
+Customize the Reveal.js presentation by setting these values in `hugo.toml` or the front matter of any presentation's `_index.md` file.
 
 - `reveal_hugo.theme`: The Reveal.js theme used; defaults to "black"
 - `reveal_hugo.custom_theme`: The path to a locally hosted Reveal.js theme in the static or assets folder
@@ -429,7 +429,7 @@ Customize the Reveal.js presentation by setting these values in `config.toml` or
 - `reveal_hugo.load_default_plugins`: If set to true (default), the plugins included by default are loaded. These are markdown, highlight.js, notes and zoom.
 - `reveal_hugo.plugins`: (see below) An array of additional Reveal.js plugins to load. The appropriate files will need to have been copied into the `static` or content directory. See here for a [big list of plugins](https://github.com/hakimel/reveal.js/wiki/Plugins,-Tools-and-Hardware) you can try. The original implementation used to accept an array of javascript files (e.g. `["plugin/gallery/gallery.plugin.js"]`), but now reveal-hugo can fully load plugin javascript and css. To enable this mode, You need to provide an array of plugin definition objects with `name`, `source` and an optional `css`, `verbatim` and `order` fields. Reveal-hugo will try to load the plugins at the path specified by `source`. If `verbatim=true` is used, the path is tried as-is. Otherwise, the path is resolved from the content dir or `static` dir. Finally, the `reveal_cdn` is prepended to the path if no other conditions are satisfied. The `order` field controls the order of javascript loading and will seldomly used. See [plugin-example](https://reveal-hugo.dzello.com/plugin-example/) for a plugin walkthrough.
 
-This is how parameters will look in your `config.toml`:
+This is how parameters will look in your `hugo.toml`:
 
 ```TOML
 [params.reveal_hugo]
@@ -481,7 +481,7 @@ To do highlighting with Hugo, use the [highlight shortcode](https://gohugo.io/co
 
 To see an example of highlighting with Reveal.js, check out the [highlightjs-linenumbers-example](https://reveal-hugo.dzello.com/highlightjs-linenumbers-example/) presentation.
 
-By default, markdown code fences will be processed with Hugo. To turn that off, add this to your `config.toml` file:
+By default, markdown code fences will be processed with Hugo. To turn that off, add this to your `hugo.toml` file:
 
 ``` toml
 [markup.highlight]
@@ -500,7 +500,7 @@ If you have a custom reveal theme to use (in .css form), place it in the `static
     - custom-theme.css
 ```
 
-Then this is what you'll put in `config.toml`:
+Then this is what you'll put in `hugo.toml`:
 
 ```toml
 [params.reveal_hugo]
@@ -573,7 +573,7 @@ This is the recommended way to add custom CSS and JavaScript to each presentatio
 
 ## Offline development
 
-Offline-friendly development is the default. The Reveal.js and Highlight.js files are loaded from the static directory by default. (See above for how to use a CDN instead). If you need `file:///` URLs to work, make sure to set `relativeURLs` and `uglyURLs` in your `config.toml`.
+Offline-friendly development is the default. The Reveal.js and Highlight.js files are loaded from the static directory by default. (See above for how to use a CDN instead). If you need `file:///` URLs to work, make sure to set `relativeURLs` and `uglyURLs` in your `hugo.toml`.
 
 ```toml
 relativeURLs = true
@@ -605,7 +605,7 @@ hugo mod init github.com/me/my-presentation
 hugo mod get github.com/dzello/reveal-hugo
 ```
 
-Open `config.toml`, look for the line `theme = ...` and add `reveal-hugo` to your site's array of themes :
+Open `hugo.toml`, look for the line `theme = ...` and add `reveal-hugo` to your site's array of themes :
 
 ```toml
 theme = ["your-current-theme", "github.com/dzello/reveal-hugo"]
@@ -619,7 +619,7 @@ Add the `reveal-hugo` theme as a submodule in the themes directory:
 git submodule add git@github.com:dzello/reveal-hugo.git themes/reveal-hugo
 ```
 
-Open `config.toml`, look for the line `theme = ...` and add `reveal-hugo` to your site's array of themes :
+Open `hugo.toml`, look for the line `theme = ...` and add `reveal-hugo` to your site's array of themes :
 
 ```toml
 theme = ["your-current-theme", "reveal-hugo"]
@@ -640,7 +640,7 @@ Files and directories are named such that they shouldn't conflict with your exis
 
 ### Configure your site for presentations
 
-Next, add the Reveal output format to your site's `config.toml` file
+Next, add the Reveal output format to your site's `hugo.toml` file
 
 ```toml
 [outputFormats.Reveal]
