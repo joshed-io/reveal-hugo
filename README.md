@@ -55,6 +55,7 @@ Jump to the [exampleSite](exampleSite) folder in this repository to see the sour
 - [bundle-example](https://reveal-hugo.dzello.com/bundle-example/) - An example of creating a presentation from one or more markdown files in a leaf bundle
 - [hugo-hl-example](https://reveal-hugo.dzello.com/hugo-hl-example/) - An example of using Hugo's compile-time syntax highlighter
 - [highlightjs-linenumbers-example](https://reveal-hugo.dzello.com/highlightjs-linenumbers-example/) - An example of using the multiline and multi-step capabilities of highlight.js
+- [blank Reveal-Hugo template](https://github.com/jerdog/reveal-hugo-template) - A templated skeleton site to get started quickly
 
 ### Starter repository
 
