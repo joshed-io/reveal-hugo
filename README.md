@@ -283,12 +283,15 @@ Here's a list of documented slide attributes from the Reveal.js docs:
 - `notes` (can also use the note shortcode)
 - `timing`
 
-data-background-image		URL of the image to show. GIFs restart when the slide opens.
-data-background-size	cover	See background-size on MDN.
-data-background-position	center	See background-position on MDN.
-data-background-repeat	no-repeat	See background-repeat on MDN.
-data-background-opacity
+### Additional data attributes
 
+Check MDN for information about how these attributes work.
+
+- data-background-image - URL of the image to show. GIFs restart when the slide opens.
+- data-background-size
+- data-background-position
+- data-background-repeat
+- data-background-opacity
 
 You can also pass through your own, a `data-` prefix will be added automatically to each one (except for `id` and `class`).
 
