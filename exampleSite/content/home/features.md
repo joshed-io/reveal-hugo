@@ -1,10 +1,11 @@
 +++
 weight = 10
 +++
+{{< slide id=included >}}
 
 ## What's included?
 
-- All Reveal.js HTML, CSS and JS (v3.9.2)
+- All Reveal.js HTML, CSS and JS (v4.4.0)
 - All out-of-the-box Reveal.js themes
 - Two custom Reveal.js themes (including this one)
 
@@ -14,6 +15,7 @@ weight = 10
 [see the code on github](https://github.com/dzello/reveal-hugo)
 
 ---
+{{< slide id=features >}}
 
 ## Features
 
@@ -21,5 +23,6 @@ weight = 10
 - Shortcodes for fragments, sections, slides & more
 - All Reveal.js parameters can be customized
 - Any Hugo section can be output as a presentation
+- Supports math code blocks
+- Supports mermaid code blocks
 - Supports offline development or using a CDN
-

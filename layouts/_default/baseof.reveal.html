@@ -1,8 +1,14 @@
 <!doctype html>
 <html lang="en">
   <head>
-    {{ partial "layout/head" . }}
-    {{ partial "layout/theme" . }}
+    {{ partial "layout/head" . -}}
+    {{ partial "layout/theme" . -}}
+    {{ $plugins := partial "internal/plugins" . -}}
+    {{- range $plugins }}
+      {{- with .css }}
+
+    <link rel="stylesheet" href="{{ . | relURL }}"> {{- end -}}
+    {{ end -}}
     <!-- To insert markup before the closing head tag for all presentations,
          create layouts/partials/reveal-hugo/head.html -->
     {{- partial "reveal-hugo/head" . -}}

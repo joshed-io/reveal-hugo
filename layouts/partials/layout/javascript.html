@@ -3,21 +3,19 @@
 <!-- Printing and PDF exports -->
 <!-- use Hugo to create the right path for the print stylesheet, then conditionally include it -->
 {{- $reveal_location := $.Param "reveal_hugo.reveal_cdn" | default "reveal-js" -}}
-<a href="{{ printf "%s/css/print/" $reveal_location | relURL }}" id="print-location" style="display: none;"></a>
-<script type="text/javascript">
-  var printLocationElement = document.getElementById('print-location');
-  var link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.type = 'text/css';
-  link.href = printLocationElement.href + (window.location.search.match(/print-pdf/gi) ? 'pdf.css' : 'paper.css');
-  document.getElementsByTagName('head')[0].appendChild(link);
-</script>
-<!-- output Hugo parameters into JavaScript to be used when initializing Reveal.js -->
-<script type="application/json" id="reveal-hugo-site-params">{{ jsonify .Site.Params.reveal_hugo | safeJS }}</script>
-<script type="application/json" id="reveal-hugo-page-params">{{ jsonify .Page.Params.reveal_hugo | safeJS }}</script>
+
 <!-- load Reveal.js javascripts -->
-<script src="{{ printf "%s/js/reveal.js" $reveal_location | relURL }}"></script>
-<!-- load Reveal.js plugins -->
+<script src="{{ printf "%s/dist/reveal.js" $reveal_location | relURL }}"></script>
+
+<!-- load default and user plugins -->
+{{- $plugins := partial "internal/plugins" . -}}
+{{ $pluginNames := slice }}
+{{- range $plugins }}
+  <script type="text/javascript" src="{{ .source | relURL }}"></script>
+  {{ $pluginNames = $pluginNames | append .name }}
+{{- end -}}
+
+<!-- initialize Reveal.js -->
 <script type="text/javascript">
   // Hugo lowercases all params and Reveal.js needs camelcase
   // So params in Hugo must be stored in snakecase and we camelize them here
@@ -33,30 +31,84 @@
     }
     return map;
   }
-  // pattern inspired by https://github.com/RealOrangeOne/hugo-theme-revealjs
+
   var revealHugoDefaults = { center: true, controls: true, history: true, progress: true, transition: "slide" };
-  var revealHugoSiteParams = JSON.parse(document.getElementById('reveal-hugo-site-params').innerHTML);
-  var revealHugoPageParams = JSON.parse(document.getElementById('reveal-hugo-page-params').innerHTML);
+  var revealHugoSiteParams = {{ jsonify (partial "internal/func/cleanParams" .Site.Params.reveal_hugo) | safeJS }};
+  var revealHugoPageParams = {{ jsonify (partial "internal/func/cleanParams" .Page.Params.reveal_hugo) | safeJS }};
+
+  var revealHugoPlugins = {
+    // generate an array of javascript objects
+    plugins: {{ (printf "%s" (replace ( jsonify ( $pluginNames ) ) "\"" "")) | safeJS }}
+  };
+
   // See all options - https://github.com/hakimel/reveal.js#configuration
   var options = Object.assign({},
     camelize(revealHugoDefaults),
     camelize(revealHugoSiteParams),
-    camelize(revealHugoPageParams));
+    camelize(revealHugoPageParams),
+    camelize(revealHugoPlugins));
+
   Reveal.initialize(options);
 </script>
-<!-- load Reveal.js plugins after Reveal.js is initialized -->
-{{ if $.Param "reveal_hugo.load_default_plugins" | default true }}
-  {{ $default_plugins := slice "plugin/markdown/marked.js" "plugin/markdown/markdown.js" "plugin/highlight/highlight.js" "plugin/zoom-js/zoom.js" }}
-  {{ range $default_plugins }}
-  <script type="text/javascript" src="{{ printf "%s/%s" $reveal_location . | relURL }}"></script>
+
+{{/*  check if we need to load mermaid and its render trick.
+      mermaid is not rendered correctly in reveal if we don't hook
+      to the slidechanged event. (mermaid viewBox element has wrong sizes).
+      manage hot-reload by using the reveal ready event.
+*/}}
+{{ $hasMermaid := false }}
+{{ $hasMath := false }}
+{{ range .Site.AllPages }}
+  {{ if .Store.Get "hasMermaid" }}
+    {{ $hasMermaid = true }}
   {{ end }}
-  <!-- always use local version of the notes plugin since HTML file it requires isn't on CDN -->
-  <script type="text/javascript" src="{{ "reveal-js/plugin/notes/notes.js" | relURL }}"></script>
+  {{ if or .Params.math (.Store.Get "hasMath")  }}
+    {{ $hasMath = true }}
+  {{ end }}
 {{ end }}
-<!-- load custom plugins locally only (not CDN since many plugins won't exist there) -->
-{{ range $.Param "reveal_hugo.plugins" }}
-<script type="text/javascript" src="{{ . | relURL }}"></script>
+
+{{ if $hasMermaid }}
+  {{ $mermaidSrc := resources.GetRemote "https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js" }}
+  <script type="text/javascript" src="{{ $mermaidSrc.RelPermalink }}"></script>
+  <script type="text/javascript">
+    mermaid.initialize({startOnLoad: false});
+    let render = (event) => {
+      let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+      if (!mermaidElems.length){
+          return
+      }
+      mermaidElems.forEach(mermaidElem => {
+          let processed = mermaidElem.getAttribute('data-processed');
+          if (!processed){
+              // https://github.com/mermaid-js/mermaid/issues/311#issuecomment-332557344
+              mermaid.init(undefined, mermaidElem);
+          }
+      });
+    };
+    // support current page reload with possible mermaid element
+    render({currentSlide: Reveal.getCurrentSlide()});
+
+    Reveal.on('slidechanged', render);
+    Reveal.on('ready', render);
+  </script>
 {{ end }}
+
+{{ if $hasMath }}
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+</script>
+  
+{{ $mathjaxSrc := resources.GetRemote "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" }}
+<script type="text/javascript" id="MathJax-script" async src="{{ $mathjaxSrc.RelPermalink }}"></script>
+{{ end }}
+
 {{- $custom_js := $.Param "reveal_hugo.custom_js" -}}
 {{- if $custom_js -}}
 <script type="text/javascript" src="{{ $custom_js | relURL }}"></script>

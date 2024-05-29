@@ -1,6 +1,7 @@
 +++
 weight = 21
 +++
+{{< slide id=configuration >}}
 
 # Configuration
 
@@ -10,7 +11,7 @@ Place configuration values in `config.toml` or a presentation's front matter (`_
 
 ## Reveal.js themes
 
-Themes control the look and feel of your presentation. Set the `theme` param to any [valid Reveal.js theme](https://github.com/hakimel/reveal.js/#theming).
+Themes control the look and feel of your presentation. Set the `theme` param to any [valid Reveal.js theme](https://revealjs.com/themes/).
 
 ```toml
 [params.reveal_hugo]
@@ -142,7 +143,7 @@ In `home/reveal-hugo/body.html`:
 
 ```html
 <script type="text/javascript">
-Reveal.addEventListener('slidechanged', function(event) {
+Reveal.on('slidechanged', function(event) {
   console.log("🎞️ Slide is now " + event.indexh);
 });
 </script>
@@ -150,7 +151,7 @@ Reveal.addEventListener('slidechanged', function(event) {
 
 ---
 
-### Extending the layout 
+### Extending the layout
 #### (alternative)
 
 You can declare a custom CSS or javascript in your configuration.
@@ -163,7 +164,7 @@ custom_js = "js/custom.js"
 
 <small>
 
-These files can be located in `static/css`, `static/js` folder 
+These files can be located in `static/css`, `static/js` folder
 
 💡 See the [extending layout example](/extending-layout-example/#) for more details.
 

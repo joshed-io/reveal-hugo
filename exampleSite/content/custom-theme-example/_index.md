@@ -71,4 +71,4 @@ See the [Reveal.js theme docs](https://github.com/hakimel/reveal.js/blob/master/
 
 ---
 
-See `assets/custom-theme.scss` or any file in `assets/reveal-js/css/theme/source` for an example.
+See `assets/custom-theme.scss` or any file in `assets/reveal-js/dist/theme/source` for an example.

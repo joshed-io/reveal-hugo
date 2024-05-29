@@ -13,3 +13,7 @@ homepage = "https://dzello.com/"
 name = "reveal.js"
 homepage = "https://revealjs.com"
 repo = "https://github.com/hakimel/reveal.js/"
+
+[module]
+    [module.hugoVersion]
+        min = "0.93.0"
