@@ -1,1 +1,35 @@
-<!-- override this partial to add content before the head tag closes -->
+{{ partialCached "bs/meta.html" . }}
+
+{{ partial "ago/head/google/tag-manager.html" . }}
+
+{{ partialCached "ab/head/we-need-you.html" . }}
+
+{{- partial "ago/head/name.html" . }}
+
+{{ "  <!-- Title tags -->" | safeHTML }}
+  <title>{{- block "title" . -}}{{- .Site.Title -}}{{- end -}}</title>
+{{- partial "ago/head/title.html" . }}
+
+{{ partial "ago/head/description.html" . }}
+
+{{ partial "ago/head/links.html" . }}
+
+{{ partial "ago/head/language.html" . }}
+
+{{ partial "ago/head/image.html" . }}
+
+{{ partial "ago/head/date.html" . }}
+
+{{ partial "ago/head/sitemap-rss.html" . }}
+
+{{ partial "ago/head/search-engine-crawler.html" . }}
+
+{{ partial "ago/head/special-social-media" . }}
+
+{{ partial "ago/head/special-open-graph" . }}
+
+{{ if .GitInfo -}}
+{{ partialCached "ab/head/git-infos.html" . .GitInfo.AbbreviatedHash }}
+{{- end }}
+
+{{ partial "ab/head/hugo.html" }}
