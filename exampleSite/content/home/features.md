@@ -5,7 +5,7 @@ weight = 10
 
 ## What's included?
 
-- All Reveal.js HTML, CSS and JS (v4.4.0)
+- All Reveal.js HTML, CSS and JS (v5.1.0)
 - All out-of-the-box Reveal.js themes
 - Two custom Reveal.js themes (including this one)
 
