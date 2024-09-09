@@ -1,1 +1,4 @@
 <!-- override this partial to add content before the head tag closes -->
+{{ range .Site.Params.custom_css -}}
+    <link rel="stylesheet" href="{{ . | absURL }}">
+{{- end }}
