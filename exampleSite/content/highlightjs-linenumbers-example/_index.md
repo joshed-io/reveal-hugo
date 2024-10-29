@@ -131,7 +131,7 @@ func main() {
 ## Hiding the line numbers
 
 There is no Reveal.js parameter to use line highlighting *without* line numbers.
-However it can be achieved by adding the some [custom CSS](https://github.com/dzello/reveal-hugo#adding-html-to-the-layout).
+However it can be achieved by adding the some [custom CSS](https://github.com/joshed-io/reveal-hugo#adding-html-to-the-layout).
 
 {{< highlight html "style=github" >}}
 <style>

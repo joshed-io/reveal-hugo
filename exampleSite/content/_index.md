@@ -19,4 +19,4 @@ background = "#FF4081"
 
 A Hugo theme for creating Reveal.js presentations.
 
-~ made by [@dzello](https://dzello.com/) ~
+~ made by [@dzello](https://joshed.io/) ~

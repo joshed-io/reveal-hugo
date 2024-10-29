@@ -2,7 +2,7 @@ baseURL = "https://example.com/"
 languageCode = "en-us"
 title = "A Hugo theme for creating Reveal.js presentations"
 disableKinds = ["sitemap", "RSS"]
-theme = "github.com/dzello/reveal-hugo"
+theme = "github.com/joshed-io/reveal-hugo"
 # theme = "."
 # themesDir = "../"
 

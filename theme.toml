@@ -1,13 +1,13 @@
 name = "reveal-hugo"
 license = "MIT"
-licenselink = "https://github.com/dzello/reveal-hugo/blob/master/LICENSE"
+licenselink = "https://github.com/joshed-io/reveal-hugo/blob/master/LICENSE"
 homepage = "https://reveal-hugo.dzello.com/"
 tags = ["presentation", "revealjs"]
 features = ["presentation"]
 
 [author]
 name = "Josh Dzielak"
-homepage = "https://dzello.com/"
+homepage = "https://joshed.io/"
 
 [original]
 name = "reveal.js"

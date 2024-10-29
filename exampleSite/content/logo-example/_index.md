@@ -16,7 +16,7 @@ You can generalize the concept to add any additional markup to your presentation
 
 ---
 
-[See the code for this presentation](https://github.com/dzello/reveal-hugo/blob/master/exampleSite/content/logo-example)
+[See the code for this presentation](https://github.com/joshed-io/reveal-hugo/blob/master/exampleSite/content/logo-example)
 
 ---
 

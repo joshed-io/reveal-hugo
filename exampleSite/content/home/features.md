@@ -12,7 +12,7 @@ weight = 10
 <br>
 <br>
 
-[see the code on github](https://github.com/dzello/reveal-hugo)
+[see the code on github](https://github.com/joshed-io/reveal-hugo)
 
 ---
 {{< slide id=features >}}
