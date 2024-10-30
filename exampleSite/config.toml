@@ -10,8 +10,8 @@ theme = "github.com/joshed-io/reveal-hugo"
 # relativeURLs = true
 # uglyURLs = true
 
-[author]
-name = "Josh Dzielak"
+[params]
+author = "Josh Dzielak"
 
 # currently only the unsafe mode for goldmark is supported
 [markup.goldmark.renderer]
