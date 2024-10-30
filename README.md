@@ -1,14 +1,14 @@
 # reveal-hugo
 
-![License badge](https://img.shields.io/github/license/dzello/reveal-hugo.svg)
-[![CircleCI](https://circleci.com/gh/dzello/reveal-hugo.svg?style=svg)](https://circleci.com/gh/dzello/reveal-hugo)
+![License badge](https://img.shields.io/github/license/joshed-io/reveal-hugo.svg)
+[![CircleCI](https://circleci.com/gh/joshed-io/reveal-hugo.svg?style=svg)](https://circleci.com/gh/joshed-io/reveal-hugo)
 [![Website up/down badge](https://img.shields.io/website-up-down-green-red/https/reveal-hugo.dzello.com.svg)](https://reveal-hugo.dzello.com/)
-![Last commit badge](https://img.shields.io/github/last-commit/dzello/reveal-hugo.svg)
+![Last commit badge](https://img.shields.io/github/last-commit/joshed-io/reveal-hugo.svg)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/70c5c7a6-5fb2-40a9-98e1-20aa21336201/deploy-status)](https://app.netlify.com/sites/reveal-hugo/deploys)
 
 A Hugo theme for [Reveal.js](https://revealjs.com/) that makes authoring and customization a breeze. With it, you can turn any properly-formatted Hugo content into a HTML presentation.
 
-![screenshot of reveal-hugo](https://github.com/dzello/reveal-hugo/blob/master/images/screenshot.png?raw=true)
+![screenshot of reveal-hugo](https://github.com/joshed-io/reveal-hugo/blob/master/images/screenshot.png?raw=true)
 
 ⚠️ The latest version of this theme requires hugo version >= v0.93.0. If you need compatibility with an earlier version, try a previous release.
 
@@ -59,7 +59,7 @@ Jump to the [exampleSite](exampleSite) folder in this repository to see the sour
 
 ### Starter repository
 
-If you want to start creating a presentation right away, clone the [programming-quotes](https://github.com/dzello/programming-quotes) repository and start hacking.
+If you want to start creating a presentation right away, clone the [programming-quotes](https://github.com/joshed-io/programming-quotes) repository and start hacking.
 
 ## Tutorial: Create your first presentation
 
@@ -98,13 +98,13 @@ hugo mod init github.com/me/my-presentation
 - Declare the `reveal-hugo` theme module as a dependency of your site:
 
 ```
-hugo mod get github.com/dzello/reveal-hugo
+hugo mod get github.com/joshed-io/reveal-hugo
 ```
 
 Open `hugo.toml` and add the following line:
 
 ```toml
-theme = ["github.com/dzello/reveal-hugo"]
+theme = ["github.com/joshed-io/reveal-hugo"]
 ```
 
 #### Method 2 (traditional): use theme as git submodule
@@ -112,7 +112,7 @@ theme = ["github.com/dzello/reveal-hugo"]
 Add the `reveal-hugo` theme as a submodule in the themes directory:
 
 ```shell
-git submodule add git@github.com:dzello/reveal-hugo.git themes/reveal-hugo
+git submodule add git@github.com:joshed-io/reveal-hugo.git themes/reveal-hugo
 ```
 
 Open `hugo.toml` and add the following line:
@@ -157,7 +157,7 @@ $ hugo server
 
 Navigate to [http://localhost:1313/](http://localhost:1313/) and you should see your presentation.
 
-![New site with reveal-hugo](https://github.com/dzello/reveal-hugo/blob/master/images/reveal-hugo-hello-world.png?raw=true)
+![New site with reveal-hugo](https://github.com/joshed-io/reveal-hugo/blob/master/images/reveal-hugo-hello-world.png?raw=true)
 
 To add more slides, just add content to `_index.md` or create new markdown files in `content/home`. Remember that each slide must be separated by `---` with blank lines above and below.
 
@@ -194,7 +194,7 @@ cd /path/to/my-presentation
 Then invoke hugo's module `get` subcommand with the update flag `-u`:
 
 ```
-hugo mod get -u github.com/dzello/reveal-hugo
+hugo mod get -u github.com/joshed-io/reveal-hugo
 ```
 
 Hugo will automatically pull in the latest theme version. That's it, your update is done!
@@ -614,13 +614,13 @@ hugo mod init github.com/me/my-presentation
 - Declare the `reveal-hugo` theme module as a dependency of your site:
 
 ```
-hugo mod get github.com/dzello/reveal-hugo
+hugo mod get github.com/joshed-io/reveal-hugo
 ```
 
 Open `hugo.toml`, look for the line `theme = ...` and add `reveal-hugo` to your site's array of themes :
 
 ```toml
-theme = ["your-current-theme", "github.com/dzello/reveal-hugo"]
+theme = ["your-current-theme", "github.com/joshed-io/reveal-hugo"]
 ```
 
 #### Method 2 (traditional): use theme as git submodule
@@ -628,7 +628,7 @@ theme = ["your-current-theme", "github.com/dzello/reveal-hugo"]
 Add the `reveal-hugo` theme as a submodule in the themes directory:
 
 ```shell
-git submodule add git@github.com:dzello/reveal-hugo.git themes/reveal-hugo
+git submodule add git@github.com:joshed-io/reveal-hugo.git themes/reveal-hugo
 ```
 
 Open `hugo.toml`, look for the line `theme = ...` and add `reveal-hugo` to your site's array of themes :
@@ -643,7 +643,7 @@ With hugo < v0.42, you have to manually copy a few files out of this theme into 
 
 ```shell
 cd my-hugo-site
-git clone https://github.com/dzello/reveal-hugo.git themes/reveal-hugo
+git clone https://github.com/joshed-io/reveal-hugo.git themes/reveal-hugo
 cd themes/reveal-hugo
 cp -r layouts static ../../
 ```
@@ -685,7 +685,7 @@ layout = "list"
 
 ### Create a page that lists out all presentations
 
-See [this issue](https://github.com/dzello/reveal-hugo/issues/37) for a template that you can use.
+See [this issue](https://github.com/joshed-io/reveal-hugo/issues/37) for a template that you can use.
 
 ## Reveal.js tips
 
@@ -698,7 +698,7 @@ These are some useful Reveal.js features and shortcuts.
 Here are a few useful Reveal.js-related tools:
 
 - [decktape](https://github.com/astefanutti/decktape) for exporting a presentation as a PDF
-- More [revealjs themes](https://github.com/dzello/revealjs-themes) including robot-lung and sunblind
+- More [revealjs themes](https://github.com/joshed-io/revealjs-themes) including robot-lung and sunblind
 
 Find many more on the Reveal.js wiki: [Plugins, tools and hardware](https://github.com/hakimel/reveal.js/wiki/Plugins,-Tools-and-Hardware).
 
@@ -708,6 +708,7 @@ Have you built something with reveal-hugo? Add a link to it here.
 
 - [dzello's Paris Wedding Weekend Guide](https://estelle.and.dzello.com/guide/) ([source](https://github.com/dzello/estelle-and-josh/blob/master/site/content/guide/_index.md))
 - [DevOps Training](https://devops.training.barpilot.io/) ([source](https://github.com/guilhem/devops-training))
+- [Personal CV](https://www.pablomarcos.me/es/presentations/mi-cv/#/), [Master Thesis](https://www.pablomarcos.me/es/presentations/cangraph/#/), [Master Thesis Update for the WHO](https://www.pablomarcos.me/es/presentations/cangraph-update/) & [Proposal for New Bus Services in Madrid](https://www.pablomarcos.me/es/presentations/alegaciones-crtm/#/) by Pablo Marcos
 
 
 ## Changelog

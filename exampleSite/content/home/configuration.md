@@ -53,14 +53,14 @@ custom_theme_compile = true
 
 reveal-hugo comes with 2 extra Reveal.js themes:
 
-- [robot-lung](https://github.com/dzello/revealjs-themes#robot-lung) (this one)
-- [sunblind](https://github.com/dzello/revealjs-themes#sunblind)
+- [robot-lung](https://github.com/joshed-io/revealjs-themes#robot-lung) (this one)
+- [sunblind](https://github.com/joshed-io/revealjs-themes#sunblind)
 
 <br>
 
 <small>
 
-They live in the `static/reveal-hugo/themes` folder and also [on Github](https://github.com/dzello/revealjs-themes).
+They live in the `static/reveal-hugo/themes` folder and also [on Github](https://github.com/joshed-io/revealjs-themes).
 
 </small>
 

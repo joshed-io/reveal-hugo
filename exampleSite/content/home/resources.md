@@ -8,8 +8,8 @@ weight = 42
 
 ## Code and docs
 
-- [reveal-hugo Github README](https://github.com/dzello/reveal-hugo)
-- [Content for this presentation](https://github.com/dzello/reveal-hugo/tree/master/exampleSite)
+- [reveal-hugo Github README](https://github.com/joshed-io/reveal-hugo)
+- [Content for this presentation](https://github.com/joshed-io/reveal-hugo/tree/master/exampleSite)
 
 ---
 
