@@ -68,15 +68,23 @@
 {{ end }}
 
 {{ if $hasMermaid }}
-  {{ $mermaidSrc := resources.GetRemote "https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js" }}
-  <script type="text/javascript" src="{{ $mermaidSrc.RelPermalink }}"></script>
-  <script type="text/javascript">
+  {{- $mermaid_location := $.Param "reveal_hugo.mermaid_cdn" | default "__fetch_cdn__" -}} 
+
+  {{ if eq $mermaid_location "__fetch_cdn__"  }}
+    {{ $mermaid_location = resources.GetRemote "https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js" }}
+    {{ $mermaid_location = $mermaid_location.RelPermalink }}
+  {{ end  }}
+
+  <script type="text/javascript" async src="{{ $mermaid_location }}?nocache={{ now.Unix }}">
     mermaid.initialize({startOnLoad: false});
+
     let render = (event) => {
       let mermaidElems = event.currentSlide.querySelectorAll('.mermaid');
+
       if (!mermaidElems.length){
           return
       }
+
       mermaidElems.forEach(mermaidElem => {
           let processed = mermaidElem.getAttribute('data-processed');
           if (!processed){
@@ -85,6 +93,7 @@
           }
       });
     };
+
     // support current page reload with possible mermaid element
     render({currentSlide: Reveal.getCurrentSlide()});
 
@@ -104,9 +113,15 @@
     }
   };
 </script>
-  
-{{ $mathjaxSrc := resources.GetRemote "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" }}
-<script type="text/javascript" id="MathJax-script" async src="{{ $mathjaxSrc.RelPermalink }}"></script>
+
+  {{- $mathjax_location := $.Param "reveal_hugo.mathjax_cdn" | default "__fetch_cdn__" -}} 
+
+  {{ if eq $mathjax_location "__fetch_cdn__"  }}
+    {{ $mathjax_location := resources.GetRemote "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" }}
+    <script type="text/javascript" id="MathJax-script" async src="{{ $mathjax_location.RelPermalink }}"></script>
+  {{ else }}
+    <script type="text/javascript" id="MathJax-script" async src="{{ $mathjax_location }}"></script>
+  {{ end  }}
 {{ end }}
 
 {{- $custom_js := $.Param "reveal_hugo.custom_js" -}}
