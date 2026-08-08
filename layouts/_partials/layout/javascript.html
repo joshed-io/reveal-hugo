@@ -58,12 +58,14 @@
 */}}
 {{ $hasMermaid := false }}
 {{ $hasMath := false }}
-{{ range .Site.AllPages }}
-  {{ if .Store.Get "hasMermaid" }}
-    {{ $hasMermaid = true }}
-  {{ end }}
-  {{ if or .Params.math (.Store.Get "hasMath")  }}
-    {{ $hasMath = true }}
+{{ range hugo.Sites }}
+  {{ range .Pages }}
+    {{ if .Store.Get "hasMermaid" }}
+      {{ $hasMermaid = true }}
+    {{ end }}
+    {{ if or .Params.math (.Store.Get "hasMath")  }}
+      {{ $hasMath = true }}
+    {{ end }}
   {{ end }}
 {{ end }}
 

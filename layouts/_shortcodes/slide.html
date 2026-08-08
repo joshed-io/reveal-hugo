@@ -3,7 +3,7 @@
 {{- $content := .Get "content" -}}
 {{- if $content -}}
   {{- $lookup := split $content "." }}
-  {{ $markdownContent := .Page.Site.Data }}
+  {{ $markdownContent := hugo.Data }}
   {{- range $dataPath := $lookup -}}
     {{- $markdownContent = index $markdownContent $dataPath -}}
   {{- end -}}
